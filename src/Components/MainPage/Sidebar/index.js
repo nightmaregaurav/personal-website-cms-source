@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
-import profilePic from '../../../assets/owned/images/profile.jpg'
-import config from '../../../assets/owned/json/appconfig.json'
+import profilePic from '../../../assets/owned/images/profile.jpg';
+import config from '../../../assets/owned/json/appconfig.json';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
 

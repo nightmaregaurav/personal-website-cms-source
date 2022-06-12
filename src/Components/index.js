@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './index.scss';
 import config from '../assets/owned/json/appconfig.json';
+import AOS from "aos";
 
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
@@ -26,6 +27,13 @@ const helmetData = new HelmetData({});
 const Components = () => {
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
     setTimeout(() => setPreLoaderLoading(false), 1000);
+
+    useEffect(() => {
+        // noinspection JSUnresolvedFunction
+        AOS.init();
+        // noinspection JSUnresolvedFunction
+        AOS.refresh();
+    }, []);
 
     return (
         <>

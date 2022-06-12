@@ -12,6 +12,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'boxicons/dist/boxicons';
 import 'boxicons/css/boxicons.min.css';
+import 'aos/dist/aos';
+import 'aos/dist/aos.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
