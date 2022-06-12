@@ -6,7 +6,7 @@ const Footer = () => {
         <>
             <footer style={{width: "100%", textAlign: "center"}}>
                 <small>
-                    © {new Date().getFullYear()} made with <i className={"fas fa-heart"} style={{ color: 'red' }} /> by Gaurav Nyaupane
+                    © {new Date().getFullYear()} made with 🖤 by Gaurav Nyaupane
                 </small>
             </footer>
         </>

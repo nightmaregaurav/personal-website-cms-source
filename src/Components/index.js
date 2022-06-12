@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './index.scss';
-import data from '../assets/owned/json/appconfig.json';
+import config from '../assets/owned/json/appconfig.json';
 
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
@@ -30,7 +30,7 @@ const Components = () => {
     return (
         <>
             <Helmet helmetData={helmetData}>
-                <title>{data["main-title"]}</title>
+                <title>{config["main-title"]}</title>
             </Helmet>
             <Sugar customLoading={preLoaderLoading}/>
 
