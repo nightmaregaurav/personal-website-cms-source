@@ -18,7 +18,7 @@ const BackToTop = () => {
 
     return (
         <>
-            <span className={"back-to-top d-flex align-items-center justify-content-center"}><i className="bi bi-arrow-up-short"></i></span>
+            <span onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className={"back-to-top d-flex align-items-center justify-content-center"}><i className="bi bi-arrow-up-short"></i></span>
         </>
     );
 };
