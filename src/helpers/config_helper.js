@@ -1,6 +1,14 @@
-const get_config = async () => {
-    const response = await fetch('/config.json', {method: 'GET'});
-    return await response.json();
-}
+import {useState, useEffect} from "react";
 
-module.exports.get_config = get_config;
+export function useConfig() {
+    const [config, setConfig] = useState({});
+    useEffect(() => {
+        async function immediate() {
+            const response = await fetch('/config.json', {method: 'GET'});
+            setConfig(await response.json());
+        }
+        immediate().then(() => {});
+        return () => {};
+    }, []);
+    return config;
+}

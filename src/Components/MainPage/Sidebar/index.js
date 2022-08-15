@@ -1,15 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './index.scss';
 import profilePic from '../../../assets/owned/images/profile.jpg';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
-import {get_config} from '../../../helpers/config_helper'
+import {useConfig} from '../../../helpers/config_helper'
 
 const Sidebar = () => {
-    const [config, setConfig] = useState({});
-    useEffect(() => {
-        get_config().then(config => setConfig(config));
-    }, []);
+    const config = useConfig();
 
     const toggleSideBar = () => {
         document.querySelector('body').classList.toggle('mobile-nav-active');

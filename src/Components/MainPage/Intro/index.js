@@ -1,14 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './index.scss';
 import introImage from '../../../assets/owned/images/intro-image.jpg';
 import Typed from 'react-typed';
-import {get_config} from '../../../helpers/config_helper'
+import {useConfig} from '../../../helpers/config_helper'
 
 const Intro = () => {
-    const [config, setConfig] = useState({});
-    useEffect(() => {
-        get_config().then(config => setConfig(config));
-    }, []);
+    const config = useConfig();
 
     return (
         <>

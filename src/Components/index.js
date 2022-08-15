@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
 
-import {get_config} from '../helpers/config_helper'
+import {useConfig} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import {Helmet, HelmetData} from "react-helmet-async";
@@ -25,10 +25,7 @@ import Contact from "./MainPage/Contact";
 const helmetData = new HelmetData({});
 
 const Components = () => {
-    const [config, setConfig] = useState({});
-    useEffect(() => {
-        get_config().then(config => setConfig(config));
-    }, []);
+    const config = useConfig();
 
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
     setTimeout(() => setPreLoaderLoading(false), 1000);
