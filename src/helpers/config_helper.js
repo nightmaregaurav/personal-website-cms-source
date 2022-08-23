@@ -1,14 +1,29 @@
 import {useState, useEffect} from "react";
+export var CONFIG = {}
+
+async function getConfig() {
+    const response = await fetch('/config.json', {method: 'GET'});
+    const data = await response.json();
+    CONFIG = data;
+    return data;
+}
 
 export function useConfig() {
     const [config, setConfig] = useState({});
     useEffect(() => {
-        async function immediate() {
-            const response = await fetch('/config.json', {method: 'GET'});
-            setConfig(await response.json());
+        if (Object.keys(config).length !== 0) {
+            setConfig(config);
+            console.log("Config:", config);
+        } else if (Object.keys(CONFIG).length !== 0) {
+            setConfig(CONFIG);
+            console.log("CONFIG:", CONFIG);
+        } else {
+            getConfig().then((data) => setConfig(data));
         }
-        immediate().then(() => {});
-        return () => {};
+
+        return () => {
+        };
     }, []);
+
     return config;
 }
