@@ -18,7 +18,7 @@ import Experiences from "./MainPage/Experiences";
 import {default as ExperiencesList} from "./MainPage/Experiences/List";
 import {default as ExperiencesView} from "./MainPage/Experiences/View";
 import Services from "./MainPage/Services";
-import Technologies from "./MainPage/Technologies";
+import Skills from "./MainPage/Skills";
 import Documents from "./MainPage/Documents";
 import Contact from "./MainPage/Contact";
 
@@ -59,7 +59,7 @@ const Components = () => {
                             <Route path="view/:id" element={<ExperiencesView/>} />
                         </Route>
                         <Route path="services" element= {<Services />} />
-                        <Route path="technologies" element= {<Technologies />} />
+                        <Route path="skills" element= {<Skills />} />
                         <Route path="documents" element= {<Documents />} />
                         <Route path="contact" element= {<Contact />} />
                     </Route>

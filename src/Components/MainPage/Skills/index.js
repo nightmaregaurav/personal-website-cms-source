@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.scss';
 
-const Technologies = () => {
+const Skills = () => {
     return (
         <>
-            Technologies
+            Skills
         </>
     );
 };
 
-export default Technologies;
+export default Skills;

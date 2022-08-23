@@ -9,8 +9,8 @@ const Intro = () => {
 
     return (
         <>
-            <section id="hero" style={{background: "url(" + introImage + ")"}} className={"d-flex flex-column justify-content-center align-items-center"}>
-                <div className={"hero-container text-center"} data-aos="fade-in">
+            <section id="intro" style={{background: "url(" + introImage + ")"}} className={"d-flex flex-column justify-content-center align-items-center"}>
+                <div className={"intro-container text-center"} data-aos="fade-in">
                     <h1>{config["full-name"]}</h1>
                     <p>I'm <Typed strings={config["intro-words"]?? [""]} typeSpeed={40} backSpeed={50} loop />
                     </p>
