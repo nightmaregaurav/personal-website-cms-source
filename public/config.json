@@ -19,5 +19,8 @@
     "snapchat" : "https://www.google.com",
     "dribbble" : "https://www.google.com",
     "blogger" : "https://www.google.com"
+  },
+  "about": {
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, e"
   }
 }

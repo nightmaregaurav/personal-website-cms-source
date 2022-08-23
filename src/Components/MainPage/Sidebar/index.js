@@ -4,6 +4,7 @@ import profilePic from '../../../assets/owned/images/profile.jpg';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
 import {useConfig} from '../../../helpers/config_helper'
+import {get} from "../../../helpers/object_helper";
 
 const Sidebar = () => {
     const config = useConfig();
@@ -41,10 +42,10 @@ const Sidebar = () => {
             <header id="header" className={"sidebar"}>
                 <div className={"d-flex flex-column"}>
                     <div className={"profile"}>
-                        <img src={profilePic} alt={config["profile-alt"]} className={"img-fluid rounded-circle"} />
-                        <h1 className={"text-light"}><Link to={"/"}>{config["full-name"]}</Link></h1>
+                        <img src={profilePic} alt={get(config, "profile-alt", "")} className={"img-fluid rounded-circle"} />
+                        <h1 className={"text-light"}><Link to={"/"}>{get(config, "full-name", "")}</Link></h1>
                         <div className={"social-links mt-3 text-center"}>
-                            {Object.entries(config["social-urls"] ?? {}).map((value,index) => <a key={index.toString()} target={"_blank"} rel="noreferrer" href={value[1].toString()} className={value[0]}><i className={"bx bxl-" + value[0]}/></a>)}
+                            {Object.entries(get(config, "social-urls", {})).map((value,index) => <a key={index.toString()} target={"_blank"} rel="noreferrer" href={value[1].toString()} className={value[0]}><i className={"bx bxl-" + value[0]}/></a>)}
                         </div>
                     </div>
                     <nav id="navbar" className={"nav-menu navbar"}>

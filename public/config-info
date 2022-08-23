@@ -1,0 +1,16 @@
+{
+  "full-name": Compulsory
+  "main-title": Compulsory
+  "profile-alt": Optional
+  "intro-words": [
+    Variable Length words, at least one Compulsory
+  ],
+  "social-urls": {
+    "github" : "https://www.github.com",
+    "linkedin" : "https://www.linkedin.com",
+    ... So on, for all social media platforms. Optional.
+  },
+  "about": {
+    "intro": Compulsory
+  }
+}

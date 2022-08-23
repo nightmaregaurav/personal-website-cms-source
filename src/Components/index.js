@@ -21,6 +21,7 @@ import Services from "./MainPage/Services";
 import Skills from "./MainPage/Skills";
 import Documents from "./MainPage/Documents";
 import Contact from "./MainPage/Contact";
+import {get} from "../helpers/object_helper";
 
 const helmetData = new HelmetData({});
 
@@ -40,7 +41,7 @@ const Components = () => {
     return (
         <>
             <Helmet helmetData={helmetData}>
-                <title>{config["main-title"]?? ""}</title>
+                <title>{get(config, "main-title", "")}</title>
             </Helmet>
             <Sugar customLoading={preLoaderLoading}/>
 

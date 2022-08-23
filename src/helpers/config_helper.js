@@ -12,7 +12,6 @@ export function useConfig() {
     const [config, setConfig] = useState({});
     useEffect(() => {
         if (Object.keys(config).length !== 0) {
-            setConfig(config);
             console.log("Config:", config);
         } else if (Object.keys(CONFIG).length !== 0) {
             setConfig(CONFIG);
