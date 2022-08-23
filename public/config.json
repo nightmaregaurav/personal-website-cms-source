@@ -21,6 +21,21 @@
     "blogger" : "https://www.google.com"
   },
   "about": {
-    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, e"
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, e",
+    "image-alt": "Gaurav Nyaupane's photo",
+    "info": {
+      "name": "Gaurav Nyaupane",
+      "Birth": "1 May 1995",
+      "Website": "www.example.com",
+      "Phone": "+123 456 7890",
+      "Address": "123, Main Street, New York, USA",
+      "Language": "English, French",
+      "Degree": "Master",
+      "Email": "email@example.com",
+      "Freelance": "Available",
+      "Available for hire": "Yes",
+      "Hourly Rate": "10$",
+      "Certifications": "Some Certifications"
+    }
   }
 }
