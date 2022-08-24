@@ -24,3 +24,54 @@
 .about .content p:last-child {
   margin-bottom: 0;
 }
+.swiper-pagination {
+  margin-top: 10px !important;
+  position: relative !important;
+  margin-bottom: 0 !important;
+}
+.testimony-card {
+  font-size: 13px;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  padding: 20px;
+  border-radius: 10px;
+  color: hsl(0, 0%, 100%);
+}
+.testimony-card .header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.testimony-card > * {
+  padding: 10px;
+  line-height: 1.5;
+}
+.testimony-card .header .name {
+  font-size: 1.2em;
+}
+.testimony-card .avatar {
+  min-width: 75px!important;
+  min-height: 75px!important;
+  max-width: 75px!important;
+  max-height: 75px!important;
+  object-fit: cover !important;
+  margin: 4px !important;
+  border-radius: 50% !important;
+}
+.testimony-card .title {
+  font-size: 1.7em;
+}
+.testimony-card .status {
+  color: inherit;
+  opacity: 0.5;
+}
+.testimony-card .quote {
+  font-size: 1.1em;
+  color: inherit;
+  opacity: 0.7;
+}
+.testimony-card .quote::before {
+  content: open-quote;
+}
+.testimony-card .quote::after {
+  content: close-quote;
+}

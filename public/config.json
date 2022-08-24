@@ -1,7 +1,9 @@
 {
-  "full-name": "Gaurav Nyaupane",
   "main-title": "Gaurav Nyaupane",
+  "full-name": "Gaurav Nyaupane",
+  "profile-pic": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   "profile-alt": "Gaurav Nyaupane's photo",
+  "intro-pic": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
   "intro-words": [
     "Developer",
     "Designer",
@@ -21,6 +23,7 @@
     "blogger" : "https://www.google.com"
   },
   "about": {
+    "pic": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
     "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, e",
     "image-alt": "Gaurav Nyaupane's photo",
     "info": {
@@ -36,6 +39,18 @@
       "Available for hire": "Yes",
       "Hourly Rate": "10$",
       "Certifications": "Some Certifications"
-    }
+    },
+    "testimonials-intro": "Here's what my clients say about me.",
+    "testimonials": [
+      {
+        "name": "Gaurav Nyaupane",
+        "pic": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        "company": "Company name",
+        "designation": "Software Engineer",
+        "on": "1 May 1995",
+        "said": "He is a nice developer.",
+        "highlight": "a nice developer"
+      }
+    ]
   }
 }
