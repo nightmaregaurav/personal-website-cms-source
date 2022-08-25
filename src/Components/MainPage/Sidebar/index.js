@@ -52,7 +52,8 @@ const Sidebar = () => {
                             <span onClick={activateSidebar}><Link to={"/"} className={"nav-link auto-activate"}><i className={"bx bx-home"}></i> <span>Home</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/about"} className={"nav-link auto-activate"}><i className={"bx bx-user"}></i> <span>About</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/education"} className={"nav-link auto-activate"}><i className={"bx bx-abacus"}></i> <span>Education</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/experiences"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experiences</span></Link></span>
+                            <span onClick={activateSidebar}><Link to={"/experience"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experience</span></Link></span>
+                            <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-box"}></i> <span>Projects</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/documents"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Documents</span></Link></span>

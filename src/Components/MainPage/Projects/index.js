@@ -2,12 +2,12 @@ import React from 'react';
 import './index.scss';
 import {Outlet} from "react-router-dom";
 
-const Experiences = () => {
+const Projects = () => {
     return (
         <>
-            <Outlet/>
+            <Outlet />
         </>
     );
 };
 
-export default Experiences;
+export default Projects;

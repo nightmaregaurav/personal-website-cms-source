@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.scss';
+import {Outlet} from "react-router-dom";
 
-const View = ({id}) => {
+const View = () => {
     return (
         <>
-            Experiences View {id}
+            View
         </>
     );
 };

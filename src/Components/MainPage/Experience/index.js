@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.scss';
 
-const List = () => {
+const Experience = () => {
     return (
         <>
-            List experiences
+            Experience
         </>
     );
 };
 
-export default List;
+export default Experience;

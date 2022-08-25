@@ -12,9 +12,10 @@ import MainPage from "./MainPage";
 import Intro from "./MainPage/Intro";
 import About from "./MainPage/About";
 import Education from "./MainPage/Education";
-import Experiences from "./MainPage/Experiences";
-import {default as ExperiencesList} from "./MainPage/Experiences/List";
-import {default as ExperiencesView} from "./MainPage/Experiences/View";
+import Experience from "./MainPage/Experience";
+import Projects from "./MainPage/Projects";
+import ProjectsList from "./MainPage/Projects/List";
+import ProjectsView from "./MainPage/Projects/View";
 import Services from "./MainPage/Services";
 import Skills from "./MainPage/Skills";
 import Documents from "./MainPage/Documents";
@@ -50,9 +51,10 @@ const Components = () => {
                         <Route path="" element= {<Intro/>} />
                         <Route path="about" element= {<About />} />
                         <Route path="education" element={<Education/>} />
-                        <Route path="experiences" element={<Experiences/>}>
-                            <Route path="" element={<ExperiencesList/>} />
-                            <Route path="view/:id" element={<ExperiencesView/>} />
+                        <Route path="experience" element={<Experience/>} />
+                        <Route path="projects" element={<Projects/>}>
+                            <Route path="" element={<ProjectsList/>} />
+                            <Route path=":id" element={<ProjectsView/>} />
                         </Route>
                         <Route path="services" element= {<Services />} />
                         <Route path="skills" element= {<Skills />} />
