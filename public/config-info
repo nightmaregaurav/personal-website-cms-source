@@ -56,4 +56,22 @@
       ... So on for all education
     ]
   },
+  "experience": {
+    "intro": Optional,
+    "timeline": [
+      {
+        "title": Compulsory,
+        "organization": Optional
+        "organizationUrl": Optional
+        "from": Optional
+        "to": Optional
+        "description": Optional,
+        "achievements": [
+          "Some Achievement",
+          ... So on for all achievements, Optional
+        ]
+      },
+      ... So on for all experience
+    ]
+  },
 }

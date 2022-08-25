@@ -73,5 +73,24 @@
         ]
       }
     ]
+  },
+  "experience": {
+    "intro": "A Really long intro explaining in brief about your work journey.",
+    "timeline": [
+      {
+        "title": "Software Engineer",
+        "organization": "Some Company",
+        "organizationUrl": "http://www.example.com",
+        "from": "1 May 1995",
+        "to": "1 May 1995",
+        "description": "A paragraph or two about your experience.",
+        "achievements": [
+          "Some Achievement",
+          "Some other Achievement",
+          "Better Achievement",
+          "Even Better Achievement"
+        ]
+      }
+    ]
   }
 }
