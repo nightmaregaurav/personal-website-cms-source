@@ -35,5 +35,25 @@
     }
     ... So on for all testimonials
     ]
-  }
+  },
+  "education": {
+    "intro": Optional,
+    "timeline": [
+      {
+        "title": Compulsory,
+        "institute": Optional
+        "instituteUrl": Optional
+        "university": Optional
+        "universityUrl": Optional
+        "from": Optional
+        "to": Optional
+        "description": Optional,
+        "achievements": [
+          "Some Achievement",
+          ... So on for all achievements, Optional
+        ]
+      },
+      ... So on for all education
+    ]
+  },
 }

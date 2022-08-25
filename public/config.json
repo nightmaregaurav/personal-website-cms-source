@@ -24,7 +24,7 @@
   },
   "about": {
     "pic": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, euismod nisi nisi euismod nisi. Nam euismod, nisi eu consectetur euismod, nisi nisi consectetur nisi, e",
+    "intro": "A paragraph or two about you, explain yourself in a few words.",
     "image-alt": "Gaurav Nyaupane's photo",
     "info": {
       "name": "Gaurav Nyaupane",
@@ -50,6 +50,27 @@
         "on": "1 May 1995",
         "said": "He is a nice developer.",
         "highlight": "a nice developer"
+      }
+    ]
+  },
+  "education": {
+    "intro": "A Really long intro explaining in brief about your education journey.",
+    "timeline": [
+      {
+        "title": "Bachelor of Computer Application",
+        "institute": "Some Institute",
+        "instituteUrl": "http://www.example.com",
+        "university": "Some University",
+        "universityUrl": "http://www.example.com",
+        "from": "1 May 1995",
+        "to": "1 May 1995",
+        "description": "A paragraph or two about your education.",
+        "achievements": [
+          "Some Achievement",
+          "Some other Achievement",
+          "Better Achievement",
+          "Even Better Achievement"
+        ]
       }
     ]
   }

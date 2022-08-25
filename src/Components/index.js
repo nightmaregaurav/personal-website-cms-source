@@ -12,8 +12,6 @@ import MainPage from "./MainPage";
 import Intro from "./MainPage/Intro";
 import About from "./MainPage/About";
 import Education from "./MainPage/Education";
-import {default as EducationList} from "./MainPage/Education/List";
-import {default as EducationView} from "./MainPage/Education/View";
 import Experiences from "./MainPage/Experiences";
 import {default as ExperiencesList} from "./MainPage/Experiences/List";
 import {default as ExperiencesView} from "./MainPage/Experiences/View";
@@ -51,10 +49,7 @@ const Components = () => {
                     <Route path="/" element={<MainPage/>}>
                         <Route path="" element= {<Intro/>} />
                         <Route path="about" element= {<About />} />
-                        <Route path="education" element={<Education/>}>
-                            <Route path="" element={<EducationList/>} />
-                            <Route path="view/:id" element={<EducationView/>} />
-                        </Route>
+                        <Route path="education" element={<Education/>} />
                         <Route path="experiences" element={<Experiences/>}>
                             <Route path="" element={<ExperiencesList/>} />
                             <Route path="view/:id" element={<ExperiencesView/>} />
