@@ -139,5 +139,6 @@
       }
      ... So on for all services, Add quiet a few.
     ]
-  }
+  },
+  "messageAPI": Optional: endpoint to api that accept POST request with JSON body containing "name", "email", "message", "ip" keys
 }
