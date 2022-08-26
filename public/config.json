@@ -128,5 +128,22 @@
       "name": "Beach",
       "url": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
     }
-  ]
+  ],
+  "services": {
+    "intro": "A Really long intro explaining in brief about your services.",
+    "contents": [
+      {
+        "title": "Some Service",
+        "icon": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+        "link": "https://www.example.com",
+        "description": "A short paragraph about your service."
+      }
+    ],
+    "perks": [
+      {
+        "title": "Some perk",
+        "icon": "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+      }
+    ]
+  }
 }
