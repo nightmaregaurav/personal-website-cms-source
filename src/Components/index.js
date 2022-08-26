@@ -5,7 +5,7 @@ import AOS from "aos";
 import {useConfig} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
-import {Helmet, HelmetData} from "react-helmet-async";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {Route, Routes} from "react-router-dom";
 import ErrorPage from "./ErrorPage";
 import MainPage from "./MainPage";
@@ -21,8 +21,6 @@ import Documents from "./MainPage/Documents";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 
-const helmetData = new HelmetData({});
-
 const Components = () => {
     const config = useConfig();
 
@@ -37,14 +35,17 @@ const Components = () => {
     }, []);
 
     return (
-        <>
-            <Helmet helmetData={helmetData}>
-                <title>{get(config, "main-title", "")}</title>
+        <HelmetProvider>
+            <Helmet>
                 <link rel="icon" href={get(config, "favicon", "")} />
                 <link rel="apple-touch-icon" href={get(config, "apple-touch-icon", "")} />
-                {get(config, "meta", []).map(meta => <meta
+
+                <title>{get(config, "main-title", "")}</title>
+
+                {get(config, "meta", []).map((meta, i) => <meta
                     name={meta.name}
                     content={meta.content}
+                    key={i}
                 />)}
             </Helmet>
             <Sugar customLoading={preLoaderLoading}/>
@@ -72,7 +73,7 @@ const Components = () => {
                     </>}/>
                 </Routes>
             </div>
-        </>
+        </HelmetProvider>
     );
 }
 
