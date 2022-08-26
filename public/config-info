@@ -74,4 +74,26 @@
       ... So on for all experience
     ]
   },
+  "projects": {
+    "intro": Optional
+    "contents": [
+      {
+        "title": Compulsory
+        "imagesUrl":[
+          At least one Compulsory
+        ],
+        "description": Optional, Recommended
+        "majorPoints": [
+          {"title": "Achievement Title", "info": "Some Achievement"},
+          {"title": "Another Achievement Title", "info": "Some other Achievement"},
+          ... So on for all major points, Optional, at least one recommended
+        ],
+        "categories": [
+          "Category 1",
+          "Category 2",
+          ... So on for all category, Optional
+        ]
+      }
+    ]
+  }
 }
