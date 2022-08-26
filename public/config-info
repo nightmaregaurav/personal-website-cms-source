@@ -129,5 +129,15 @@
        }
        ... So on for all perks, Optional
      ]
-   }
+   },
+   "skills": {
+    "intro": Optional,
+    "contents": [
+      {
+        "title": Compulsory,
+        "percentage": Compulsory
+      }
+     ... So on for all services, Add quiet a few.
+    ]
+  }
 }
