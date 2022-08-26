@@ -1,0 +1,45 @@
+.projects-details {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.swiper-pagination {
+  margin-top: 10px !important;
+  position: relative !important;
+  margin-bottom: 0 !important;
+}
+.projects-details .projects-info {
+  padding: 20px;
+  box-shadow: 0 0 30px rgba(5, 13, 24, 0.08);
+}
+.projects-details .projects-info h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.projects-details .projects-info ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+.projects-details .projects-info ul li + li {
+  margin-top: 10px;
+}
+.projects-details .projects-description {
+  padding-top: 20px;
+}
+.projects-details .projects-description h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.projects-details .projects-description p {
+  padding: 0;
+}
+.swipe-image{
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 10px !important;
+  object-fit: cover !important;
+}

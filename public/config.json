@@ -92,5 +92,29 @@
         ]
       }
     ]
+  },
+  "projects": {
+    "intro": "A Really long intro explaining in brief about your projects.",
+    "contents": [
+      {
+        "title": "Some Project",
+        "imagesUrl":[
+          "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+          "https://apod.nasa.gov/apod/image/2202/AuroraPillars_Correia_960.jpg"
+        ],
+        "description": "A paragraph or two about your project.",
+        "majorPoints": [
+          {"title": "Achievement Title", "info": "Some Achievement"},
+          {"title": "Another Achievement Title", "info": "Some other Achievement"},
+          {"title": "A third Achievement Title", "info": "Better Achievement"},
+          {"title": "A fourth Achievement Title", "info": "Even Better Achievement"}
+        ],
+        "categories": [
+          "Category 1",
+          "Category 2",
+          "Category 3"
+        ]
+      }
+    ]
   }
 }

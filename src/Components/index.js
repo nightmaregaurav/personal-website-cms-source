@@ -14,7 +14,6 @@ import About from "./MainPage/About";
 import Education from "./MainPage/Education";
 import Experience from "./MainPage/Experience";
 import Projects from "./MainPage/Projects";
-import ProjectsList from "./MainPage/Projects/List";
 import ProjectsView from "./MainPage/Projects/View";
 import Services from "./MainPage/Services";
 import Skills from "./MainPage/Skills";
@@ -53,7 +52,6 @@ const Components = () => {
                         <Route path="education" element={<Education/>} />
                         <Route path="experience" element={<Experience/>} />
                         <Route path="projects" element={<Projects/>}>
-                            <Route path="" element={<ProjectsList/>} />
                             <Route path=":id" element={<ProjectsView/>} />
                         </Route>
                         <Route path="services" element= {<Services />} />

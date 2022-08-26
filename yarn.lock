@@ -7366,6 +7366,11 @@ react-is@^18.0.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.1.0.tgz#61aaed3096d30eacf2a2127118b5b41387d32a67"
   integrity sha512-Fl7FuabXsJnV5Q1qIOQwx/sagGF18kogb4gpfcG4gjLBWO0WDiiz1ko/ExayuxE7InyQkBLkxRFG5oxY6Uu3Kg==
 
+react-isotope@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-isotope/-/react-isotope-1.0.7.tgz#433ea567fe1a993ada158c0f75dcf0a0337c2849"
+  integrity sha512-umUrOlkGHgmOFyxq9ZDvLOv0PjzAefMeNElqpFIqJFJjZC9eWZwOLV8x6T+Af4Q3gT1obbjcyTYuRwBa6DG27w==
+
 react-preloaders2@^3.0.5:
   version "3.0.5"
   resolved "https://registry.yarnpkg.com/react-preloaders2/-/react-preloaders2-3.0.5.tgz#b5d92a87d22a7de379da6c0c7c7c7bbe5940c70b"
