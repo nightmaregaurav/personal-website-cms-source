@@ -86,6 +86,17 @@
     "contents": [
       {
         "title": Compulsory
+        "extLinks": [
+          {
+            "title": "Website",
+            "url": "http://www.example.com"
+          },
+          {
+              "title": "Github",
+              "url": "http://www.example.com"
+          }
+            ... So on for all external links, Optional
+        ],
         "imagesUrl":[
           At least one Compulsory
         ],

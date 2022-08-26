@@ -24,6 +24,7 @@ const View = () => {
             images: item.imagesUrl,
             description: item.description,
             majorPoints: item.majorPoints,
+            links: item.extLinks,
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
@@ -48,10 +49,16 @@ const View = () => {
                             <div className="col-lg-5 d-flex flex-column flex-nowrap justify-content-center align-items-start align-content-center">
                                 <div className="projects-info">
                                     {target.majorPoints ? <>
-                                        <h3>Project information</h3>
+                                        <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>Project information</h3>
                                         <ul>
                                             {target.majorPoints.map((point) => <li><strong>{point.title}</strong>{": " + point.info}</li>)}
                                         </ul>
+                                        {target.links.length > 0 ? <>
+                                            <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>External Links</h3>
+                                            <span className={"text-center"}>
+                                                {target.links ? target.links.map((link, i) => <a key={i} href={link.url} target={"_blank"} className={"btn badge rounded-pill bg-primary m-1 p-1"}>{link.title}</a>) : null}
+                                            </span>
+                                        </>: null}
                                     </>: null}
                                 </div>
                                 <div className="projects-description">
