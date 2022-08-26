@@ -1,4 +1,10 @@
 {
+  "favicon": Compulsory
+  "apple-touch-icon": Compulsory
+  "meta": [
+      {"name": "description", "content": "My Website"}
+      ... So on for all META tags, optional
+    ],
   "main-title": Compulsory
   "full-name": Compulsory
   "profile-pic": Compulsory

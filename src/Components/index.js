@@ -40,6 +40,12 @@ const Components = () => {
         <>
             <Helmet helmetData={helmetData}>
                 <title>{get(config, "main-title", "")}</title>
+                <link rel="icon" href={get(config, "favicon", "")} />
+                <link rel="apple-touch-icon" href={get(config, "apple-touch-icon", "")} />
+                {get(config, "meta", []).map(meta => <meta
+                    name={meta.name}
+                    content={meta.content}
+                />)}
             </Helmet>
             <Sugar customLoading={preLoaderLoading}/>
 
