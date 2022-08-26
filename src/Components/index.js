@@ -20,6 +20,7 @@ import Skills from "./MainPage/Skills";
 import Documents from "./MainPage/Documents";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
+import Gallery from "./MainPage/Gallery";
 
 const Components = () => {
     const config = useConfig();
@@ -62,6 +63,7 @@ const Components = () => {
                         <Route path="projects" element={<Projects/>}>
                             <Route path=":id" element={<ProjectsView/>} />
                         </Route>
+                        {get(config, "gallery", []).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
                         <Route path="services" element= {<Services />} />
                         <Route path="skills" element= {<Skills />} />
                         <Route path="documents" element= {<Documents />} />

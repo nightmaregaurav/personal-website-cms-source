@@ -1,0 +1,37 @@
+.gallery{
+  min-height: 100vh;
+}
+.gallery .gallery-card{
+  position: relative !important;
+  margin: 10px !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 200px !important;
+  width: 200px !important;
+  border-radius: 10px !important;
+  transform: none !important;
+  transition: all 0.25s linear;
+}
+.gallery .gallery-card:hover{
+  transform: scale(1.1) !important;
+}
+.gallery-card-image{
+  width: 200px !important;
+  height: 200px !important;
+  object-fit: cover !important;
+}
+.gallery-card .card-img-overlay{
+  width: 200px;
+  height: 200px;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(4, 11, 20, 0.55);
+}
+.gallery-card:hover .card-img-overlay{
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.lg-backdrop, .lg-outer{
+  z-index: 9999 !important;
+}
