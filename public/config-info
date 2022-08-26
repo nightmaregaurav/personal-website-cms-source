@@ -141,4 +141,5 @@
     ]
   },
   "messageAPI": Optional: endpoint to api that accept POST request with JSON body containing "name", "email", "message", "ip" keys
+  "resume": Optional: URL to resume
 }

@@ -175,5 +175,6 @@
       }
     ]
   },
-  "messageAPI": "https://example.com"
+  "messageAPI": "https://example.com",
+  "resume": "https://example.com"
 }

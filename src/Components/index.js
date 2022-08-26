@@ -17,7 +17,6 @@ import Projects from "./MainPage/Projects";
 import ProjectsView from "./MainPage/Projects/View";
 import Services from "./MainPage/Services";
 import Skills from "./MainPage/Skills";
-import Documents from "./MainPage/Documents";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
@@ -66,7 +65,6 @@ const Components = () => {
                         {get(config, "gallery", []).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
                         <Route path="services" element= {<Services />} />
                         <Route path="skills" element= {<Skills />} />
-                        <Route path="documents" element= {<Documents />} />
                         <Route path="contact" element= {<Contact />} />
                     </Route>
 

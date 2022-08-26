@@ -54,12 +54,12 @@ const Sidebar = () => {
                             <span onClick={activateSidebar}><Link to={"/about"} className={"nav-link auto-activate"}><i className={"bx bx-user"}></i> <span>About</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/education"} className={"nav-link auto-activate"}><i className={"bx bx-abacus"}></i> <span>Education</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/experience"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experience</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-box"}></i> <span>Projects</span></Link></span>
+                            <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Projects</span></Link></span>
                             {get(config, "gallery", []).length > 0 ? <span onClick={activateSidebar}><Link to={"/gallery"} className={"nav-link auto-activate"}><i className={"bx bx-photo-album"}></i> <span>Gallery</span></Link></span> : null}
                             <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/documents"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Documents</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/contact"} className={"nav-link auto-activate"}><i className={"bx bx-envelope"}></i> <span>Contact</span></Link></span>
+                            {get(config, "resume", null) ? <span onClick={activateSidebar}><a href={get(config, "resume", "#")} target={"_blank"} className={"nav-link"}><i className={"bx bx-download"}></i> <span>Get Resume</span></a></span> : null}
                         </div>
                     </nav>
                     <Footer/>
