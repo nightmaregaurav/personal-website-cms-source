@@ -48,6 +48,7 @@ const Components = () => {
                     key={i}
                 />)}
             </Helmet>
+
             <Sugar customLoading={preLoaderLoading}/>
 
             <div className="App">
