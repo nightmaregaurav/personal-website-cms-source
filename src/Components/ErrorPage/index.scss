@@ -26,6 +26,11 @@
 .errorPage .errorPage-code {
   height: 158px;
   line-height: 153px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 
 .errorPage .errorPage-code h1 {

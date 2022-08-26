@@ -62,7 +62,7 @@ const Components = () => {
 
                     {/* 404 Error */}
                     <Route path="*" element={<>
-                        <ErrorPage title={"Title"} err_code={"404"} err_msg={"Not Found"}/>
+                        <ErrorPage title={"Error"} err_code={"404"} err_msg={"Not Found"}/>
                     </>}/>
                 </Routes>
             </div>
