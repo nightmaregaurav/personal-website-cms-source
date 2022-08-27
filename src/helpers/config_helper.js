@@ -1,11 +1,12 @@
 import {useState, useEffect} from "react";
+import defaultConfig from "../config.dist.json";
 export var CONFIG = {}
 
 async function getConfig() {
     const response = await fetch('/config.json', {method: 'GET'});
     const data = await response.json();
-    CONFIG = data;
-    return data;
+    CONFIG = {...defaultConfig, ...data};
+    return CONFIG;
 }
 
 export function useConfig() {
@@ -15,6 +16,7 @@ export function useConfig() {
         } else if (Object.keys(CONFIG).length !== 0) {
             setConfig(CONFIG);
         } else {
+            setConfig(defaultConfig);
             getConfig().then((data) => setConfig(data));
         }
 

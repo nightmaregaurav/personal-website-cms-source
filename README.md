@@ -5,9 +5,10 @@ This project runs using client side technology so that it can be hosted on a ser
 ## Usage
 
 1. Host this project on a server.
-2. Copy `config.json.dist` as `config.json`
+2. Copy `config.dist.json` as `config.json`
 3. Make changes on `config.json` and refresh the page.
-4. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0` 
+4. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
+5. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root
 
 ## Features
 * Completely dynamic setup.
