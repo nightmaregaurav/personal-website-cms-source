@@ -33,8 +33,7 @@ jobs:
         with:
           cmd: 'jq .version package.json -r'
 
-      - run: version="${{ steps.version.outputs.value }}"
-      - run: commit_message="Automated Release -> V$version"
+      - run: commit_message="Automated Release | V${{ steps.version.outputs.value }}"
       - run: yarn install
       - run: npm run build --if-present
 #      - run: git config --global user.name $GITHUB_USER
@@ -46,7 +45,7 @@ jobs:
 #      - run: ./prepare-to-publish
       - run: mkdir -p destination_repo
       - run: cp -r target_repo/.git destination_repo/
-      - run: cp -r target_repo/.github destination_repo/
+      - run: cp -r target_repo/.github destination_repo/ 2>/dev/null
       - run: cp -r build/* destination_repo
       - run: cp -r README.md destination_repo
       - run: cp -r LICENSE destination_repo
