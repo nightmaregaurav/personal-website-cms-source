@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - run: version=$(cat package.json jq '.version')
+      - run: commit_message="Automated Release -> V$version"
       - run: yarn install
       - run: npm run build --if-present
 #      - run: git config --global user.name $GITHUB_USER
@@ -34,6 +36,14 @@ jobs:
 #      - run: git config --global user.email $GITHUB_EMAIL
       - run: git config --global user.email github-actions@github.com
       - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch target_repo
-      - run: chmod 755 prepare-to-publish
-      - run: ./prepare-to-publish
+#      - run: chmod 755 prepare-to-publish
+#      - run: ./prepare-to-publish
+      - run: mkdir -p destination_repo
+      - run: cp -r target_repo/.git destination_repo/
+      - run: cp -r target_repo/.github destination_repo/
+      - run: cp -r build/* destination_repo
+      - run: cp -r README.md destination_repo
+      - run: cp -r LICENSE destination_repo
+      - run: cd destination_repo && git add --all
+      - run: cd destination_repo && git commit -m "$commit_message"
       - run: cd destination_repo && git push
