@@ -35,5 +35,5 @@ This project runs using client side technology so that it can be hosted on a ser
 - State changes: **Changes made to the licensed material must be documented. Along with link to original source**
 
 ---
-Open For Contrubution
+Open For Contribution
 ---
