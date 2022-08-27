@@ -1,10 +1,9 @@
 import React from 'react';
 import './index.scss';
-import {Link, Route} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Footer from "../../Footer";
 import {useConfig} from '../../../helpers/config_helper'
 import {get} from "../../../helpers/object_helper";
-import Gallery from "../Gallery";
 
 const Sidebar = () => {
     const config = useConfig();
