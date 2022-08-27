@@ -44,11 +44,10 @@ jobs:
       - run: git clone https://${TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git --branch ${TARGET_REPO_BRANCH} --single-branch target_repo
 
       - run: mkdir -p destination_repo
-      - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
-      - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
-      - run: cp -r target_repo/CNAME destination_repo/CNAME 2>/dev/null || true
       - run: cp -r build/* destination_repo
       - run: cp -r client-data/* destination_repo
+      - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
+      - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/config.json destination_repo/config.json 2>/dev/null || true
 
       - run: cd destination_repo && git add --all
