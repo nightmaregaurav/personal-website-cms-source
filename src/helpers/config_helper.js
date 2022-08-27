@@ -4,7 +4,7 @@ export var CONFIG = {}
 
 async function getConfig() {
     const response = await fetch('/config.json', {method: 'GET'});
-    const data = await response.json();
+    const data = await response.json().catch(() => defaultConfig);
     CONFIG = {...defaultConfig, ...data};
     return CONFIG;
 }
