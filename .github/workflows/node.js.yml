@@ -27,6 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - run: apt install -y jq
       - run: version=$(cat package.json jq '.version')
       - run: commit_message="Automated Release -> V$version"
       - run: yarn install
