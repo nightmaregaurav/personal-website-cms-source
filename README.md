@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Statically hosted dynamic personal website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project runs using client side technology so that it can be hosted on a server that can only host static websites. But it use JSON api to make things Dynamic(Kind of). 
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+1. Host this project on a server.
+2. Make changes on `config.json` and refresh the page.
+3. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0` 
 
-### `npm start`
+## Features
+* Completely dynamic setup.
+* Dynamic content is generated on the fly.
+* Dynamic content is generated using JSON api.
+* Fast and easy to use.
+* Cheap to host static project on a server. Many trusted free hosts are also available.
+* Complete customization.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Note
+- Project is Liscenced under GNU GPLv3.
 
-### `npm test`
+### Which means Anyone are permitted for:
+- Commercial use: **The licensed material and derivatives may be used for commercial purposes.**
+- Distribution: **The licensed material may be distributed.**
+- Modification: **The licensed material may be modified.**
+- Patent use: **This license provides an express grant of patent rights from contributors.**
+- Private use **The licensed material may be used and modified in private.**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Under Condition that:
+- Disclose source: **Source code must be made available when the licensed material is distributed.**
+- License and copyright notice: **A copy of the license and copyright notice must be included with the licensed material.**
+- Same license: **Modifications must be released under the same license when distributing the licensed material. In some cases a similar or related license may be used.**
+- State changes: **Changes made to the licensed material must be documented. Along with link to original source**
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+Open For Contrubution
+---
