@@ -50,7 +50,7 @@ const View = () => {
                                     {target.majorPoints ? <>
                                         <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>Project information</h3>
                                         <ul>
-                                            {target.majorPoints.map((point) => <li><strong>{point.title}</strong>{": " + point.info}</li>)}
+                                            {target.majorPoints.map((point, i) => <li key={i}><strong>{point.title}</strong>{": " + point.info}</li>)}
                                         </ul>
                                         {target.links.length > 0 ? <>
                                             <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>External Links</h3>
