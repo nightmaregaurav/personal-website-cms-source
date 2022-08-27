@@ -6,12 +6,10 @@ const fs = require('fs');
 const new_version = JSON.parse(fs.readFileSync('package.json', { encoding: 'utf8' })).version;
 const commit_message = "Automated: Release V${new_version}";
 
-cp.execSync("git config --global user.email ${GITHUB_EMAIL}");
-cp.execSync("git config --global user.name ${GITHUB_USER}");
-cp.execSync("git clone ${TARGET_REPO} target_repo");
+
 cp.execSync("mkdir -p destination_repo")
 cp.execSync("cp -r target_repo/.git destination_repo/");
 cp.execSync("cp -r dist/* destination_repo");
 cp.execSync("cp -r README.md destination_repo/");
 cp.execSync("cp -r LICENSE destination_repo/");
-cp.execSync("cd destination_repo && git add -all && git commit -m '${commit_message}' && git push origin ${TARGET_BRANCH}");
+cp.execSync("cd destination_repo && git add -all && git commit -m '${commit_message}' && git push");

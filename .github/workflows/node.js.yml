@@ -28,6 +28,9 @@ jobs:
         
     - run: yarn install
     - run: npm run build --if-present
+    - run: git config --global user.email $GITHUB_EMAIL
+    - run: git config --global user.name $GITHUB_USER
+    - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch
     - run: chmod 755 publish.sh
     - run: ./publish.sh
 
