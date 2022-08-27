@@ -34,7 +34,7 @@ jobs:
         with:
           cmd: 'jq .version package.json -r'
 
-      - run: commit_message="Automated Release | V${{ steps.version.outputs.value }}"
+      - run: echo "Publishing V${{ steps.version.outputs.value }}"
       - run: yarn install
       - run: npm run build --if-present
 #      - run: git config --global user.name $GITHUB_USER
@@ -50,6 +50,6 @@ jobs:
       - run: cp -r README.md destination_repo
       - run: cp -r LICENSE destination_repo
       - run: cd destination_repo && git add --all
-      - run: cd destination_repo && git commit -m "${commit_message}"
+      - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
       - run: cd destination_repo && git remote add github-token "https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git"
       - run: cd destination_repo && git push
