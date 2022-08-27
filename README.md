@@ -9,6 +9,12 @@ This project runs using client side technology so that it can be hosted on a ser
 3. Make changes on `config.json` and refresh the page.
 4. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
 5. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root
+6. Visit `https://<YOUR-website-root>/gh-sitemap/<YOUR-website-root>` to generate sitemap 
+7. Copy all content of sitemap and save as `sitemap.xml`
+
+## Maintenance
+1. Update `config.json`
+2. Update `sitemap.xml` using previous steps if you added or removed projects or enabled/disabled gallery
 
 ## Features
 * Completely dynamic setup.
