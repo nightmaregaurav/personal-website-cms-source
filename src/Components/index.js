@@ -74,8 +74,8 @@ const Components = () => {
                         <Route path="contact" element= {<Contact />} />
                     </Route>
                     {/* Sitemap Generator */}
-                    <Route path="get-sitemap/*" element={<SitemapGen isGhPage={false} />} />
-                    <Route path="gh-sitemap/*" element={<SitemapGen isGhPage={true} />} />
+                    <Route path="get-sitemap" element={<SitemapGen isGhPage={false} />} />
+                    <Route path="gh-sitemap" element={<SitemapGen isGhPage={true} />} />
 
                     {/* Hack for favicon.ico auto fetch */}
                     <Route path="favicon.ico" element={<></>} />

@@ -8,12 +8,12 @@ import {isValidUrl} from "../../helpers/url_helper";
 
 const SitemapGen = ({isGhPage}) => {
     const config = useConfig();
-    const location = useLocation();
     const [map, setMap] = useState("");
     const getUrl = (root, route) => isGhPage ? rstrip(strip(root + "/?/" + route, "/"), "/?/") : strip(root + "/" + route, "/");
 
     useEffect(() => {
-        const root = strip(lstrip(location.pathname, "/"), isGhPage ? "gh-sitemap/" : "get-sitemap/");
+        const location = window.location;
+        const root = strip(location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rstrip(rstrip(location.pathname, "/"), isGhPage ? "gh-sitemap" : "get-sitemap"), "/");
         let sitemap;
         if(isValidUrl(root)){
             let routes = [
