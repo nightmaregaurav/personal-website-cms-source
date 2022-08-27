@@ -7,6 +7,16 @@
       content="width=device-width, initial-scale=1"
     />
     <title>Personal Website</title>
+    <script type="text/javascript">
+      (function(loc) {
+        if (loc.search[1] === '/' ) {
+          let decoded = loc.search.slice(1).split('&').map(function(s) {
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null, loc.pathname.slice(0, -1) + decoded + loc.hash);
+        }
+      }(window.location))
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
