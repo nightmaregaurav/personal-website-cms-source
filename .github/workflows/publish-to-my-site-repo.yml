@@ -49,6 +49,8 @@ jobs:
       - run: cp -r client-data/.gitignore destination_repo/.gitignore 2>/dev/null || true
       - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
+      - run: cp -r target_repo/config.json destination_repo/config.json 2>/dev/null || true
+      - run: cp -r target_repo/CNAME destination_repo/CNAME 2>/dev/null || true
 
       - run: cd destination_repo && git add --all
       - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
