@@ -52,4 +52,4 @@ jobs:
       - run: cd destination_repo && git add --all
       - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
       - run: cd destination_repo && git remote add github-token "https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git"
-      - run: cd destination_repo && git push
+      - run: cd destination_repo && git push gh-token main
