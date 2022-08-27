@@ -37,7 +37,7 @@ jobs:
 
       - run: echo "Publishing V${{ steps.version.outputs.value }}"
       - run: yarn install
-      - run: npm run build --if-present
+      - run: npm run build
 
       - run: git config --global user.name ${{github.actor}}
       - run: git config --global user.email ${{github.actor}}@users.noreply.github.com
@@ -51,5 +51,5 @@ jobs:
 
       - run: cd destination_repo && git add --all
       - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
-      - run: cd destination_repo && git remote add github-token "https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git"
+      - run: cd destination_repo && git remote add github-token "https://${TARGET_REPO_USER}:${GITHUB_TOKEN}@github.com/${TARGET_REPO}.git"
       - run: cd destination_repo && git push github-token ${TARGET_REPO_BRANCH}
