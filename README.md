@@ -5,8 +5,9 @@ This project runs using client side technology so that it can be hosted on a ser
 ## Usage
 
 1. Host this project on a server.
-2. Make changes on `config.json` and refresh the page.
-3. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0` 
+2. Copy `config.json.dist` as `config.json`
+3. Make changes on `config.json` and refresh the page.
+4. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0` 
 
 ## Features
 * Completely dynamic setup.
