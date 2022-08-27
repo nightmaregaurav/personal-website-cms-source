@@ -8,6 +8,7 @@ env:
   TARGET_REPO: ${{ secrets.TARGET_REPO }}
   TARGET_REPO_BRANCH: ${{ secrets.TARGET_REPO_BRANCH }}
   TARGET_REPO_USER: ${{ secrets.TARGET_REPO_USER }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   publish:
@@ -20,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          token: ${{ secrets.API_TOKEN_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
