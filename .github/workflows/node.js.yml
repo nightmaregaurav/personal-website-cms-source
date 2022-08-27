@@ -1,0 +1,32 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+      env:
+        GITHUB_TOKEN: "${{ secrets.API_TOKEN_GITHUB }}"
+        GITHUB_EMAIL: "${{ secrets.USER_EMAIL }}"
+        GITHUB_USER: "${{ secrets.USER_NAME }}"
+        TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
+        TARGET_BRANCH: "main"
+        
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: $GITHUB_ACTION_PATH/publish.sh
+
