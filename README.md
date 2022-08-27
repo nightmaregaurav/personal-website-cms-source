@@ -3,14 +3,14 @@
 This project runs using client side technology so that it can be hosted on a server that can only host static websites. But it uses JSON api to make things Dynamic(Kind of). 
 
 ## Installation
-1. Host this project on a server.
-2. Copy `config.dist.json` as `config.json`
-3. Make changes on `config.json` and refresh the page.
-4. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
-5. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root
-6. Visit `https://<your-website-root>/gh-sitemap/<your-website-root>` to generate sitemap 
-7. Copy all content of sitemap and save as `sitemap.xml`
-8. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>/css/main.css and <your-website-root>
+1. Host this project on a server. 
+2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
+3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
+4. Copy `config.dist.json` as `config.json`
+5. Make changes on `config.json` and refresh the page. 
+6. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
+7. Visit `https://<your-website-root>/gh-sitemap/<your-website-root>` to generate sitemap 
+8. Copy all content of sitemap and save as `sitemap.xml`
 
 ## Maintenance
 1. Update `config.json`
@@ -20,7 +20,7 @@ This project runs using client side technology so that it can be hosted on a ser
 1. Pull from upstream
 2. Update `config.json` if there are any changes in config.dist.json or config-info
 3. Update `sitemap.xml` if needed
-4. Perform step 5 and 8 of `installation`  
+4. Perform step 2 and 3 of `installation`  
 
 ## Features
 * Completely dynamic setup.
