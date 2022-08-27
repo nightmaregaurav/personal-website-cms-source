@@ -5,10 +5,11 @@ on:
     branches: [ "main" ]
 
 env:
-  GITHUB_TOKEN: "${{ secrets.API_TOKEN_GITHUB }}"
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
   GITHUB_USER: "${{ secrets.USER_NAME }}"
   GITHUB_EMAIL: "${{ secrets.USER_EMAIL }}"
-  TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
+  TARGET_REPO_USER: "nightmaregaurav"
+  TARGET_REPO: "personal-website-client"
   TARGET_BRANCH: "main"
 
 jobs:
@@ -40,7 +41,7 @@ jobs:
       - run: git config --global user.name github-actions
 #      - run: git config --global user.email $GITHUB_EMAIL
       - run: git config --global user.email github-actions@github.com
-      - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch target_repo
+      - run: git clone https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git --branch ${TARGET_BRANCH} --single-branch target_repo
 #      - run: chmod 755 prepare-to-publish
 #      - run: ./prepare-to-publish
       - run: mkdir -p destination_repo
@@ -49,5 +50,6 @@ jobs:
       - run: cp -r README.md destination_repo
       - run: cp -r LICENSE destination_repo
       - run: cd destination_repo && git add --all
-      - run: cd destination_repo && git commit -m "$commit_message"
+      - run: cd destination_repo && git commit -m "${commit_message}"
+      - run: cd destination_repo && git remote add github-token "https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git"
       - run: cd destination_repo && git push
