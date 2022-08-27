@@ -70,3 +70,4 @@ db.sqlite3
 # vs
 .vs/
 
+config.json
