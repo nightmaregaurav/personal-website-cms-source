@@ -6,6 +6,8 @@ on:
 
 env:
   GITHUB_TOKEN: "${{ secrets.API_TOKEN_GITHUB }}"
+  GITHUB_USER: "${{ secrets.USER_NAME }}"
+  GITHUB_EMAIL: "${{ secrets.USER_EMAIL }}"
   TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
   TARGET_BRANCH: "main"
 
@@ -24,6 +26,8 @@ jobs:
           cache: 'npm'
       - run: yarn install
       - run: npm run build --if-present
+      - run: git config --global user.name $GITHUB_USER
+      - run: git config --global user.email $GITHUB_EMAIL
       - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch target_repo
       - run: chmod 755 publish.sh
       - run: ./publish.sh
