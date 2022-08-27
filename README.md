@@ -20,7 +20,7 @@ This project runs using client side technology so that it can also be hosted on 
 1. Pull from upstream
 2. Update `config.json` if there are any changes in config.dist.json or config-info
 3. Update `sitemap.xml` if needed
-4. Perform step 2 and 3 of `installation`  
+4. Perform step 2 & 3 of `installation`  
 
 ## Features
 * Completely dynamic setup.

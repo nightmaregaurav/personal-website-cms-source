@@ -39,7 +39,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 1. Pull from upstream
 2. Update `config.json` if there are any changes in config.dist.json or config-info
 3. Update `sitemap.xml` if needed
-4. Perform step 3 and 4 of `installation > On GitHub pages` if you are using GitHub pages
+4. Perform step 3 & 4 of `installation > On GitHub pages` if you are using GitHub pages
 5. Perform step 2 & 3 of `installation > On your own server` if you are hosting it on you own server.
 
 ## Features
