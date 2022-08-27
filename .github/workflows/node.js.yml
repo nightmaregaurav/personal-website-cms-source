@@ -4,29 +4,26 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+  GITHUB_TOKEN: "${{ secrets.API_TOKEN_GITHUB }}"
+  TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
+  TARGET_BRANCH: "main"
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.7.0]
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-      env:
-        GITHUB_TOKEN: "${{ secrets.API_TOKEN_GITHUB }}"
-        TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
-        TARGET_BRANCH: "main"
-        
-    - run: yarn install
-    - run: npm run build --if-present
-    - run: git clone ${TARGET_REPO} --branch ${TARGET_BRANCH} --single-branch
-    - run: chmod 755 publish.sh
-    - run: ./publish.sh
-
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: yarn install
+      - run: npm run build --if-present
+      - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch
+      - run: chmod 755 publish.sh
+      - run: ./publish.sh
