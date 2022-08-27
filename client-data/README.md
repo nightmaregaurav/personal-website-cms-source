@@ -36,7 +36,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 2. Update `sitemap.xml` using previous steps if you added or removed projects or enabled/disabled gallery
 
 ## Upgrade
-1. Pull from upstream
+1. Pull from upstream / Sync fork
 2. Update `config.json` if there are any changes in config.dist.json or config-info
 3. Update `sitemap.xml` if needed
 4. Perform step 3 & 4 of `installation > On GitHub pages` if you are using GitHub pages
