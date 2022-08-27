@@ -11,7 +11,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 
 ## Installation
 ### On GitHub pages
-1. Fork the repository
+1. Fork the repository, preferably with name `<your-username>.github.io`
 2. Go to settings and enable GitHub pages
 3. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
 4. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL in github page>"` if you are using path other than / as root, normally happens when you are not using custom domain 
