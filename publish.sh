@@ -12,4 +12,4 @@ cp.execSync("cp -r target_repo/.git destination_repo/");
 cp.execSync("cp -r build/* destination_repo");
 cp.execSync("cp -r README.md destination_repo/");
 cp.execSync("cp -r LICENSE destination_repo/");
-cp.execSync("cd destination_repo && git add -all && git commit -m '${commit_message}' && git push");
+cp.execSync("cd destination_repo && git add --all && git commit -m '${commit_message}' && git push");
