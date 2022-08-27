@@ -19,7 +19,7 @@ This project runs using client side technology so that it can be hosted on a ser
 ---
 
 ## Note
-- Project is Liscenced under GNU GPLv3.
+- Project is Licensed under GNU GPLv3.
 
 ### Which means Anyone are permitted for:
 - Commercial use: **The licensed material and derivatives may be used for commercial purposes.**
