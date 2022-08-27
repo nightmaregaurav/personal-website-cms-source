@@ -1,6 +1,6 @@
 # Statically hosted dynamic personal website
 
-This project runs using client side technology so that it can be hosted on a server that can only host static websites. But it uses JSON api to make things Dynamic(Kind of). 
+This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of). 
 
 ## Installation
 1. Host this project on a server. 
