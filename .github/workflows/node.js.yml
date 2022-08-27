@@ -45,7 +45,6 @@ jobs:
 #      - run: ./prepare-to-publish
       - run: mkdir -p destination_repo
       - run: cp -r target_repo/.git destination_repo/
-      - run: cp -r target_repo/.github destination_repo/ 2>/dev/null
       - run: cp -r build/* destination_repo
       - run: cp -r README.md destination_repo
       - run: cp -r LICENSE destination_repo
