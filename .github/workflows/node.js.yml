@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Publish to Personal Website Client Repository
 
 on:
   push:
@@ -25,9 +25,8 @@ jobs:
         GITHUB_USER: "${{ secrets.USER_NAME }}"
         TARGET_REPO: "https://github.com/nightmaregaurav/personal-website-client.git"
         TARGET_BRANCH: "main"
-        CI: false
         
     - run: yarn install
     - run: npm run build --if-present
-    - run: $GITHUB_ACTION_PATH/publish.sh
+    - run: publish.sh
 
