@@ -1,12 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './index.scss';
 
 const Footer = () => {
+    useEffect(() => {
+        document.getElementById("main-footer").innerHTML = (
+            "© " +
+            new Date().getFullYear() +
+            " " +
+            decodeURIComponent(escape(atob('Q3JlYXRlZCB1c2luZyA8YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vbmlnaHRtYXJlZ2F1cmF2L3BlcnNvbmFsLXdlYnNpdGUtY2xpZW50IiBjbGFzcz0ibWFpbi1mb290ZXItbGluayI+UGVyc29uYWwtV2Vic2l0ZS1DbGllbnQ8L2E+LiBQcm92aWRlZCB3aXRoIPCflqQgYnkgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL25pZ2h0bWFyZWdhdXJhdiIgY2xhc3M9Im1haW4tZm9vdGVyLWxpbmsiPkdhdXJhdiBOeWF1cGFuZTwvYT4=')))
+        );
+        return () => {};
+    }, []);
+
     return (
         <>
-            <footer style={{width: "100%", textAlign: "center"}}>
-                <small>
-                    © {new Date().getFullYear()} made with 🖤 by Gaurav Nyaupane
+            <footer style={{width: "100%", textAlign: "center", color:"gray"}}>
+                <small id={"main-footer"}>
                 </small>
             </footer>
         </>
