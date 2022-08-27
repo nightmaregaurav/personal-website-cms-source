@@ -50,6 +50,7 @@ jobs:
       - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/CNAME destination_repo/CNAME 2>/dev/null || true
+      - run: cp -r target_repo/sitemap.xml destination_repo/sitemap.xml 2>/dev/null || true
 
       - run: cd destination_repo && git add --all
       - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
