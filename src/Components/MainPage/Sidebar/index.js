@@ -62,7 +62,7 @@ const Sidebar = () => {
                             <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span>
                             <span onClick={activateSidebar}><Link to={"/contact"} className={"nav-link auto-activate"}><i className={"bx bx-envelope"}></i> <span>Contact</span></Link></span>
-                            {get(config, "resume", null) ? <span onClick={activateSidebar}><a href={get(config, "resume", "#")} target={"_blank"} className={"nav-link"}><i className={"bx bx-download"}></i> <span>Get Resume</span></a></span> : null}
+                            {get(config, "resume", "").length > 0 ? <span onClick={activateSidebar}><a href={get(config, "resume", "#")} target={"_blank"} className={"nav-link"}><i className={"bx bx-download"}></i> <span>Get Resume</span></a></span> : null}
                         </div>
                     </nav>
                     <Footer/>
