@@ -67,7 +67,8 @@ const Components = () => {
                         <Route path="skills" element= {<Skills />} />
                         <Route path="contact" element= {<Contact />} />
                     </Route>
-
+                    {/* Hack for favicon.ico auto fetch */}
+                    <Route path="favicon.ico" element={<></>} />
                     {/* 404 Error */}
                     <Route path="*" element={<>
                         <ErrorPage title={"Error"} err_code={"404"} err_msg={"Not Found"}/>
