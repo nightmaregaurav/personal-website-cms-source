@@ -20,6 +20,7 @@ import Skills from "./MainPage/Skills";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
+import SitemapGen from "./SitemapGen";
 
 const Components = () => {
     const config = useConfig();
@@ -72,6 +73,10 @@ const Components = () => {
                         <Route path="skills" element= {<Skills />} />
                         <Route path="contact" element= {<Contact />} />
                     </Route>
+                    {/* Sitemap Generator */}
+                    <Route path="get-sitemap/*" element={<SitemapGen isGhPage={false} />} />
+                    <Route path="gh-sitemap/*" element={<SitemapGen isGhPage={true} />} />
+
                     {/* Hack for favicon.ico auto fetch */}
                     <Route path="favicon.ico" element={<></>} />
                     {/* 404 Error */}
