@@ -5,19 +5,18 @@ on:
     branches: [ "main" ]
 
 env:
-  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-  GITHUB_USER: "${{ secrets.USER_NAME }}"
-  GITHUB_EMAIL: "${{ secrets.USER_EMAIL }}"
-  TARGET_REPO_USER: "nightmaregaurav"
-  TARGET_REPO: "personal-website-client"
-  TARGET_BRANCH: "main"
+  TARGET_REPO: ${{ secrets.TARGET_REPO }}
+  TARGET_REPO_BRANCH: ${{ secrets.TARGET_REPO_BRANCH }}
+  TARGET_REPO_USER: ${{ secrets.TARGET_REPO_USER }}
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [18.7.0]
+
     steps:
       - uses: actions/checkout@v3
         with:
@@ -28,6 +27,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
       - name: Extract version from package.json
         uses: sergeysova/jq-action@v2
         id: version
@@ -37,16 +37,19 @@ jobs:
       - run: echo "Publishing V${{ steps.version.outputs.value }}"
       - run: yarn install
       - run: npm run build --if-present
+
       - run: git config --global user.name ${{github.actor}}
       - run: git config --global user.name github-actions
       - run: git config --global user.email ${{github.actor}}@users.noreply.github.com
-      - run: git clone https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git --branch ${TARGET_BRANCH} --single-branch target_repo
+      - run: git clone https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git --branch ${TARGET_REPO_BRANCH} --single-branch target_repo
+
       - run: mkdir -p destination_repo
       - run: cp -r target_repo/.git destination_repo/
       - run: cp -r build/* destination_repo
-      - run: cp -r README.md destination_repo
-      - run: cp -r LICENSE destination_repo
+      - run: cp -r build/* destination_repo
+      - run: cp -r client-data/* destination_repo
+
       - run: cd destination_repo && git add --all
       - run: cd destination_repo && git commit -m "Automated Release | V${{ steps.version.outputs.value }}"
       - run: cd destination_repo && git remote add github-token "https://${GITHUB_TOKEN}@github.com/${TARGET_REPO_USER}/${TARGET_REPO}.git"
-      - run: cd destination_repo && git push github-token main
+      - run: cd destination_repo && git push github-token ${TARGET_REPO_BRANCH}
