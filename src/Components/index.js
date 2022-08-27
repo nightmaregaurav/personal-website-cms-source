@@ -47,6 +47,11 @@ const Components = () => {
                     content={meta.content}
                     key={i}
                 />)}
+                {get(config, "meta", []).map((meta, i) => <meta
+                    property={meta.name}
+                    content={meta.content}
+                    key={i}
+                />)}
             </Helmet>
 
             <Sugar customLoading={preLoaderLoading}/>
