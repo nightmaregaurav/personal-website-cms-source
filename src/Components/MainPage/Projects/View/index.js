@@ -28,7 +28,6 @@ const View = () => {
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
-        console.log(data[index]);
     } , [config]);
 
     return (
