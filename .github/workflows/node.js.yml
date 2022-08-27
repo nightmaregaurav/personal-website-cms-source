@@ -29,5 +29,6 @@ jobs:
       - run: git config --global user.name $GITHUB_USER
       - run: git config --global user.email $GITHUB_EMAIL
       - run: git clone $TARGET_REPO --branch $TARGET_BRANCH --single-branch target_repo
-      - run: chmod 755 publish.sh
-      - run: ./publish.sh
+      - run: chmod 755 prepare-to-publish
+      - run: ./prepare-to-publish
+      - run: cd destination_repo && git push
