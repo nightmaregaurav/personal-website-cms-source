@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import defaultConfig from "../config.dist.json";
+import defaultConfig from "../assets/json/config.dist.json";
 export var CONFIG = {}
 
 async function getConfig() {
