@@ -8,7 +8,7 @@ This project runs using client side technology so that it can also be hosted on 
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
 5. Make changes on `config.json` and refresh the page. 
-6. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
+6. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-info.json`
 7. Visit `https://<your-website-root>/gh-sitemap/<your-website-root>` to generate sitemap 
 8. Copy all content of sitemap and save as `sitemap.xml`
 
