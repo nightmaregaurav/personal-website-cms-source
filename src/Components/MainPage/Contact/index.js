@@ -29,7 +29,7 @@ const Contact = () => {
                         method: "POST",
                         body: JSON.stringify(data),
                         headers: {"Content-type": "application/json; charset=UTF-8"}
-                    }) .then(() => {
+                    }).then(() => {
                         submit.innerText = "Sent!"
                         setTimeout(() => {
                             name.value("");
