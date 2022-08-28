@@ -4,7 +4,7 @@ This project runs using client side technology so that it can also be hosted on 
 
 ## Installation
 1. Clone this project on a server. 
-2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
+2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
 5. Make changes on `config.json` and refresh the page. 

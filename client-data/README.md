@@ -1,3 +1,4 @@
+# WORK IN PROGRESS, DO NOT USE UNLESS YOU ARE READY TO FACE BREAKING AND DESTRUCTIVE CHANGES 
 # Statically hosted dynamic personal website
 
 This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of).
@@ -13,7 +14,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 ### On GitHub pages
 1. Fork the repository, preferably with name `<your-username>.github.io`
 2. Go to settings and enable GitHub pages
-3. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
+3. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 4. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL in github page>"` if you are using path other than / as root, normally happens when you are not using custom domain 
 5. Copy `config.dist.json` as `config.json`
 6. Change the data in `config.json` to match your data 
@@ -23,7 +24,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 10. Copy all content of sitemap and save as `sitemap.xml`
 ### On your own server
 1. Clone the repository 
-2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
+2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
 5. Change the data in `config.json` to match your data 
