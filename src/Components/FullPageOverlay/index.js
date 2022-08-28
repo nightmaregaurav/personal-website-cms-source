@@ -12,7 +12,7 @@ const FullPageOverlay = ({content, sourcePageUrl}) => {
     useEffect(() => {
         document.addEventListener("keydown", escPressed, false);
         return () => document.removeEventListener("keydown", escPressed, false);
-    }, []);
+    }, [escPressed]);
 
     return (
         <>
