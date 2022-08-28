@@ -29,6 +29,7 @@ const Projects = () => {
         new_data.map(item => {
             labels = [...labels, ...item.filter];
             categories = [...categories, ...item.categories];
+            return null;
         });
         labels = [...new Set(labels)];
         let filter_data = labels.map((_, index) => {return {label: labels[index], name:categories[index], isChecked: false}});
