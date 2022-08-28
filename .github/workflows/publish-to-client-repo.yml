@@ -27,7 +27,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: 'yarn'
 
       - name: Extract version from package.json
         uses: sergeysova/jq-action@v2
@@ -37,7 +37,7 @@ jobs:
 
       - run: echo "Publishing V${{ steps.version.outputs.value }}"
       - run: yarn install
-      - run: npm run build
+      - run: yarn build
 
       - run: git config --global user.name ${{github.actor}}
       - run: git config --global user.email ${{github.actor}}@users.noreply.github.com
