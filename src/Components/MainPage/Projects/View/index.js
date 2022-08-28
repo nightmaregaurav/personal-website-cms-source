@@ -55,7 +55,7 @@ const View = () => {
                                         {target.links.length > 0 ? <>
                                             <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>External Links</h3>
                                             <span className={"text-center"}>
-                                                {target.links ? target.links.map((link, i) => <a key={i} href={link.url} target={"_blank"} className={"btn badge rounded-pill bg-primary m-1 p-1"}>{link.title}</a>) : null}
+                                                {target.links ? target.links.map((link, i) => <a key={i} href={link.url} target={"_blank"} rel="noreferrer" className={"btn badge rounded-pill bg-primary m-1 p-1"}>{link.title}</a>) : null}
                                             </span>
                                         </>: null}
                                     </>: null}
