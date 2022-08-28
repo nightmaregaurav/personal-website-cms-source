@@ -32,14 +32,14 @@ const About = () => {
                                 <div className="col-lg-6">
                                     <ul style={{marginTop:0, marginBottom:0}}>
                                         {Object.entries(get(get(config, "about", {}), "info", [])).map((item, index) => {
-                                            if((index + 1) % 2 !== 0) return <li key={index.toString()} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item[0]}:</strong> <span>{item[1].toString()}</span></li>
+                                            return ((index + 1) % 2 !== 0) ? <li key={index.toString()} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item[0]}:</strong> <span>{item[1].toString()}</span></li> : null;
                                         })}
                                     </ul>
                                 </div>
                                 <div className="col-lg-6">
                                     <ul style={{marginTop:0, marginBottom:0}}>
                                         {Object.entries(get(get(config, "about", {}), "info", [])).map((item, index) => {
-                                            if((index + 1) % 2 === 0) return <li key={index.toString()} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item[0]}:</strong> <span>{item[1].toString()}</span></li>
+                                            return ((index + 1) % 2 === 0) ? <li key={index.toString()} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item[0]}:</strong> <span>{item[1].toString()}</span></li> : null;
                                         })}
                                     </ul>
                                 </div>
