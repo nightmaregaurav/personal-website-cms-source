@@ -28,7 +28,7 @@ const View = () => {
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
-    } , [config]);
+    } , [config, id]);
 
     return (
         <FullPageOverlay content={<>
