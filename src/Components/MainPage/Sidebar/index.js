@@ -37,7 +37,7 @@ const Sidebar = () => {
         return () => {
             activateSidebar()
         };
-    }, [config]);
+    }, [config, activateSidebar]);
 
     return (
         <>
