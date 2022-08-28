@@ -49,6 +49,8 @@ jobs:
       - run: cp -r client-data/.gitignore destination_repo/.gitignore 2>/dev/null || true
       - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
+      - run: cp -r target_repo/data destination_repo/ 2>/dev/null || true
+      - run: cp -r target_repo/config.json destination_repo/config.json 2>/dev/null || true
       - run: cp -r target_repo/CNAME destination_repo/CNAME 2>/dev/null || true
       - run: cp -r target_repo/sitemap.xml destination_repo/sitemap.xml 2>/dev/null || true
 

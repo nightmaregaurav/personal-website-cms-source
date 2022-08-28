@@ -3,7 +3,7 @@
 This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of). 
 
 ## Installation
-1. Host this project on a server. 
+1. Clone this project on a server. 
 2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: <your-website-root>
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
@@ -11,6 +11,8 @@ This project runs using client side technology so that it can also be hosted on 
 6. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-inf0`
 7. Visit `https://<your-website-root>/gh-sitemap/<your-website-root>` to generate sitemap 
 8. Copy all content of sitemap and save as `sitemap.xml`
+
+<b> It is recommended that you DO NOT add/modify any other files than specified above in the repository. As they may get overridden or prevent updates. If you need to serve static files (For example to serve images and provide url in 'config.json' you can do so is 'data' folder in the root of the repo) </b>
 
 ## Maintenance
 1. Update `config.json`
