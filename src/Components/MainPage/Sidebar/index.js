@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import './index.scss';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
@@ -33,11 +33,12 @@ const Sidebar = () => {
         }
     };
 
+    const SidebarActivate = useCallback(activateSidebar, []);
     useEffect(() => {
         return () => {
-            activateSidebar()
+            SidebarActivate()
         };
-    }, [config, activateSidebar]);
+    }, [config, SidebarActivate]);
 
     return (
         <>

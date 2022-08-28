@@ -22,7 +22,7 @@ export function useConfig() {
 
         return () => {
         };
-    }, []);
+    }, [config]);
 
     return config;
 }

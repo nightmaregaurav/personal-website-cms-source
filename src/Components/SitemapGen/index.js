@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import "./index.scss";
-import {useLocation} from "react-router-dom";
 import {get} from "../../helpers/object_helper";
 import {useConfig} from "../../helpers/config_helper";
-import {strip, lstrip, rstrip} from "../../helpers/text_heper";
+import {strip, rstrip} from "../../helpers/text_heper";
 import {isValidUrl} from "../../helpers/url_helper";
 
 const SitemapGen = ({isGhPage}) => {
     const config = useConfig();
     const [map, setMap] = useState("");
-    const getUrl = (root, route) => isGhPage ? rstrip(strip(root + "/?/" + route, "/"), "/?/") : strip(root + "/" + route, "/");
 
     useEffect(() => {
+        const getUrl = (root, route) => isGhPage ? rstrip(strip(root + "/?/" + route, "/"), "/?/") : strip(root + "/" + route, "/");
+
         const location = window.location;
         const root = strip(location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + rstrip(rstrip(location.pathname, "/"), isGhPage ? "gh-sitemap" : "get-sitemap"), "/");
         let sitemap;
@@ -29,12 +29,12 @@ const SitemapGen = ({isGhPage}) => {
             if(get(config, "gallery", []).length > 0) routes.push("gallery");
 
             const projects_list = get(get(config, "projects", {}), "contents", []);
-            projects_list.map((_, index) => routes.push("projects/" + "id_" + index));
+            projects_list.map((_, index) => routes.push("projects/id_" + index));
 
             sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
             sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
             sitemap += routes.map(route => {
-                let ret = '';
+                let ret;
                 ret = '\t<url>\n';
                 ret += '\t\t<loc>' + getUrl(root, route) + '</loc>\n';
                 ret += '\t\t<lastmod>' + new Date().toISOString() + '</lastmod>\n';
@@ -49,9 +49,7 @@ const SitemapGen = ({isGhPage}) => {
         }
         setMap(sitemap);
         return () => {};
-    }, []);
-
-
+    }, [config, isGhPage]);
 
     return (
         <code><pre>
