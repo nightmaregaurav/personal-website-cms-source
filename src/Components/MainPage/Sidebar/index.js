@@ -5,40 +5,42 @@ import Footer from "../../Footer";
 import {useConfig} from '../../../helpers/config_helper'
 import {get} from "../../../helpers/object_helper";
 
+const toggleSideBar = () => {
+    document.querySelector('body').classList.toggle('mobile-nav-active');
+    document.querySelector('.sidebar-toggler').classList.toggle('bi-list');
+    document.querySelector('.sidebar-toggler').classList.toggle('bi-x');
+};
+
+const activateSidebarOnly = () => {
+    let path = window.location.pathname;
+    let pathLength = path.length;
+    if(path[pathLength - 1] === "/") path = path.substring(0, pathLength-1);
+
+    let links = document.querySelectorAll('.auto-activate');
+    for (let element of links){
+        element.classList.remove("active");
+
+        let href = element.pathname;
+        let hrefLength = href.length;
+        if(href[hrefLength - 1] === "/") href = href.substring(0, hrefLength-1);
+
+        if(href === path) element.classList.add("active");
+    }
+}
+
+const activateSidebar = () => {
+    toggleSideBar();
+    activateSidebarOnly();
+};
+
 const Sidebar = () => {
     const config = useConfig();
 
-    const toggleSideBar = () => {
-        document.querySelector('body').classList.toggle('mobile-nav-active');
-        document.querySelector('.sidebar-toggler').classList.toggle('bi-list');
-        document.querySelector('.sidebar-toggler').classList.toggle('bi-x');
-    };
-
-    const activateSidebar = () => {
-        toggleSideBar();
-
-        let path = window.location.pathname;
-        let pathLength = path.length;
-        if(path[pathLength - 1] === "/") path = path.substring(0, pathLength-1);
-
-        let links = document.querySelectorAll('.auto-activate');
-        for (let element of links){
-            element.classList.remove("active");
-
-            let href = element.pathname;
-            let hrefLength = href.length;
-            if(href[hrefLength - 1] === "/") href = href.substring(0, hrefLength-1);
-
-            if(href === path) element.classList.add("active");
-        }
-    };
-
-    const SidebarActivate = useCallback(activateSidebar, []);
     useEffect(() => {
         return () => {
-            SidebarActivate()
+            activateSidebarOnly();
         };
-    }, [config, SidebarActivate]);
+    }, [activateSidebarOnly]);
 
     return (
         <>
