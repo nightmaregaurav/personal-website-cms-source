@@ -37,9 +37,7 @@ const Sidebar = () => {
     const config = useConfig();
 
     useEffect(() => {
-        return () => {
-            activateSidebarOnly();
-        };
+        activateSidebarOnly();
     }, []);
 
     return (
