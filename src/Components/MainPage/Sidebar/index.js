@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import './index.scss';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
@@ -40,7 +40,7 @@ const Sidebar = () => {
         return () => {
             activateSidebarOnly();
         };
-    }, [activateSidebarOnly]);
+    }, []);
 
     return (
         <>
