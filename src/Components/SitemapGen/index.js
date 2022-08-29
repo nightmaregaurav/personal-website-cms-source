@@ -1,21 +1,29 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import "./index.scss";
 import {get} from "../../helpers/object_helper";
 import {useConfig} from "../../helpers/config_helper";
 import {strip, rstrip} from "../../helpers/text_heper";
 import {isValidUrl} from "../../helpers/url_helper";
 
+const getRoot = (isGhPage) => strip(window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + rstrip(rstrip(window.location.pathname, "/"), isGhPage ? "gh-sitemap" : "get-sitemap"), "/");
+
 const SitemapGen = ({isGhPage}) => {
     const config = useConfig();
     const [path, setPath] = useState([]);
-    const getRoot = () => strip(window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port : '') + rstrip(rstrip(window.location.pathname, "/"), isGhPage ? "gh-sitemap" : "get-sitemap"), "/");
+
+    const GetRoot = useCallback(
+        () => {
+            return getRoot(isGhPage);
+        },
+        [isGhPage],
+    );
     const getUrl = (root, route) => isGhPage ? rstrip(strip(root + "/?/" + route, "/"), "/?/") : strip(root + "/" + route, "/");
     const time = useMemo(() => {
         return new Date().toISOString();
     }, []);
 
     useEffect(() => {
-        const root = getRoot();
+        const root = GetRoot();
         if(isValidUrl(root)){
             let routes = [
                 "",
@@ -36,7 +44,7 @@ const SitemapGen = ({isGhPage}) => {
             setPath(routes);
         }
         return () => {};
-    }, [config, isGhPage]);
+    }, [config, isGhPage, GetRoot]);
 
     return (
         <code><pre>
@@ -45,7 +53,7 @@ const SitemapGen = ({isGhPage}) => {
             {path.map(route => {
                 let ret;
                 ret = '\t<url>\n';
-                ret += '\t\t<loc>' + getUrl(getRoot(), route) + '</loc>\n';
+                ret += '\t\t<loc>' + getUrl(getRoot(isGhPage), route) + '</loc>\n';
                 ret += '\t\t<lastmod>' + time + '</lastmod>\n';
                 ret += '\t\t<changefreq>weekly</changefreq>\n';
                 ret += '\t\t<priority>1.0</priority>\n';
