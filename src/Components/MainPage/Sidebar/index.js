@@ -46,24 +46,24 @@ const Sidebar = () => {
             <header id="header" className={"sidebar"}>
                 <div className={"d-flex flex-column"}>
                     <div className={"profile"}>
-                        <img src={get(config, "profile-pic", {})} alt={get(config, "profile-alt", "")} className={"img-fluid rounded-circle"} />
+                        {get(config, "profile-pic", "") !== "" ? <img src={get(config, "profile-pic", {})} alt={get(config, "profile-alt", "")} className={"img-fluid rounded-circle"} /> : null}
                         <h1 className={"text-light"}><Link to={"/"}>{get(config, "full-name", "")}</Link></h1>
                         <div className={"social-links mt-3 text-center"}>
-                            {Object.entries(get(config, "social-urls", {})).map((value,index) => <a key={index.toString()} target={"_blank"} rel="noreferrer" href={value[1].toString()} className={value[0]}><i className={"bx bxl-" + value[0]}/></a>)}
+                            {get(config, "social-urls", []).map((value, index) => <a key={index} target={"_blank"} rel="noreferrer" href={value.url} className={value.name}><i className={"bx bxl-" + value.name}/></a>)}
                         </div>
                     </div>
                     <nav id="navbar" className={"nav-menu navbar"}>
                         <div>
                             <span onClick={activateSidebar}><Link to={"/"} className={"nav-link auto-activate"}><i className={"bx bx-home"}></i> <span>Home</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/about"} className={"nav-link auto-activate"}><i className={"bx bx-user"}></i> <span>About</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/education"} className={"nav-link auto-activate"}><i className={"bx bx-abacus"}></i> <span>Education</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/experience"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experience</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Projects</span></Link></span>
+                            {get(config, "about", false) ? <span onClick={activateSidebar}><Link to={"/about"} className={"nav-link auto-activate"}><i className={"bx bx-user"}></i> <span>About</span></Link></span> : null}
+                            {get(config, "education", false) ? <span onClick={activateSidebar}><Link to={"/education"} className={"nav-link auto-activate"}><i className={"bx bx-abacus"}></i> <span>Education</span></Link></span> : null}
+                            {get(config, "experience", false) ? <span onClick={activateSidebar}><Link to={"/experience"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experience</span></Link></span> : null}
+                            {get(config, "projects", false) ? <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Projects</span></Link></span> : null}
                             {get(config, "gallery", []).length > 0 ? <span onClick={activateSidebar}><Link to={"/gallery"} className={"nav-link auto-activate"}><i className={"bx bx-photo-album"}></i> <span>Gallery</span></Link></span> : null}
-                            <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span>
-                            <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span>
+                            {get(config, "services", false) ? <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span> : null}
+                            {get(config, "skills", false) ? <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span> : null}
                             <span onClick={activateSidebar}><Link to={"/contact"} className={"nav-link auto-activate"}><i className={"bx bx-envelope"}></i> <span>Contact</span></Link></span>
-                            {get(config, "resume", "").length > 0 ? <span onClick={activateSidebar}><a href={get(config, "resume", "#")} target={"_blank"} rel="noreferrer" className={"nav-link"}><i className={"bx bx-download"}></i> <span>Get Resume</span></a></span> : null}
+                            {get(config, "resume", "") !== "" ? <span onClick={activateSidebar}><a href={get(config, "resume", "#")} target={"_blank"} rel="noreferrer" className={"nav-link"}><i className={"bx bx-download"}></i> <span>Get Resume</span></a></span> : null}
                         </div>
                     </nav>
                     <Footer/>

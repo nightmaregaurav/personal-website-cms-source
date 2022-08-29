@@ -7,11 +7,26 @@ This project runs using client side technology so that it can also be hosted on 
 2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
-5. Make changes on `config.json` and refresh the page. 
-6. Keys in config.json are self-explanatory. But if you should need guidance, make sure to read `config-info.json`
-7. Visit `https://<your-website-root>/gh-sitemap/<your-website-root>` to generate sitemap 
-8. Copy all content of sitemap and save as `sitemap.xml`
-
+5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format)
+6. Visit `https://<your-website-root>/get-sitemap` to generate sitemap 
+7. Copy all content of sitemap and save as `sitemap.xml`
+### How to understand `config-info.json`?
+1. `config-info.json` explain the data format for `config.json` that is used to generate the website.
+2. `config-info.json` has same keys as `config.json` but the values are in the format `[<DATATYPE>, <CARDINALITY>, <INFO>, <EXAMPLE>]`.
+3. `DATATYPE` can be `STRING`, `OBJECT`, `NUMBER`, `URL`, `IMAGE URL`, `ARRAY OF <DATATYPE>`
+    1. `STRING` is a plain string
+    2. `OBJECT` is an object that may have more Key/Value pairs
+    3. `NUMBER` is a plain number
+    4. `URL` is a valid URL
+    5. `IMAGE URL` is a valid URL that points to a raw image
+    6. `ARRAY OF <DATATYPE>` is an array of <DATATYPE>
+4. `CARDINALITY` can be `Compulsory`, `Optional`, `At Least One`
+    1. `Compulsory` means that the data is compulsory to be present in the `config.json` if parent is present.
+    2. `Optional` means that the data is optional to be present in the `config.json` even if parent is present.
+    3. `At Least One` means that at least one of the data is compulsory to be present in the `config.json` if parent is present.
+    4. For `Optional` `ARRAY OF <DATATYPE>` if you wish not to add any data, then add `[]` IE: Empty array
+5. `INFO` is a description of the data
+6. `EXAMPLE` is a real example of the data to put in `config.json`
 <b> It is recommended that you DO NOT add/modify any other files than specified above in the repository. As they may get overridden or prevent updates. If you need to serve static files (For example to serve images and provide url in 'config.json' you can do so is 'data' folder in the root of the repo) </b>
 
 ## Maintenance

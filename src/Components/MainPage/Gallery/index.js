@@ -14,7 +14,7 @@ const Gallery = () => {
     const config = useConfig();
     return (
         <>
-            <section id="gallery" className="gallery section-bg">
+            {get(config, "gallery", []).length > 0 ? <section id="gallery" className="gallery section-bg">
                 <div className="container">
                     <div className="section-title">
                         <h2>Gallery</h2>
@@ -36,7 +36,7 @@ const Gallery = () => {
                         ))}
                     </LightgalleryProvider>
                 </div>
-            </section>
+            </section> : null }
         </>
     );
 };

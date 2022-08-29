@@ -70,7 +70,7 @@ const Contact = () => {
                     <div className="section-title">
                         <h2>Contact</h2>
                         <p>Write and send messages. You can also send anonymous messages.</p>
-                        {get(config, "messageAPI", null) === "" ? <span className={"badge rounded-pill bg-danger"}>Service Currently Unavailable</span>: null }
+                        {get(config, "messageAPI", "") === "" ? <span className={"badge rounded-pill bg-danger"}>Service Currently Unavailable</span>: null }
                     </div>
 
                     <div className="d-flex flex-row justify-content-center align-items-center align-content-center" data-aos="fade-in">

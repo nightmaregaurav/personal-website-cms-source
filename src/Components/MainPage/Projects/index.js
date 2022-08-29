@@ -59,43 +59,49 @@ const Projects = () => {
 
     return (
         <>
-            <Outlet/>
-            <section id="projects" className="projects section-bg">
-                <div className="container">
-                    <div className="section-title">
-                        <h2>Projects</h2>
-                        <p>{get(get(config, "projects", {}), "intro", "")}</p>
-                    </div>
-                    <div className="row" data-aos="fade-up">
-                        <div className="col-lg-12 d-flex justify-content-center">
-                            <ul id="projects-filters">
-                                {filters.map((filter, i) => <li key={i} className={filter.isChecked ? "filter-active" : null} onClick={() => update_filter(filter.label)}>{filter.name}</li>)}
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="projects-container" data-aos="fade-up" data-aos-delay="100">
-                        {data.length > 0 ? <IsoTopeGrid
-                            gridLayout={data}
-                            filters={filters}
-                            unitWidth={0}
-                            unitHeight={0}
-                            noOfCols={1}
-                        >
-                            {data.map(item => (
-                                <div key={item.id} className={"projects-card " + item.filter.join(" ")}>
-                                    <div className="card bg-dark text-white">
-                                        <img className="card-img projects-card-image" src={item.image} alt={item.title.trim() + "'s photo"} />
-                                        <div className="card-img-overlay d-flex flex-column flex-nowrap justify-content-center align-items-center">
-                                            <h5 className="card-title">{item.title}</h5>
-                                            <Link className="card-text btn btn-success" to={item.id}><i className={"bi-eye-fill"}></i> View</Link>
-                                        </div>
+            {get(config, 'projects', null) ? <>
+                {(get(get(config, 'projects', null), "intro", "") !== "" || get(get(config, 'projects', null), "contents", []).length > 0) ? <>
+                    <Outlet/>
+                    <section id="projects" className="projects section-bg">
+                        <div className="container">
+                            <div className="section-title">
+                                <h2>Projects</h2>
+                                <p>{get(get(config, "projects", {}), "intro", "")}</p>
+                            </div>
+                            {get(get(config, 'projects', null), "contents", []).length > 0 ? <>
+                                <div className="row" data-aos="fade-up">
+                                    <div className="col-lg-12 d-flex justify-content-center">
+                                        <ul id="projects-filters">
+                                            {filters.map((filter, i) => <li key={i} className={filter.isChecked ? "filter-active" : null} onClick={() => update_filter(filter.label)}>{filter.name}</li>)}
+                                        </ul>
                                     </div>
                                 </div>
-                            ))}
-                        </IsoTopeGrid> : null}
-                    </div>
-                </div>
-            </section>
+                                <div className="projects-container" data-aos="fade-up" data-aos-delay="100">
+                                    {data.length > 0 ? <IsoTopeGrid
+                                        gridLayout={data}
+                                        filters={filters}
+                                        unitWidth={0}
+                                        unitHeight={0}
+                                        noOfCols={1}
+                                    >
+                                        {data.map(item => (
+                                            <div key={item.id} className={"projects-card " + item.filter.join(" ")}>
+                                                <div className="card bg-dark text-white">
+                                                    <img className="card-img projects-card-image" src={item.image} alt={item.title.trim() + "'s photo"} />
+                                                    <div className="card-img-overlay d-flex flex-column flex-nowrap justify-content-center align-items-center">
+                                                        <h5 className="card-title">{item.title}</h5>
+                                                        <Link className="card-text btn btn-success" to={item.id}><i className={"bi-eye-fill"}></i> View</Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </IsoTopeGrid> : null}
+                                </div>
+                            </> : null }
+                        </div>
+                    </section>
+                </> : null}
+            </> : null }
         </>
     );
 };

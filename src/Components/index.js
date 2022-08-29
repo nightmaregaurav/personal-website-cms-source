@@ -62,15 +62,15 @@ const Components = () => {
                     {/* MainPage components*/}
                     <Route path="/" element={<MainPage/>}>
                         <Route path="" element= {<Intro/>} />
-                        <Route path="about" element= {<About />} />
-                        <Route path="education" element={<Education/>} />
-                        <Route path="experience" element={<Experience/>} />
-                        <Route path="projects" element={<Projects/>}>
+                        {get(config, "about", false) ? <Route path="about" element= {<About />} /> : null}
+                        {get(config, "education", false) ? <Route path="education" element={<Education/>} /> : null}
+                        {get(config, "experience", false) ? <Route path="experience" element={<Experience/>} /> : null}
+                        {get(config, "projects", false) ? <Route path="projects" element={<Projects/>}>
                             <Route path=":id" element={<ProjectsView/>} />
-                        </Route>
+                        </Route> : null}
                         {get(config, "gallery", []).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
-                        <Route path="services" element= {<Services />} />
-                        <Route path="skills" element= {<Skills />} />
+                        {get(config, "services", false) ? <Route path="services" element= {<Services />} /> : null}
+                        {get(config, "skills", false) ? <Route path="skills" element= {<Skills />} /> : null}
                         <Route path="contact" element= {<Contact />} />
                     </Route>
                     {/* Sitemap Generator */}
