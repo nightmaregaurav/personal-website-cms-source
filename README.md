@@ -7,7 +7,7 @@ This project runs using client side technology so that it can also be hosted on 
 2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
-5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format)
+5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format, Read "How to understand `config-info.json`?" section to understand `config-info.json`)
 6. Visit `https://<your-website-root>/get-sitemap` to generate sitemap 
 7. Copy all content of sitemap and save as `sitemap.xml`
 ### How to understand `config-info.json`?

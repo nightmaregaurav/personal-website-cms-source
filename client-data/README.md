@@ -17,7 +17,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 3. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 4. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL in github page>"` if you are using path other than / as root, normally happens when you are not using custom domain 
 5. Copy `config.dist.json` as `config.json`
-6. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format)
+6. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format, Read "How to understand `config-info.json`?" section to understand `config-info.json`)
 7. Add CNAME and change the domain name to your domain name or setup domain name from your repo setting 
 8. Visit `https://<your-website-root>/gh-sitemap` to generate sitemap 
 9. Copy all content of sitemap and save as `sitemap.xml`
@@ -26,7 +26,7 @@ If you are not reading this from the `Personal-Website-Client` Repository of `Ni
 2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `<your website root>`
 3. Change line `let home = "";` in `404.html` to `let home = "<YOUR HOME URL>"` if you are using path other than / as root 
 4. Copy `config.dist.json` as `config.json`
-5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format)
+5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format, Read "How to understand `config-info.json`?" section to understand `config-info.json`)
 6. Visit `https://<your-website-root>/get-sitemap` to generate sitemap 
 7. Copy all content of sitemap and save as `sitemap.xml`
 ### How to understand `config-info.json`?
