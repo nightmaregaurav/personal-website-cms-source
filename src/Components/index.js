@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
 
-import {useConfig} from '../helpers/config_helper'
+import {useConfig, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -23,6 +23,7 @@ import Gallery from "./MainPage/Gallery";
 import SitemapGen from "./SitemapGen";
 
 const Components = () => {
+    useConfigGetter();
     const config = useConfig();
 
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
@@ -77,8 +78,6 @@ const Components = () => {
                     <Route path="get-sitemap" element={<SitemapGen isGhPage={false} />} />
                     <Route path="gh-sitemap" element={<SitemapGen isGhPage={true} />} />
 
-                    {/* Hack for favicon.ico auto fetch */}
-                    <Route path="favicon.ico" element={<></>} />
                     {/* 404 Error */}
                     <Route path="*" element={<>
                         <ErrorPage title={"Error"} err_code={"404"} err_msg={"Not Found"}/>

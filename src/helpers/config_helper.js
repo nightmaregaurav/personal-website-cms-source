@@ -1,26 +1,29 @@
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export var CONFIG = {}
 
-async function getConfig() {
-    const response = await fetch('/config.json', {method: 'GET'});
-    CONFIG = await response.json().catch(() => ({}));
-    return CONFIG;
+export function useConfigGetter() {
+    useMemo(() => {
+        const req = new XMLHttpRequest();
+        req.addEventListener("load", (e)=>{
+            try{
+                CONFIG = JSON.parse(e.target.responseText);
+            } catch(_){
+                CONFIG = {};
+            }
+        });
+        req.addEventListener("error", (e)=>{
+            CONFIG = {};
+        });
+        req.open("GET", "/config.json");
+        req.send();
+    }, [null]);
 }
 
 export function useConfig() {
     const [config, setConfig] = useState({});
     useEffect(() => {
-        if (Object.keys(config).length !== 0) {
-        } else if (Object.keys(CONFIG).length !== 0) {
-            setConfig(CONFIG);
-        } else {
-            getConfig().then((data) => setConfig(data));
-        }
-
-        return () => {
-        };
+        setConfig(CONFIG)
     }, [config]);
-
     return config;
 }
