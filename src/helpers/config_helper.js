@@ -12,12 +12,12 @@ export function useConfigGetter() {
                 CONFIG = {};
             }
         });
-        req.addEventListener("error", (e)=>{
+        req.addEventListener("error", _ => {
             CONFIG = {};
         });
         req.open("GET", "/config.json");
         req.send();
-    }, [null]);
+    }, []);
 }
 
 export function useConfig() {
