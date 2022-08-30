@@ -1,19 +1,17 @@
-import {useEffect, useMemo, useState} from "react";
-
-export var CONFIG = {}
+import {useMemo} from "react";
 
 export function useConfigGetter() {
     useMemo(() => {
         const req = new XMLHttpRequest();
         req.addEventListener("load", (e)=>{
             try{
-                CONFIG = JSON.parse(e.target.responseText);
+                localStorage.setItem("config", e.target.responseText);
             } catch(_){
-                CONFIG = {};
+                localStorage.setItem("config", "{}");
             }
         });
         req.addEventListener("error", _ => {
-            CONFIG = {};
+            localStorage.setItem("config", "{}");
         });
         req.open("GET", "/config.json");
         req.send();
@@ -21,9 +19,5 @@ export function useConfigGetter() {
 }
 
 export function useConfig() {
-    const [config, setConfig] = useState({});
-    useEffect(() => {
-        setConfig(CONFIG)
-    }, [config]);
-    return config;
+    return JSON.parse(localStorage.getItem("config")) ?? {};
 }
