@@ -18,7 +18,7 @@ export function useConfigGetter() {
             const req = new XMLHttpRequest();
             req.addEventListener("load", (e) => {
                 try {
-                    localStorage.setItem("config", e.target.responseText);
+                    localStorage.setItem("config", JSON.stringify(JSON.parse(e.target.responseText)));
                     localStorage.setItem("config_added_on", JSON.stringify(new Date()));
                 } catch (_) {
                     localStorage.setItem("config", "{}");
