@@ -20,7 +20,7 @@ import Skills from "./MainPage/Skills";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
-import SitemapGen from "./SitemapGen";
+import Setup from "./Setup";
 
 const Components = () => {
     useConfigGetter();
@@ -74,9 +74,9 @@ const Components = () => {
                         {get(config, "skills", false) ? <Route path="skills" element= {<Skills />} /> : null}
                         <Route path="contact" element= {<Contact />} />
                     </Route>
-                    {/* Sitemap Generator */}
-                    <Route path="get-sitemap" element={<SitemapGen isGhPage={false} />} />
-                    <Route path="gh-sitemap" element={<SitemapGen isGhPage={true} />} />
+
+                    {/* Setup */}
+                    <Route path="setup" element={<Setup />} />
 
                     {/* 404 Error */}
                     <Route path="*" element={<>
