@@ -9,11 +9,11 @@ const Intro = () => {
 
     return (
         <>
-            <section id="intro" style={{background: "url(" + get(config, "intro-pic", "") + ")"}} className={"d-flex flex-column justify-content-center align-items-center"}>
+            <section id="intro" style={{background: "url(" + get(get(config, "intro", {}), "pic", "") + ")"}} className={"d-flex flex-column justify-content-center align-items-center"}>
                 <div className={"intro-container text-center"} data-aos="fade-in">
                     <h1>{get(config, "full-name", "")}</h1>
-                    {get(config, "intro-words", [""]).length > 0 ?
-                        <p>I'm <Typed strings={get(config, "intro-words", [""])} typeSpeed={40} backSpeed={50} loop /></p>
+                    {get(get(config, "intro", {}), "words", []).length > 0 ?
+                        <p>I'm <Typed strings={get(get(config, "intro", {}), "words", [])} typeSpeed={40} backSpeed={50} loop /></p>
                     : null}
                 </div>
             </section>

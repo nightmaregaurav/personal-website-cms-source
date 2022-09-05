@@ -18,11 +18,15 @@
     }
   ]],
   "resume": ["URL", "Optional", "URL to resume", "https://example.com/resume.pdf"],
-  "intro-pic": ["IMAGE URL", "Compulsory", "URL to image to show in intro page", "https://example.com/intro-pic.jpg"],
-  "intro-words": ["ARRAY OF STRING", "At Least One", "Words to tell what you are in intro page.", [
-    "Web developer",
-    "Freelancer"
-  ]],
+  "messageAPI": ["URL", "Optional", "URL to Open message API endpoint that accept POST request with JSON body containing 'name', 'email', 'message', 'ip' keys", "https://example.com/message-api"],
+
+  "intro" : ["OBJECT", "Optional", "Object containing intro text", {
+    "pic": ["IMAGE URL", "Compulsory", "URL to image to show in intro page", "https://example.com/intro-pic.jpg"],
+    "words": ["ARRAY OF STRING", "At Least One", "Words to tell what you are in intro page.", [
+      "Web developer",
+      "Freelancer"
+    ]]
+  }],
   "about": ["OBJECT", "Optional", "Data used in about section", {
     "pic": ["IMAGE URL", "Compulsory", "URL to image to show in about section", "https://example.com/about-pic.jpg"],
     "image-alt": ["STRING", "Optional", "Alt text for about image", "Gaurav Nyaupane's photo"],
@@ -139,6 +143,5 @@
         "percentage": ["NUMBER", "Compulsory", "Percentage of skill", 90]
       }
     ]]
-  }],
-  "messageAPI": ["URL", "Optional", "URL to message API endpoint that accept POST request with JSON body containing 'name', 'email', 'message', 'ip' keys", "https://example.com/message-api"]
+  }]
 }

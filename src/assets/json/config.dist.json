@@ -8,8 +8,12 @@
   "profile-alt": "",
   "social-urls": [],
   "resume": "",
-  "intro-pic": "",
-  "intro-words": [],
+  "messageAPI": "",
+
+  "intro": {
+    "pic": "",
+    "words": []
+  },
   "about": {
     "pic": "",
     "image-alt": "",
@@ -39,6 +43,5 @@
   "skills": {
     "intro": "",
     "contents": []
-  },
-  "messageAPI": ""
+  }
 }
