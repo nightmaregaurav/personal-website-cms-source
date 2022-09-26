@@ -8,6 +8,7 @@ import ConfigUI from "./ConfigUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import {useConfig} from "../../helpers/config_helper";
+import {giveWarning} from "../../helpers/message_helper";
 
 const Setup = () => {
     const [siteType, setSiteType] = useState(null);
@@ -22,7 +23,8 @@ const Setup = () => {
     const showUsernamePopup = () => isGhPage() && (userName === null || userName === '');
     const showRepositoryNamePopup = () => isGhPage() && !showUsernamePopup() && (repositoryName === null || repositoryName === '');
     const showApiKeyPopup = () => isGhPage() && !showUsernamePopup() && !showRepositoryNamePopup() && (apiKey === null || apiKey === '');
-    const fallbackToCustom = () => {
+    const fallbackToCustom = (isFallback=true) => {
+        if(isFallback) giveWarning("Failed to get github credentials. Falling back to Non-GitHub Pages Configuration.").then(_ => {});
         setSiteType('CUSTOM');
         setUserName(null);
         setRepositoryName(null);
@@ -49,7 +51,7 @@ const Setup = () => {
                 customIcon={githubIcon}
                 title="Is this site hosted on github pages?"
                 onConfirm={() => setSiteType("GH-PAGE")}
-                onCancel={fallbackToCustom}
+                onCancel={() => fallbackToCustom(false)}
             /> : null}
 
             {showUsernamePopup() ? <SweetAlert
