@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import {useConfig} from "../../helpers/config_helper";
 import {giveWarning} from "../../helpers/message_helper";
+import {download} from "../../helpers/download_helper";
 
 const Setup = () => {
     const [siteType, setSiteType] = useState(null);
@@ -34,6 +35,39 @@ const Setup = () => {
     const fixed_index_page = useGetFixedIndexPage();
     const fixed_404_page = useGetFixed404Page();
     const sitemap = useGetSiteMap(config, isGhPage());
+
+    const save_config = () => {
+        if(isGhPage()){
+            console.log("Saving config for GitHub Pages");
+            console.log(config);
+        } else {
+            download("config.json", JSON.stringify(config));
+        }
+    }
+    const save_sitemap = () => {
+        if(isGhPage()){
+            console.log("Saving sitemap for GitHub Pages");
+            console.log(sitemap.content);
+        } else {
+            download("sitemap.xml", sitemap.content);
+        }
+    }
+    const save_index = () => {
+        if(isGhPage()){
+            console.log("Saving index for GitHub Pages");
+            console.log(fixed_index_page.content);
+        } else {
+            download("index.html", fixed_index_page.content);
+        }
+    }
+    const save_404 = () => {
+        if(isGhPage()){
+            console.log("Saving 404 for GitHub Pages");
+            console.log(fixed_404_page.content);
+        } else {
+            download("404.html", fixed_404_page.content);
+        }
+    }
 
     return (
         <>
@@ -101,10 +135,10 @@ const Setup = () => {
 
             <ConfigUI setConfig={setConfig} userName={userName} repoName={repositoryName} apiKey={apiKey}/>
             <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center"}>
-                {isConfigured() ? <span className={"btn btn-sm btn-success m-2"}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
-                {sitemap.status === "SUCCESS" ? <span className={"btn btn-sm btn-primary m-2"}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
-                {fixed_404_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-danger m-2"}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix 404.html</span>: null}
-                {fixed_index_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-info m-2"}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix index.html</span>: null}
+                {isConfigured() ? <span className={"btn btn-sm btn-success m-2"} onClick={save_config}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
+                {sitemap.status === "SUCCESS" ? <span className={"btn btn-sm btn-primary m-2"} onClick={save_sitemap}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
+                {fixed_404_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-danger m-2"} onClick={save_404}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix 404.html</span>: null}
+                {fixed_index_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-info m-2"} onClick={save_index}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix index.html</span>: null}
             </div>
         </>
     );
