@@ -37,7 +37,7 @@ export const getNewSiteMap = (config, isGhPage) => {
     const date = new Date().toISOString();
 
     let siteMap = '<?xml version="1.0" encoding="UTF-8"?>\n';
-    siteMap += '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">';
+    siteMap += '<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n';
     siteMap += routes.map(route => {
         let ret;
         ret = '\t<url>\n';
