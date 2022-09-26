@@ -10,26 +10,49 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import {useConfig} from "../../helpers/config_helper";
 import {giveWarning} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
+import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
 
 const Setup = () => {
     const [siteType, setSiteType] = useState(null);
-    const [userName, setUserName] = useState(null);
-    const [repositoryName, setRepositoryName] = useState(null);
-    const [apiKey, setApiKey] = useState(null);
+    const [apiKey, setApi] = useState(null);
+    const [repositoryName, setRepository] = useState(null);
     const [config, setConfig] = useState({});
+
+    const setApiKey = async (key) => {
+        if(key !== null || key !== "" || key !== undefined) {
+            const valid = await validateGithubApiKey(key);
+            if(!valid) {
+                setApi(null);
+            } else {
+                setApi(key);
+            }
+        } else {
+            setApi(key);
+        }
+    }
+    const setRepositoryName = async (name) => {
+        if(name !== null || name !== "" || name !== undefined) {
+            const valid = await validateGithubRepository(apiKey, name);
+            if(!valid) {
+                setRepository(null);
+            } else {
+                setRepository(name);
+            }
+        } else {
+            setRepository(name);
+        }
+    }
 
     const old_config = useConfig();
     const isConfigured = () => JSON.stringify(config) !== JSON.stringify(null) && JSON.stringify(config) !== JSON.stringify({}) && JSON.stringify(config) !== "" && JSON.stringify(config) !== JSON.stringify(old_config);
     const isGhPage = () => siteType === 'GH-PAGE';
-    const showUsernamePopup = () => isGhPage() && (userName === null || userName === '');
-    const showRepositoryNamePopup = () => isGhPage() && !showUsernamePopup() && (repositoryName === null || repositoryName === '');
-    const showApiKeyPopup = () => isGhPage() && !showUsernamePopup() && !showRepositoryNamePopup() && (apiKey === null || apiKey === '');
+    const showApiKeyPopup = () => isGhPage() && (apiKey === null || apiKey === '' || apiKey === undefined);
+    const showRepositoryNamePopup = () => isGhPage() && !showApiKeyPopup() && (repositoryName === null || repositoryName === '' || repositoryName === undefined);
     const fallbackToCustom = (isFallback=true) => {
         if(isFallback) giveWarning("Failed to get github credentials. Falling back to Non-GitHub Pages Configuration.").then(_ => {});
         setSiteType('CUSTOM');
-        setUserName(null);
-        setRepositoryName(null);
-        setApiKey(null);
+        setRepository(null);
+        setApi(null);
     };
 
     const fixed_index_page = useGetFixedIndexPage();
@@ -38,32 +61,28 @@ const Setup = () => {
 
     const save_config = () => {
         if(isGhPage()){
-            console.log("Saving config for GitHub Pages");
-            console.log(config);
+            uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {});
         } else {
             download("config.json", JSON.stringify(config));
         }
     }
     const save_sitemap = () => {
         if(isGhPage()){
-            console.log("Saving sitemap for GitHub Pages");
-            console.log(sitemap.content);
+            uploadFileToGithub(apiKey, repositoryName, "sitemap.xml", btoa(sitemap.content), "Updated sitemap.xml from setup").then(_ => {});
         } else {
             download("sitemap.xml", sitemap.content);
         }
     }
     const save_index = () => {
         if(isGhPage()){
-            console.log("Saving index for GitHub Pages");
-            console.log(fixed_index_page.content);
+            uploadFileToGithub(apiKey, repositoryName, "index.html", btoa(fixed_index_page.content), "Updated index.html from setup").then(_ => {});
         } else {
             download("index.html", fixed_index_page.content);
         }
     }
     const save_404 = () => {
         if(isGhPage()){
-            console.log("Saving 404 for GitHub Pages");
-            console.log(fixed_404_page.content);
+            uploadFileToGithub(apiKey, repositoryName, "404.html", btoa(fixed_404_page.content), "Updated 404.html from setup").then(_ => {});
         } else {
             download("404.html", fixed_404_page.content);
         }
@@ -88,7 +107,7 @@ const Setup = () => {
                 onCancel={() => fallbackToCustom(false)}
             /> : null}
 
-            {showUsernamePopup() ? <SweetAlert
+            {showApiKeyPopup() ? <SweetAlert
                 showCancel
                 confirmBtnText="Save"
                 cancelBtnText="Cancel"
@@ -96,10 +115,10 @@ const Setup = () => {
                 cancelBtnBsStyle="light"
                 input
                 required
-                inputType="text"
-                title="Enter Github Username"
-                validationMsg="You must provide your github username, cancel to fall back to normal setup!"
-                onConfirm={(response) => setUserName(response)}
+                inputType="password"
+                title="Enter Github API Key"
+                validationMsg="You must provide your github api key, cancel to fall back to normal setup!"
+                onConfirm={(response) => setApiKey(response)}
                 onCancel={fallbackToCustom}
             /> : null}
 
@@ -118,22 +137,7 @@ const Setup = () => {
                 onCancel={fallbackToCustom}
             /> : null}
 
-            {showApiKeyPopup() ? <SweetAlert
-                showCancel
-                confirmBtnText="Save"
-                cancelBtnText="Cancel"
-                confirmBtnBsStyle="primary"
-                cancelBtnBsStyle="light"
-                input
-                required
-                inputType="password"
-                title="Enter Github API Key"
-                validationMsg="You must provide your github api key, cancel to fall back to normal setup!"
-                onConfirm={(response) => setApiKey(response)}
-                onCancel={fallbackToCustom}
-            /> : null}
-
-            <ConfigUI setConfig={setConfig} userName={userName} repoName={repositoryName} apiKey={apiKey}/>
+            <ConfigUI setConfig={setConfig} apiKey={apiKey} repoName={repositoryName} />
             <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center"}>
                 {isConfigured() ? <span className={"btn btn-sm btn-success m-2"} onClick={save_config}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
                 {sitemap.status === "SUCCESS" ? <span className={"btn btn-sm btn-primary m-2"} onClick={save_sitemap}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
