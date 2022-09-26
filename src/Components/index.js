@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
-
 import {useConfig, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import {Route, Routes} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from "./ErrorPage";
 import MainPage from "./MainPage";
 import Intro from "./MainPage/Intro";
@@ -83,6 +84,7 @@ const Components = () => {
                         <ErrorPage title={"Error"} err_code={"404"} err_msg={"Not Found"}/>
                     </>}/>
                 </Routes>
+                <ToastContainer />
             </div>
         </HelmetProvider>
     );
