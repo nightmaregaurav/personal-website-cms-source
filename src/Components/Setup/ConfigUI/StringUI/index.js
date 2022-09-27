@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 
-const StringUI = () => {
+const StringUI = ({onChange}) => {
     return (
         <>
             stringUI

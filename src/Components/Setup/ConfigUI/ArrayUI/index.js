@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss'
 
-const ArrayUI = () => {
+const ArrayUI = ({onChange, elementType, isGhPage, cardinality}) => {
     return (
         <>
             arrayUI

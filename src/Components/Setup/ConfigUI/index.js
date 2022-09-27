@@ -5,22 +5,22 @@ import ImageUrlUI from "./ImageUrlUI";
 import ObjectUI from "./ObjectUI";
 import ArrayUI from "./ArrayUI";
 
-const ConfigUI = ({type, isGhPage, props}) => {
+const ConfigUI = ({type, onChange, isGhPage, props}) => {
     switch (type) {
         case 'STRING':
-            return <StringUI {...props}/>;
+            return <StringUI onChange={onChange} {...props}/>;
         case 'NUMBER':
-            return <NumberUI {...props}/>;
+            return <NumberUI onChange={onChange} {...props}/>;
         case 'URL':
-            return <UrlUI {...props}/>;
+            return <UrlUI onChange={onChange} {...props}/>;
         case 'IMAGE URL':
-            return <ImageUrlUI isGhPage={isGhPage} {...props}/>;
+            return <ImageUrlUI onChange={onChange} isGhPage={isGhPage} {...props}/>;
         case 'OBJECT':
-            return <ObjectUI isGhPage={isGhPage}/>;
+            return <ObjectUI onChange={onChange} isGhPage={isGhPage}/>;
         default:
             if(type.startsWith('ARRAY OF ')) {
                 const sub_type = type.substring(9);
-                return <ArrayUI elementType={sub_type} isGhPage={isGhPage} {...props}/>;
+                return <ArrayUI onChange={onChange} elementType={sub_type} isGhPage={isGhPage} cardinality={props.cardinality} />;
             } else {
                 return <div>Unsupported Type</div>;
             }

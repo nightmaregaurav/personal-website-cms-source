@@ -1,7 +1,7 @@
 import './index.scss'
 import React from 'react';
 
-const ImageUrlUI = () => {
+const ImageUrlUI = ({onChange, isGhPage}) => {
     return (
         <>
             imageUrlUI

@@ -12,6 +12,7 @@ import {giveWarning} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
 import config_info from "../../assets/json/config-info.json";
+import {strip} from "../../helpers/text_heper";
 
 const Setup = () => {
     const old_config = useConfig();
@@ -55,9 +56,27 @@ const Setup = () => {
         setRepository(null);
         setApi(null);
     };
+
     const resetConfig = () => {
         setConfig({...old_config});
     };
+    const modConfig = (key, value) => {
+        let prev_config = {...config};
+        strip(key, "~");
+        const keys = key.split("~");
+        const last_key = keys.pop();
+
+        let root = prev_config;
+        for(key of keys) {
+            if (root[key] === undefined){
+                root[key] = {}
+            }
+            root = root[key];
+        }
+
+        root[last_key] = value;
+        setConfig(prev_config);
+    }
 
     const fixed_index_page = useGetFixedIndexPage();
     const fixed_404_page = useGetFixed404Page();
@@ -143,7 +162,9 @@ const Setup = () => {
 
             <div className="my-3 container d-flex flex-column flex-nowrap justify-content-start align-items-start">
                 <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
-                <ConfigUI type={"OBJECT"} isGhPage={isGhPage()} example_info={config_info}/>
+                <div className={"config-form"}>
+                    <ConfigUI type={"OBJECT"} onChange={modConfig} isGhPage={isGhPage()} example_info={config_info}/>
+                </div>
             </div>
 
             <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center"}>
