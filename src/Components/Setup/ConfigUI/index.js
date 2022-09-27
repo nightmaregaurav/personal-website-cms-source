@@ -1,23 +1,30 @@
-import React from 'react';
-import './index.scss'
-import {useConfig} from "../../../helpers/config_helper";
+import StringUI from "./StringUI";
+import NumberUI from "./NumberUI";
+import UrlUI from "./UrlUI";
+import ImageUrlUI from "./ImageUrlUI";
+import ObjectUI from "./ObjectUI";
+import ArrayUI from "./ArrayUI";
 
-const ConfigUI = ({setConfig, apiKey, repoName}) => {
-    const old_config = useConfig();
-    let new_config = {...old_config};
-
-    return (
-        <>
-            <div className="my-3 container d-flex flex-column flex-nowrap justify-content-start align-items-start">
-                <span>Reset button on top to reset whole/ add on each subsection as well</span>
-                <span>{apiKey}</span>
-                <span>{repoName}</span>
-                <span>Block 1</span>
-                <span>Block 2</span>
-                <span>Block 3</span>
-            </div>
-        </>
-    );
+const ConfigUI = ({type, isGhPage, props}) => {
+    switch (type) {
+        case 'STRING':
+            return <StringUI {...props}/>;
+        case 'NUMBER':
+            return <NumberUI {...props}/>;
+        case 'URL':
+            return <UrlUI {...props}/>;
+        case 'IMAGE URL':
+            return <ImageUrlUI isGhPage={isGhPage} {...props}/>;
+        case 'OBJECT':
+            return <ObjectUI isGhPage={isGhPage}/>;
+        default:
+            if(type.startsWith('ARRAY OF ')) {
+                const sub_type = type.substring(9);
+                return <ArrayUI elementType={sub_type} isGhPage={isGhPage} {...props}/>;
+            } else {
+                return <div>Unsupported Type</div>;
+            }
+    }
 };
 
 export default ConfigUI;

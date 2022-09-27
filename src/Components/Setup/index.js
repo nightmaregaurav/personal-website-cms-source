@@ -11,12 +11,14 @@ import {useConfig} from "../../helpers/config_helper";
 import {giveWarning} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
+import config_info from "../../assets/json/config-info.json";
 
 const Setup = () => {
+    const old_config = useConfig();
     const [siteType, setSiteType] = useState(null);
     const [apiKey, setApi] = useState(null);
     const [repositoryName, setRepository] = useState(null);
-    const [config, setConfig] = useState({});
+    const [config, setConfig] = useState(old_config);
 
     const setApiKey = async (key) => {
         if(key !== null || key !== "" || key !== undefined) {
@@ -43,7 +45,6 @@ const Setup = () => {
         }
     }
 
-    const old_config = useConfig();
     const isConfigured = () => JSON.stringify(config) !== JSON.stringify(null) && JSON.stringify(config) !== JSON.stringify({}) && JSON.stringify(config) !== "" && JSON.stringify(config) !== JSON.stringify(old_config);
     const isGhPage = () => siteType === 'GH-PAGE';
     const showApiKeyPopup = () => isGhPage() && (apiKey === null || apiKey === '' || apiKey === undefined);
@@ -53,6 +54,9 @@ const Setup = () => {
         setSiteType('CUSTOM');
         setRepository(null);
         setApi(null);
+    };
+    const resetConfig = () => {
+        setConfig({...old_config});
     };
 
     const fixed_index_page = useGetFixedIndexPage();
@@ -137,7 +141,11 @@ const Setup = () => {
                 onCancel={fallbackToCustom}
             /> : null}
 
-            <ConfigUI setConfig={setConfig} apiKey={apiKey} repoName={repositoryName} />
+            <div className="my-3 container d-flex flex-column flex-nowrap justify-content-start align-items-start">
+                <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
+                <ConfigUI type={"OBJECT"} isGhPage={isGhPage()} example_info={config_info}/>
+            </div>
+
             <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center"}>
                 {isConfigured() ? <span className={"btn btn-sm btn-success m-2"} onClick={save_config}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
                 {sitemap.status === "SUCCESS" ? <span className={"btn btn-sm btn-primary m-2"} onClick={save_sitemap}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
