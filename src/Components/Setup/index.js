@@ -60,7 +60,7 @@ const Setup = () => {
     const resetConfig = () => {
         setConfig({...old_config});
     };
-    const modConfig = (key, value) => {
+    const modConfig = (key, value, reset=false) => {
         let prev_config = {...config};
         strip(key, "~");
         const keys = key.split("~");
@@ -74,7 +74,11 @@ const Setup = () => {
             root = root[key];
         }
 
-        root[last_key] = value;
+        if(reset) {
+            delete root[last_key];
+        } else {
+            root[last_key] = value;
+        }
         setConfig(prev_config);
     }
 
