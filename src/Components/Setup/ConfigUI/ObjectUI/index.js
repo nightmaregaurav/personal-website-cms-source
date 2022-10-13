@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.scss'
 
-const ObjectUI = ({onChange, isGhPage}) => {
+const ObjectUI = ({onChange, isGhPage, info, name}) => {
     return (
         <>
-            <span className={"btn btn-danger"} onClick={() => onChange("abc", 123)}>click me</span>
+            {name}
+            <span className={"btn btn-danger"} onClick={() => onChange("abc~def", 123)}>click me</span>
             objectUI
         </>
     );

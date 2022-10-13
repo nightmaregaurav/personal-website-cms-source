@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss'
 
-const UrlUI = ({onChange}) => {
+const UrlUI = ({onChange, info, name}) => {
     return (
         <>
           urlUI

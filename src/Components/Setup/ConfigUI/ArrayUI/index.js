@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.scss'
 
-const ArrayUI = ({onChange, elementType, isGhPage, cardinality}) => {
+const ArrayUI = ({onChange, elementType, isGhPage, info, name}) => {
     return (
         <>
-            arrayUI
+            arrayUI {info.cardinality}
         </>
     );
 };

@@ -163,7 +163,7 @@ const Setup = () => {
             <div className="my-3 container d-flex flex-column flex-nowrap justify-content-start align-items-start">
                 <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
                 <div className={"config-form"}>
-                    <ConfigUI type={"OBJECT"} onChange={modConfig} isGhPage={isGhPage()} example_info={config_info}/>
+                    <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"}/>
                 </div>
             </div>
 
