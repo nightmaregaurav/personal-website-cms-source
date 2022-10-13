@@ -1,25 +1,36 @@
 import React, {useState} from 'react';
 import './index.scss'
 import ReactTooltip from "react-tooltip";
+import ConfigUI from "../index";
 
-const ObjectUI = ({onChange, isGhPage, info, name}) => {
-    const [disabled, setDisabled] = useState(false);
+const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
+    const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
+
     // noinspection JSUnresolvedVariable
-    const cardinality = info.cardinality ?? "Compulsory";
-    const description = info.description ?? "";
+    const cardinality = info?.cardinality ?? "Compulsory";
+    const description = info?.description ?? "";
+    const example_object = info?.example ?? {};
+
     const cancellable = () => cardinality === "Optional";
     const disable = () => {
-        setDisabled(true);
+        setDisabledStatus(true);
     }
     const enable = () => {
-        setDisabled(false);
+        setDisabledStatus(false);
     }
+    const isDisabled = () => disabledStatus || parent_disabledStatus;
 
     function getContent() {
+        const keys = Object.keys(example_object);
+        if (keys.length === 0) {
+            return <>Error parsing element info: NO EXAMPLE</>;
+        }
+
         return <>
-            <span className={"mx-2"}>objectUI</span>
-            <span className={"btn btn-danger"} onClick={() => onChange("abc~def", 123)}>click me</span>
+            {keys.map((key, i) => {
+                return <ConfigUI key={i} onChange={onChange} isGhPage={isGhPage} info={example_object[key]} name={`${name}~${key}`} parent_disabledStatus={isDisabled()}/>
+            })}
         </>
     }
     return (
@@ -29,7 +40,7 @@ const ObjectUI = ({onChange, isGhPage, info, name}) => {
                     <div className="panel-body">
                         <span className="text-on-panel">
                             {cancellable()?<>
-                                {disabled?
+                                {isDisabled()?
                                     <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
                                     <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
                                 }

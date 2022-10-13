@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss'
 
-const NumberUI = ({onChange, info, name}) => {
+const NumberUI = ({onChange, info, name, parent_disabledStatus}) => {
     return (
         <>
          numberUI
