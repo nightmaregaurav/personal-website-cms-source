@@ -160,9 +160,9 @@ const Setup = () => {
                 onCancel={fallbackToCustom}
             /> : null}
 
-            <div className="my-3 container d-flex flex-column flex-nowrap justify-content-start align-items-start">
+            <div className="my-3 container d-flex flex-column flex-nowrap justify-content-center align-items-center">
                 <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
-                <div className={"config-form"}>
+                <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center config-form"}>
                     <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"}/>
                 </div>
             </div>

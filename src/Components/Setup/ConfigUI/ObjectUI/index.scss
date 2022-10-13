@@ -1,0 +1,28 @@
+.text-on-panel {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: 20px;
+  padding: 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+  border: 1px solid #337ab7;
+  border-radius: 8px;
+}
+.panel {
+  margin-top: 27px !important;
+  border: 1px solid #337ab7;
+  border-radius: 8px;
+}
+.panel-body {
+  padding-top: 30px !important;
+}
+.panel-action{
+  opacity: 80% !important;
+  cursor: pointer;
+}
+.panel-action:hover{
+  opacity: 100% !important;
+}
+.panel-content{
+  margin: -12px 10px 5px;
+}
