@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './index.scss'
 import ReactTooltip from "react-tooltip";
 import ConfigUI from "../index";
+import {getLabelFromName} from "../../../../helpers/setup_helper";
 
 const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
     const [disabledStatus, setDisabledStatus] = useState(false);
@@ -52,7 +53,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
                                 }}/>
                                 {showTooltip? <ReactTooltip />: null}
                             </>: null}
-                            <b className={"panel-title"}>{name}</b>
+                            <b className={"panel-title"}>{getLabelFromName(name)}</b>
                         </span>
                         <div className={"panel-content"}>
                             {getContent()}
