@@ -5,7 +5,7 @@ import {useConfig, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from "./ErrorPage";
@@ -22,10 +22,13 @@ import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
 import Setup from "./Setup";
+import {addDomKeyEvent} from "../helpers/keyboard_helper";
 
 const Components = () => {
     useConfigGetter();
     const config = useConfig();
+    const navigate = useNavigate();
+    const setupKey = get(config, "setup-shortcut-key", "s");
 
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
     setTimeout(() => setPreLoaderLoading(false), 1000);
@@ -35,6 +38,11 @@ const Components = () => {
         AOS.init();
         // noinspection JSUnresolvedFunction
         AOS.refresh();
+        addDomKeyEvent(setupKey, () => {
+            if(!window.location.pathname.endsWith('/setup')) {
+                navigate('/setup');
+            }
+        });
     }, []);
 
     return (

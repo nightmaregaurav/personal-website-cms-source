@@ -3,6 +3,12 @@
   "minCardinality": "Compulsory",
   "description": "Configuration data needed to run the website.",
   "example": {
+    "setup-shortcut-key": {
+      "type": "STRING",
+      "minCardinality": "Compulsory",
+      "description": "The key to press with ctrl + alt + shift to open the setup page.",
+      "example": "s"
+    },
     "favicon": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
