@@ -1,11 +1,15 @@
+import React, {useState} from 'react';
 import './index.scss'
-import React from 'react';
+import {isValidImgUrl} from "../../../../helpers/url_helper";
 
 const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
-
+    const [imageValidity, setImageValidity] = useState(false);
     return (
         <>
-            imageUrlUI
+            <input type={"url"} onChange={(e) => isValidImgUrl(e.target.value, setImageValidity)} />
+            {!isGhPage?
+                "uploader"
+            :null}
         </>
     );
 };
