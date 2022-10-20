@@ -12,7 +12,7 @@ import {giveWarning} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
 import config_info from "../../assets/json/config-info.json";
-import {strip} from "../../helpers/text_heper";
+import {lstrip, strip} from "../../helpers/text_heper";
 
 const Setup = () => {
     const old_config = useConfig();
@@ -62,24 +62,28 @@ const Setup = () => {
     };
     const modConfig = (key, value, reset=false) => {
         let prev_config = {...config};
-        strip(key, "~");
+        key = lstrip(key, 'Config~');
+        key = strip(key, "~");
+
         const keys = key.split("~");
         const last_key = keys.pop();
 
         let root = prev_config;
-        for(key of keys) {
-            if (root[key] === undefined){
-                root[key] = {}
+        for(const k of keys) {
+            if (root[k] === undefined){
+                root[k] = {}
             }
-            root = root[key];
+            root = root[k];
         }
 
         if(reset) {
             delete root[last_key];
+            setConfig(prev_config);
+            if(Object.keys(root).length === 0 && keys.length !== 0) modConfig(keys.join("~"), undefined, true);
         } else {
             root[last_key] = value;
+            setConfig(prev_config);
         }
-        setConfig(prev_config);
     }
 
     const fixed_index_page = useGetFixedIndexPage();
