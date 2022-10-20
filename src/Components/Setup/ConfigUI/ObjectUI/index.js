@@ -36,7 +36,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
     }
     return (
         <>
-            <div className="container" style={{minWidth: "70vw"}}>
+            <div className="container" style={{maxWidth: "90vw"}}>
                 <div className="panel panel-primary">
                     <div className="panel-body">
                         <span className="text-on-panel">
@@ -47,11 +47,11 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
                                 }
                             </>: null}
                             {(description !== "")?<>
-                                <i data-tip={description} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                <i data-tip={description} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
                                     setShowTooltip(false);
                                     setTimeout(() => setShowTooltip(true), 50);
                                 }}/>
-                                {showTooltip? <ReactTooltip />: null}
+                                {showTooltip? <ReactTooltip id={name} />: null}
                             </>: null}
                             <b className={"panel-title"}>{getLabelFromName(name)}</b>
                         </span>
