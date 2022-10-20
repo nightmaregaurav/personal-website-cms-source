@@ -65,6 +65,10 @@ const Setup = () => {
         key = lstrip(key, 'Config~');
         key = strip(key, "~");
 
+        if([undefined, null, ""].some(x => x===value)){
+            reset = true;
+        }
+
         const keys = key.split("~");
         const last_key = keys.pop();
 
