@@ -1,4 +1,4 @@
-import {useMemo} from "react";
+import {useEffect, useMemo, useState} from "react";
 
 export function useConfigGetter() {
     useMemo(() => {
@@ -31,6 +31,14 @@ export function useConfigGetter() {
             req.send();
         }
     }, []);
+}
+
+export function useConfigValue(initial=undefined, onChange, name) {
+    const [value, setValue] = useState(initial);
+    useEffect(() => {
+        onChange(name, value)
+    }, [value]);
+    return [value, setValue]
 }
 
 export function useConfig() {
