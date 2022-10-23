@@ -1,0 +1,45 @@
+.input-container{
+  position: relative;
+}
+.string-ui-input{
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 38px;
+  padding: 10px;
+  font-size: 16px;
+  min-width: 170px;
+  width: 100%;
+}
+.placeholder-elements{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 12px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: black;
+  pointer-events: none;
+  font-size: 16px;
+  transform: translate(0);
+  transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+}
+.placeholder-text{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.placeholder-buttons{
+  pointer-events: all;
+}
+.string-ui-input:focus{
+  outline: none;
+  border-color: #337ab7;
+}
+.string-ui-input:focus + .placeholder-elements, :not(.string-ui-input[value=""]) + .placeholder-elements{
+  background-color: white;
+  color: #337ab7;
+  transform: translate(0, -19px);
+}
