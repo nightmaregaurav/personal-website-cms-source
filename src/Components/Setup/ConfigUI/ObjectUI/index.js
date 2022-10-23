@@ -21,6 +21,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
         setDisabledStatus(false);
     }
     const isDisabled = () => disabledStatus || parent_disabledStatus;
+    const isRemoved = () => isDisabled() && removable;
 
     function getContent() {
         const keys = Object.keys(example_object);
@@ -34,7 +35,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
             })}
         </>
     }
-    return (
+    return (<>{isRemoved()? null:
         <>
             <div className="container" style={{maxWidth: "90vw"}}>
                 <div className="panel panel-primary">
@@ -62,7 +63,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
                 </div>
             </div>
         </>
-    );
+    }</>);
 };
 
 export default ObjectUI;
