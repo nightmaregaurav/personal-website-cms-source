@@ -24,5 +24,8 @@
   opacity: 100% !important;
 }
 .panel-content{
-  margin: -9px 9px 9px;
+  margin: -18px 9px 9px !important;
+}
+.panel-content > *{
+  margin-top: 9px !important;
 }
