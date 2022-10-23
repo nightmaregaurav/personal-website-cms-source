@@ -4,7 +4,7 @@ import ReactTooltip from "react-tooltip";
 import ConfigUI from "../index";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 
-const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus}) => {
+const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
 
