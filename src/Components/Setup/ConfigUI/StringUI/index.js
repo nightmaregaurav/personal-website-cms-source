@@ -39,7 +39,7 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
     const callSetter = (v) => {
         let isValid = true;
         if(pattern_validation){
-            isValid = pattern_validation.test(v);
+            RegExp(pattern_validation).test(v) ? isValid = true : isValid = false;
         }
         if(min_length_validation){
             isValid = isValid && v.length >= min_length_validation;
