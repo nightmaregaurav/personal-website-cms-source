@@ -48,14 +48,14 @@ const ObjectUI = ({onChange, validationCallback, isGhPage, info, name, parent_di
                                 }
                             </>: null}
                             {(description !== "")?<>
-                                <i data-tip={description} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                <i data-tip={`${getLabelFromName(name)}: ${description}`} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
                                     setShowTooltip(false);
                                     setTimeout(() => setShowTooltip(true), 50);
                                 }}/>
-                                {showTooltip? <ReactTooltip id={name} />: null}
                             </>: null}
                             <b className={"panel-title"}>{getLabelFromName(name)}</b>
                         </span>
+                        {showTooltip? <ReactTooltip id={name} />: null}
                         <div className={"panel-content"}>
                             {getContent()}
                         </div>

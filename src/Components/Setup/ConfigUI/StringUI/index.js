@@ -56,7 +56,7 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
                                 }
                             </>: null}
                             {(description !== "")?<>
-                                <i data-tip={description} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                <i data-tip={`${getLabelFromName(name)}: ${description}`} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
                                     setShowTooltip(false);
                                     setTimeout(() => setShowTooltip(true), 50);
                                 }}/>
@@ -82,7 +82,6 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
             {showTooltip? <ReactTooltip id={name} />: null}
             String: Simple TextBoxUI, Transform to textarea for multiline
             Take: Max Len, Min Len, Hint, Name, Multiline
-            show length of string and word count in the UI
         </>
     }</>);
 };

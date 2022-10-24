@@ -23,8 +23,12 @@
 .panel-action:hover{
   opacity: 100% !important;
 }
+//noinspection CssReplaceWithShorthandSafely
 .panel-content{
-  margin: -18px 9px 9px !important;
+  margin-top: -13px !important;
+  margin-right: 9px !important;
+  margin-left: 9px !important;
+  margin-bottom: 14px !important;
 }
 .panel-content > *{
   margin-top: 9px !important;
