@@ -17,6 +17,7 @@
   top: 10px;
   bottom: 0;
   left: 12px;
+  right: 12px;
   height: 16px;
   padding: 0;
   margin: 0;
@@ -39,7 +40,14 @@
   border-color: #337ab7;
 }
 .string-ui-input:focus + .placeholder-elements, :not(.string-ui-input[value=""]) + .placeholder-elements{
-  background-color: white;
   color: #337ab7;
-  transform: translate(0, -19px);
+  transform: translate(0, -20px);
+}
+.string-ui-input:focus > .placeholder-elements > .placeholder-text,
+.string-ui-input:focus > .placeholder-elements > .placeholder-buttons,
+.string-ui-input:focus > .placeholder-elements > .placeholder-info,
+:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-text,
+:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-buttons,
+:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-info{
+  background-color: white !important;
 }

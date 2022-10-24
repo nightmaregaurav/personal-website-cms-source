@@ -4,7 +4,7 @@ import {getLabelFromName} from "../../../../helpers/setup_helper";
 import {useConfigValue} from "../../../../helpers/config_helper";
 import ReactTooltip from "react-tooltip";
 
-const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}) => {
+const StringUI = ({onChange, validationCallback, info, name, parent_disabledStatus, removable=false}) => {
     const default_value = "";
     const [value, setValue] = useConfigValue(default_value, onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
@@ -15,6 +15,10 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     // noinspection JSUnresolvedVariable
     const cardinality = info?.cardinality ?? "Compulsory";
     const description = info?.description ?? "";
+    const pattern_validation = info?.validation?.pattern ?? null;
+    const min_length_validation = info?.validation?.minLength ?? null;
+    const max_length_validation = info?.validation?.maxLength ?? null;
+    const isMultiline = info?.validation?.multiline ?? false;
 
     const cancellable = () => cardinality === "Optional";
     const disable = () => {
@@ -31,14 +35,19 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const isDisabled = () => disabledStatus || parent_disabledStatus;
     const isRemoved = () => isDisabled() && removable;
 
+    const callSetter = (v) => {
+        validationCallback(name, false);
+        setValue(v);
+    }
+
     // noinspection JSValidateTypes
     return (<>{isRemoved()? null:
         <>
             <div className={"container"}>
                 <div className={"input-container"}>
-                    <input className={"string-ui-input"} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={value} onChange={(e) => setValue(e.target.value)}/>
-                    <span className={"placeholder-elements"} id={`placeholder${name}`}>
-                        <label className={"placeholder-text"} htmlFor={name}>{getLabelFromName(name)}</label>
+                    <input className={"string-ui-input"} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={value} onChange={(e) => callSetter(e.target.value)} onBlur={(e) => setValue(value.trim())}/>
+                    <span className={"placeholder-elements"}>
+                        <label className={"placeholder-text"} id={`placeholder${name}`} htmlFor={name}>{getLabelFromName(name)}</label>
                         <span className={"placeholder-buttons"}>
                             {cancellable()?<>
                                 {isDisabled()?
@@ -53,11 +62,27 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
                                 }}/>
                             </>: null}
                         </span>
+                        <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
+                            {value.length > 0 && pattern_validation !== null ? <small className={"placeholder-status"}>
+                                {value.match(pattern_validation) ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
+                            </small> : null}
+                            {((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
+                                [
+                                    {value.length}
+                                    /
+                                    {min_length_validation !== null ? min_length_validation : null}
+                                    {((min_length_validation !== null) && (max_length_validation !== null)) ? "-" : null}
+                                    {max_length_validation !== null ? max_length_validation : null}
+                                ]
+                            </small> : null}
+                        </span>
                     </span>
                 </div>
             </div>
             {showTooltip? <ReactTooltip id={name} />: null}
-            validation and lengths
+            String: Simple TextBoxUI, Transform to textarea for multiline
+            Take: Max Len, Min Len, Hint, Name, Multiline
+            show length of string and word count in the UI
         </>
     }</>);
 };
