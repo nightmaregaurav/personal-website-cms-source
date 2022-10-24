@@ -1,4 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
+import {lstrip} from "./text_heper";
 
 export function useConfigGetter() {
     useMemo(() => {
@@ -38,7 +39,13 @@ export function useConfigValue(initial=undefined, onChange, name) {
     useEffect(() => {
         onChange(name, value)
     }, [value]);
-    return [value, setValue]
+    function setter(v){
+        if(typeof v === "string"){
+            v = lstrip(v, " ")
+        }
+        setValue(v);
+    }
+    return [value, setter]
 }
 
 export function useConfig() {
