@@ -20,6 +20,22 @@ const Setup = () => {
     const [apiKey, setApi] = useState(null);
     const [repositoryName, setRepository] = useState(null);
     const [config, setConfig] = useState(old_config);
+    const [globalValidation, setGlobalValidation] = useState({});
+
+    const validationCallback = (name, value) => {
+        setGlobalValidation({...globalValidation, [name]: value})
+        console.log(globalValidation);
+        console.log(name, value);
+    }
+    const isValid = () => {
+        let valid = true;
+        Object.keys(globalValidation).forEach((key) => {
+            if(globalValidation[key] === false){
+                valid = false;
+            }
+        });
+        return valid;
+    }
 
     const setApiKey = async (key) => {
         if(key !== null || key !== "" || key !== undefined) {
@@ -95,10 +111,15 @@ const Setup = () => {
     const sitemap = useGetSiteMap(config, isGhPage());
 
     const save_config = () => {
-        if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {});
+        if(isValid()) {
+            if (isGhPage()) {
+                uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {
+                });
+            } else {
+                download("config.json", JSON.stringify(config));
+            }
         } else {
-            download("config.json", JSON.stringify(config));
+            giveWarning("Please resolve all the errors before saving the config.").then(_ => {});
         }
     }
     const save_sitemap = () => {
@@ -175,7 +196,7 @@ const Setup = () => {
             <div className="my-3 container d-flex flex-column flex-nowrap justify-content-center align-items-center">
                 <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
                 <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center config-form"}>
-                    <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"}/>
+                    <ConfigUI onChange={modConfig} validationCallback={validationCallback} isGhPage={isGhPage()} info={config_info} name={"Config"}/>
                 </div>
             </div>
 

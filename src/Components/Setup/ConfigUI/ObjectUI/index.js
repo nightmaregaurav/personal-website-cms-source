@@ -4,7 +4,7 @@ import ReactTooltip from "react-tooltip";
 import ConfigUI from "../index";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 
-const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
+const ObjectUI = ({onChange, validationCallback, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
 
@@ -31,7 +31,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
 
         return <>
             {keys.map((key, i) => {
-                return <ConfigUI key={i} onChange={onChange} isGhPage={isGhPage} info={example_object[key]} name={`${name}~${key}`} parent_disabledStatus={isDisabled()}/>
+                return <ConfigUI key={i} onChange={onChange} validationCallback={validationCallback} isGhPage={isGhPage} info={example_object[key]} name={`${name}~${key}`} parent_disabledStatus={isDisabled()}/>
             })}
         </>
     }
