@@ -7,7 +7,6 @@
   height: 38px;
   padding: 10px;
   font-size: 16px;
-  min-width: 170px;
   width: 100%;
 }
 .placeholder-elements{
@@ -36,6 +35,11 @@
   overflow: hidden;
 }
 .placeholder-buttons{
+  white-space: nowrap;
+  pointer-events: all;
+}
+.placeholder-info{
+  white-space: nowrap;
   pointer-events: all;
 }
 .string-ui-input:focus{

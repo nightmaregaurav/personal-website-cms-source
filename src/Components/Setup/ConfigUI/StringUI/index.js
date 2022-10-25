@@ -8,6 +8,7 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
     const default_value = "";
     const [value, setValue] = useConfigValue(default_value, onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
+    const [isValid, setIsValid] = useState(true);
 
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
@@ -37,16 +38,19 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
     const isRemoved = () => isDisabled() && removable;
 
     const callSetter = (v) => {
-        let isValid = true;
+        let valid = true;
+
         if(pattern_validation){
-            RegExp(pattern_validation).test(v) ? isValid = true : isValid = false;
+            RegExp(pattern_validation).test(v) ? valid = true : valid = false;
         }
         if(min_length_validation){
-            isValid = isValid && v.length >= min_length_validation;
+            valid = valid && v.length >= min_length_validation;
         }
         if(max_length_validation){
-            isValid = isValid && v.length <= max_length_validation;
+            valid = valid && v.length <= max_length_validation;
         }
+
+        setIsValid(valid);
         validationCallback(name, isValid);
         setValue(v);
     }
@@ -55,7 +59,7 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
     // noinspection JSValidateTypes
     return (<>{isRemoved()? null:
         <>
-            <div className={"container"}>
+            <div className={"string-ui-container container"}>
                 <div className={"input-container"}>
                     <Element className={"string-ui-input"} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={value} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setValue(value.trim())}/>
                     <span className={"placeholder-elements"}>
@@ -68,15 +72,15 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
                                 }
                             </>: null}
                             {(description !== "")?<>
-                                <i data-tip={`${getLabelFromName(name)}: ${description}`} data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                <i data-tip="" data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
                                     setShowTooltip(false);
                                     setTimeout(() => setShowTooltip(true), 50);
                                 }}/>
                             </>: null}
                         </span>
                         <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
-                            {value.length > 0 && pattern_validation !== null ? <small className={"placeholder-status"}>
-                                {value.match(pattern_validation) ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
+                            {value.length > 0 ? <small className={"placeholder-status"}>
+                                {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
                             </small> : null}
                             {((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
                                 [
@@ -91,7 +95,10 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
                     </span>
                 </div>
             </div>
-            {showTooltip? <ReactTooltip id={name} />: null}
+            {showTooltip? <ReactTooltip id={name}>
+                <b>{getLabelFromName(name)}:</b><br/>{description}
+            </ReactTooltip> : null}
+            {/*Placeholder issue in textarea*/}
         </>
     }</>);
 };
