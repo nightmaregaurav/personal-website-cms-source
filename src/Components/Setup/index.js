@@ -24,8 +24,6 @@ const Setup = () => {
 
     const validationCallback = (name, value) => {
         setGlobalValidation({...globalValidation, [name]: value})
-        console.log(globalValidation);
-        console.log(name, value);
     }
     const isValid = () => {
         let valid = true;
