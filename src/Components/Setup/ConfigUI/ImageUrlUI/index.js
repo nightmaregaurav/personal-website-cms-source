@@ -6,7 +6,7 @@ const ImageUrlUI = ({onChange, validationCallback, isGhPage, info, name, parent_
     const [imageValidity, setImageValidity] = useState(false);
     return (
         <>
-            <input type={"url"} onChange={(e) => isValidImgUrl(e.target.value, setImageValidity)} />
+            {/*<input type={"url"} onChange={(e) => isValidImgUrl(e.target.value, setImageValidity)} />*/}
             {!isGhPage?
                 "uploader"
             :null}
