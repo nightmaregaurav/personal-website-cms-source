@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss'
 
-const UrlUI = ({onChange, validationCallback, info, name, parent_disabledStatus, removable=false}) => {
+const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) => {
     return (
         <>
           urlUI
