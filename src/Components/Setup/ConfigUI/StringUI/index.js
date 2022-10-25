@@ -59,7 +59,7 @@ const StringUI = ({onChange, validationCallback, info, name, parent_disabledStat
     // noinspection JSValidateTypes
     return (<>{isRemoved()? null:
         <>
-            <div className={"string-ui-container container"}>
+            <div className={`string-ui-container ui-${name} container`}>
                 <div className={"input-container"}>
                     <Element className={"string-ui-input"} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={value} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setValue(value.trim())}/>
                     <span className={"placeholder-elements"}>

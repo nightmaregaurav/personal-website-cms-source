@@ -37,7 +37,7 @@ const ObjectUI = ({onChange, validationCallback, isGhPage, info, name, parent_di
     }
     return (<>{isRemoved()? null:
         <>
-            <div className={"object-ui-container container"}>
+            <div className={`object-ui-container ui-${name} container`}>
                 <div className="panel panel-primary">
                     <div className="panel-body">
                         <span className="text-on-panel">
