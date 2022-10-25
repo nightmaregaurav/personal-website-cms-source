@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './index.scss'
 import {isValidImgUrl} from "../../../../helpers/url_helper";
 
-const ImageUrlUI = ({onChange, validationCallback, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
+const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
     const [imageValidity, setImageValidity] = useState(false);
     return (
         <>
