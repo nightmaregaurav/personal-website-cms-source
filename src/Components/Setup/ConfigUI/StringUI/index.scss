@@ -4,7 +4,14 @@
 .string-ui-input{
   border: 1px solid black;
   border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
   height: 38px;
+}
+.string-ui-textarea{
+  border: 1px solid black;
+  border-radius: 10px;
   padding: 10px;
   font-size: 16px;
   width: 100%;
@@ -33,28 +40,40 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  background-color: transparent;
 }
 .placeholder-buttons{
   white-space: nowrap;
   pointer-events: all;
+  background-color: transparent;
 }
 .placeholder-info{
   white-space: nowrap;
   pointer-events: all;
+  background-color: transparent;
 }
-.string-ui-input:focus{
+.string-ui-input:focus, .string-ui-textarea:focus{
   outline: none;
   border-color: #337ab7;
 }
-.string-ui-input:focus + .placeholder-elements, :not(.string-ui-input[value=""]) + .placeholder-elements{
+.string-ui-input:focus + .placeholder-elements,
+.string-ui-textarea:focus + .placeholder-elements,
+.string-ui-input:not(.string-ui-input[data-value=""]) + .placeholder-elements,
+.string-ui-textarea:not(.string-ui-textarea[data-value=""]) + .placeholder-elements{
   color: #337ab7;
   transform: translate(0, -20px);
 }
-.string-ui-input:focus > .placeholder-elements > .placeholder-text,
-.string-ui-input:focus > .placeholder-elements > .placeholder-buttons,
-.string-ui-input:focus > .placeholder-elements > .placeholder-info,
-:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-text,
-:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-buttons,
-:not(.string-ui-input[value=""]) > .placeholder-elements > .placeholder-info{
-  background-color: white !important;
+.string-ui-input:focus + .placeholder-elements > .placeholder-text,
+.string-ui-textarea:focus + .placeholder-elements > .placeholder-text,
+.string-ui-input:focus + .placeholder-elements > .placeholder-buttons,
+.string-ui-textarea:focus + .placeholder-elements > .placeholder-buttons,
+.string-ui-input:focus + .placeholder-elements > .placeholder-info,
+.string-ui-textarea:focus + .placeholder-elements > .placeholder-info,
+.string-ui-input:not(.string-ui-input[data-value=""]) + .placeholder-elements > .placeholder-text,
+.string-ui-textarea:not(.string-ui-textarea[data-value=""]) + .placeholder-elements > .placeholder-text,
+.string-ui-input:not(.string-ui-input[data-value=""]) + .placeholder-elements > .placeholder-buttons,
+.string-ui-textarea:not(.string-ui-textarea[data-value=""]) + .placeholder-elements > .placeholder-buttons,
+.string-ui-input:not(.string-ui-input[data-value=""]) + .placeholder-elements > .placeholder-info,
+.string-ui-textarea:not(.string-ui-textarea[data-value=""]) + .placeholder-elements > .placeholder-info{
+  background-color: white;
 }
