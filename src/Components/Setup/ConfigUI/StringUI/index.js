@@ -11,8 +11,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const [isValid, setIsValid] = useState(true);
     useEffect(() => {
         setValue(default_value);
-    }, [default_value, setValue]);
-
+    }, [default_value]);
 
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
@@ -26,24 +25,23 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     // noinspection JSUnresolvedVariable
     const isMultiline = info?.validation?.linebreaks ?? false;
 
-    const validate = useCallback(
-        () => {
-            let valid = true;
-            if(cardinality === "Compulsory" && value === ""){
-                valid = false;
-            }
-            if(pattern_validation){
-                // noinspection JSCheckFunctionSignatures
-                valid = valid && RegExp(pattern_validation).test(value);
-            }
-            if(min_length_validation){
-                valid = valid && value.length >= min_length_validation;
-            }
-            if(max_length_validation){
-                valid = valid && value.length <= max_length_validation;
-            }
-            setIsValid(valid);
-        }, [value, cardinality, max_length_validation, min_length_validation, pattern_validation],);
+    const validate = useCallback(() => {
+        let valid = true;
+        if(cardinality === "Compulsory" && value === ""){
+            valid = false;
+        }
+        if(pattern_validation){
+            // noinspection JSCheckFunctionSignatures
+            valid = valid && RegExp(pattern_validation).test(value);
+        }
+        if(min_length_validation){
+            valid = valid && value.length >= min_length_validation;
+        }
+        if(max_length_validation){
+            valid = valid && value.length <= max_length_validation;
+        }
+        setIsValid(valid);
+    }, [value, cardinality, max_length_validation, min_length_validation, pattern_validation]);
 
     useEffect(() => {
         validate();
