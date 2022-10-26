@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import {lstrip} from "./text_heper";
+import {lstrip, strip} from "./text_heper";
 
 export function useConfigGetter() {
     useMemo(() => {
@@ -37,7 +37,7 @@ export function useConfigGetter() {
 export function useConfigValue(initial=undefined, onChange, name) {
     const [value, setValue] = useState(initial);
     useEffect(() => {
-        onChange(name, value)
+        onChange(name, value);
     }, [value]);
     function setter(v){
         if(typeof v === "string"){
@@ -48,6 +48,31 @@ export function useConfigValue(initial=undefined, onChange, name) {
     return [value, setter]
 }
 
-export function useConfig() {
+export function getValueFromName (name, initial=undefined) {
+    name = lstrip(name, 'Config~');
+    name = strip(name, "~");
+
+    const keys = name.split("~");
+    const last_key = keys.pop();
+
+    let v = getConfig();
+    for(const k of keys) {
+        v = v[k];
+        if (v === undefined){
+            break;
+        }
+    }
+
+    if(v !== undefined){
+        v = v[last_key];
+    }
+    if(v !== undefined){
+        initial = v;
+    }
+
+    return initial;
+}
+
+export function getConfig() {
     return JSON.parse(localStorage.getItem("config")) ?? {};
 }

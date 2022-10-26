@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
-import {useConfig, useConfigGetter} from '../helpers/config_helper'
+import {getConfig, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -26,7 +26,7 @@ import {addDomKeyEvent} from "../helpers/keyboard_helper";
 
 const Components = () => {
     useConfigGetter();
-    const config = useConfig();
+    const config = getConfig();
     const navigate = useNavigate();
     const setupKey = get(config, "setup-shortcut-key", "s");
 

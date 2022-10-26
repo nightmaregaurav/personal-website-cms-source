@@ -7,7 +7,7 @@ import {useGetSiteMap} from "../../helpers/sitemap_helper";
 import ConfigUI from "./ConfigUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import {useConfig} from "../../helpers/config_helper";
+import {getConfig} from "../../helpers/config_helper";
 import {giveWarning} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
@@ -15,7 +15,7 @@ import config_info from "../../assets/json/config-info.json";
 import {lstrip, strip} from "../../helpers/text_heper";
 
 const Setup = () => {
-    const old_config = useConfig();
+    const old_config = getConfig();
     const [siteType, setSiteType] = useState(null);
     const [apiKey, setApi] = useState(null);
     const [repositoryName, setRepository] = useState(null);

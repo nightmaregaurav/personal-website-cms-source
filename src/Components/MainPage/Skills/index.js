@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.scss';
-import {useConfig} from "../../../helpers/config_helper";
+import {getConfig} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
 
 const Skills = () => {
-    const config = useConfig();
+    const config = getConfig();
 
     return (
         <>

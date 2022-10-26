@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import {useConfig} from "../../../helpers/config_helper";
+import {getConfig} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
@@ -11,7 +11,7 @@ import blockquote from "../../../assets/images/blockquote.png"
 import profile from "../../../assets/images/profile.png"
 
 const About = () => {
-    const config = useConfig();
+    const config = getConfig();
     SwiperCore.use([Pagination]);
 
     // noinspection JSUnresolvedVariable

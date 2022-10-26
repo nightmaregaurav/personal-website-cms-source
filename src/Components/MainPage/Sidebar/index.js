@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './index.scss';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
-import {useConfig} from '../../../helpers/config_helper'
+import {getConfig} from '../../../helpers/config_helper'
 import {get} from "../../../helpers/object_helper";
 
 const toggleSideBar = () => {
@@ -34,7 +34,7 @@ const activateSidebar = () => {
 };
 
 const Sidebar = () => {
-    const config = useConfig();
+    const config = getConfig();
 
     useEffect(() => {
         activateSidebarOnly();

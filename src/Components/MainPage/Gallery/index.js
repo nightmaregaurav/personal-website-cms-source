@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import {get} from "../../../helpers/object_helper";
-import {useConfig} from "../../../helpers/config_helper";
+import {getConfig} from "../../../helpers/config_helper";
 import {LightgalleryProvider, LightgalleryItem, useLightgallery} from "react-lightgallery";
 import "lightgallery.js/dist/css/lightgallery.css";
 
@@ -11,7 +11,7 @@ const LightboxViewButton = ({pic_id, group}) => {
 };
 
 const Gallery = () => {
-    const config = useConfig();
+    const config = getConfig();
     return (
         <>
             {get(config, "gallery", []).length > 0 ? <section id="gallery" className="gallery section-bg">

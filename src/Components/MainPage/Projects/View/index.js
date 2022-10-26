@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './index.scss';
 import {useParams} from "react-router-dom";
 import FullPageOverlay from "../../../FullPageOverlay";
-import {useConfig} from "../../../../helpers/config_helper";
+import {getConfig} from "../../../../helpers/config_helper";
 import {get} from "../../../../helpers/object_helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
@@ -11,7 +11,7 @@ import "swiper/scss/pagination";
 
 const View = () => {
     let { id } = useParams();
-    const config = useConfig();
+    const config = getConfig();
     SwiperCore.use([Pagination]);
     const [target, setTarget] = useState({});
 

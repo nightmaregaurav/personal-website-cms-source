@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import './index.scss';
 import IsoTopeGrid from "react-isotope";
-import {useConfig} from "../../../helpers/config_helper";
+import {getConfig} from "../../../helpers/config_helper";
 import {Link, Outlet} from "react-router-dom";
 import {get} from "../../../helpers/object_helper";
 import {slugify} from "../../../helpers/text_heper";
 
 
 const Projects = () => {
-    const config = useConfig();
+    const config = getConfig();
     const [filters, setFilters] = useState([]);
     const [data, setData] = useState([]);
 

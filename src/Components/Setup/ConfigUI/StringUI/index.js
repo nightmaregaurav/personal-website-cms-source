@@ -1,14 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './index.scss';
 import {getLabelFromName} from "../../../../helpers/setup_helper";
-import {useConfigValue} from "../../../../helpers/config_helper";
+import {getValueFromName, useConfigValue} from "../../../../helpers/config_helper";
 import ReactTooltip from "react-tooltip";
 
 const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}) => {
-    const default_value = "";
-    const [value, setValue] = useConfigValue(default_value, onChange, name);
+    const default_value = getValueFromName(name, "");
+    const [value, setValue] = useConfigValue("", onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
     const [isValid, setIsValid] = useState(true);
+    useEffect(() => {
+        setValue(default_value);
+    }, [default_value]);
+
 
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
@@ -28,6 +32,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
             valid = false;
         }
         if(pattern_validation){
+            // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(value);
         }
         if(min_length_validation){
