@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss';
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import {getValueFromName, useConfigValue} from "../../../../helpers/config_helper";
@@ -11,7 +11,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const [isValid, setIsValid] = useState(true);
     useEffect(() => {
         setValue(default_value);
-    }, [default_value]);
+    }, [default_value, setValue]);
 
 
     const [disabledStatus, setDisabledStatus] = useState(false);
@@ -26,26 +26,28 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     // noinspection JSUnresolvedVariable
     const isMultiline = info?.validation?.linebreaks ?? false;
 
-    const validate = () => {
-        let valid = true;
-        if(cardinality === "Compulsory" && value === ""){
-            valid = false;
-        }
-        if(pattern_validation){
-            // noinspection JSCheckFunctionSignatures
-            valid = valid && RegExp(pattern_validation).test(value);
-        }
-        if(min_length_validation){
-            valid = valid && value.length >= min_length_validation;
-        }
-        if(max_length_validation){
-            valid = valid && value.length <= max_length_validation;
-        }
-        setIsValid(valid);
-    }
+    const validate = useCallback(
+        () => {
+            let valid = true;
+            if(cardinality === "Compulsory" && value === ""){
+                valid = false;
+            }
+            if(pattern_validation){
+                // noinspection JSCheckFunctionSignatures
+                valid = valid && RegExp(pattern_validation).test(value);
+            }
+            if(min_length_validation){
+                valid = valid && value.length >= min_length_validation;
+            }
+            if(max_length_validation){
+                valid = valid && value.length <= max_length_validation;
+            }
+            setIsValid(valid);
+        }, [value, cardinality, max_length_validation, min_length_validation, pattern_validation],);
+
     useEffect(() => {
         validate();
-    }, [value]);
+    }, [value, validate]);
 
     const cancellable = () => cardinality === "Optional";
     const disable = () => {
