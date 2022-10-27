@@ -6,11 +6,11 @@ import ReactTooltip from "react-tooltip";
 
 const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}) => {
     const default_value = getValueFromName(name, "");
-    const [value, setValue] = useConfigValue("", onChange, name);
+    const [stringUiValue, setStringUiValue] = useConfigValue("", onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
     const [isValid, setIsValid] = useState(true);
     useEffect(() => {
-        setValue(default_value);
+        setStringUiValue(default_value);
     }, [default_value]);
 
     const [disabledStatus, setDisabledStatus] = useState(false);
@@ -27,52 +27,51 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
 
     const validate = useCallback(() => {
         let valid = true;
-        if(cardinality === "Compulsory" && value === ""){
+        if(cardinality === "Compulsory" && stringUiValue === ""){
             valid = false;
         }
         if(pattern_validation){
-            // noinspection JSCheckFunctionSignatures
-            valid = valid && RegExp(pattern_validation).test(value);
+            valid = valid && RegExp(pattern_validation).test(stringUiValue);
         }
         if(min_length_validation){
-            valid = valid && value.length >= min_length_validation;
+            valid = valid && stringUiValue.length >= min_length_validation;
         }
         if(max_length_validation){
-            valid = valid && value.length <= max_length_validation;
+            valid = valid && stringUiValue.length <= max_length_validation;
         }
         setIsValid(valid);
-    }, [value, cardinality, max_length_validation, min_length_validation, pattern_validation]);
+    }, [stringUiValue, cardinality, max_length_validation, min_length_validation, pattern_validation]);
 
     useEffect(() => {
         validate();
-    }, [value, validate]);
+    }, [stringUiValue, validate]);
 
     const cancellable = () => cardinality === "Optional";
     const disable = () => {
         if(!removable){
-            setOldValue(value);
+            setOldValue(stringUiValue);
         }
-        setValue(default_value);
+        setStringUiValue(default_value);
         setDisabledStatus(true);
     }
     const enable = () => {
-        setValue(oldValue)
+        setStringUiValue(oldValue)
         setDisabledStatus(false);
     }
     const isDisabled = () => disabledStatus || parent_disabledStatus;
     const isRemoved = () => isDisabled() && removable;
 
     const callSetter = (v) => {
-        setValue(v);
+        setStringUiValue(v);
     }
 
     const Element = isMultiline ? "textarea" : "input";
     // noinspection JSValidateTypes
-    return (<>{isRemoved()? null:
+    return (<>{isRemoved() ? null :
         <>
             <div className={`string-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
                 <div className={"input-container"}>
-                    <Element className={`string-ui-${Element}`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={value} data-value={value} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setValue(value.trim())}/>
+                    <Element className={`string-ui-${Element}`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={stringUiValue} data-value={stringUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setStringUiValue(stringUiValue.trim())} />
                     <span className={"placeholder-elements"}>
                         <label className={"placeholder-text"} id={`placeholder${name}`} htmlFor={name}>{getLabelFromName(name)}</label>
                         <span className={"placeholder-buttons"}>
@@ -90,12 +89,12 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
                             </>: null}
                         </span>
                         <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
-                            {(value.length > 0) || (value.length === 0 && !isValid) ? <small className={"placeholder-status"}>
+                            {(stringUiValue.length > 0) || (stringUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
                                 {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
                             </small> : null}
-                            {(value.length > 0) && ((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
+                            {(stringUiValue.length > 0) && ((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
                                 [
-                                    {value.length}
+                                    {stringUiValue.length}
                                     /
                                     {min_length_validation !== null ? min_length_validation : null}
                                     {((min_length_validation !== null) && (max_length_validation !== null)) ? "-" : null}
