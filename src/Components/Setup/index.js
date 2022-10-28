@@ -8,11 +8,12 @@ import ConfigUI from "./ConfigUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import {getConfig} from "../../helpers/config_helper";
-import {giveWarning} from "../../helpers/message_helper";
+import {giveWarning, showError} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
 import config_info from "../../assets/json/config-info.json";
-import {lstrip, strip} from "../../helpers/text_heper";
+import {lstrip, rstrip, strip} from "../../helpers/text_heper";
+import {getRoot} from "../../helpers/setup_helper";
 
 const Setup = () => {
     const old_config = getConfig();
@@ -107,7 +108,7 @@ const Setup = () => {
                 download("config.json", JSON.stringify(config));
             }
         } else {
-            giveWarning("Please resolve all the errors before saving the config.").then(_ => {});
+            showError("Please resolve all the errors before saving the config.").then(_ => {});
         }
     }
     const save_sitemap = () => {
@@ -132,6 +133,12 @@ const Setup = () => {
         }
     }
 
+    const imageUploader = async (name, file_name, file) => {
+        const file_path = `data/${file_name}`;
+        const config_key = rstrip(lstrip(name, "~"), "~").split('~').at(-1);
+        await uploadFileToGithub(apiKey, repositoryName, file_path, file, `Uploaded ${config_key} image from setup.`)
+        return rstrip(getRoot(), "/") + "/" + file_path;
+    };
     return (
         <>
             <Helmet>
@@ -184,7 +191,7 @@ const Setup = () => {
             <div className="my-3 container d-flex flex-column flex-nowrap justify-content-center align-items-center">
                 <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
                 <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center config-form"}>
-                    <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"}/>
+                    <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"} imageUploader={imageUploader} />
                 </div>
             </div>
 

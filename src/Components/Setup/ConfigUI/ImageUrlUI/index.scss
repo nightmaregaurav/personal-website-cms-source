@@ -9,7 +9,7 @@
   width: 100%;
   height: 38px;
 }
-.placeholder-elements{
+.image-url-ui-input + .image-placeholder-elements{
   display: flex;
   align-items: center;
   position: absolute;
@@ -26,6 +26,13 @@
   font-size: 16px;
   transform: translate(0);
   transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+}
+.imageHelp > .image-placeholder-elements{
+  display: block;
+  width: 100%;
+}
+.imageHelp > .image-placeholder-elements > .placeholder-info{
+  float: right;
 }
 .placeholder-text{
   padding-left: 5px;
@@ -49,16 +56,16 @@
   outline: none;
   border-color: #337ab7;
 }
-.image-url-ui-input:focus + .placeholder-elements,
-.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .placeholder-elements{
+.image-url-ui-input:focus + .image-placeholder-elements,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements{
   color: #337ab7;
   transform: translate(0, -20px);
 }
-.image-url-ui-input:focus + .placeholder-elements > .placeholder-text,
-.image-url-ui-input:focus + .placeholder-elements > .placeholder-buttons,
-.image-url-ui-input:focus + .placeholder-elements > .placeholder-info,
-.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .placeholder-elements > .placeholder-text,
-.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .placeholder-elements > .placeholder-buttons,
-.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .placeholder-elements > .placeholder-info{
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-text,
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-buttons,
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-info,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-text,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-buttons,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-info{
   background-color: white;
 }

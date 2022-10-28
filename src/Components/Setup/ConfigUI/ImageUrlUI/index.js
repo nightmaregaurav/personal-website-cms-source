@@ -4,8 +4,10 @@ import {isValidImgUrl} from "../../../../helpers/url_helper";
 import {getValueFromName, useConfigValue} from "../../../../helpers/config_helper";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import ReactTooltip from "react-tooltip";
+import SmartImgUpload from "../../../SmartImgUpload";
+import {getCleanBase64File} from "../../../../helpers/upload_helper";
 
-const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false}) => {
+const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false, imageUploader}) => {
     const default_value = getValueFromName(name, "");
     const [imageUrlUiValue, setImageUrlUiValue] = useConfigValue("", onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
@@ -73,49 +75,65 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         setTimeout(() => setShowTooltip(true), 50);
     }, []);
 
+    const switchUploadMode = () => {
+        setImageUrlUiValue(default_value);
+        setUploadMode(!uploadMode);
+    };
+
     useEffect(() => {
         blinkTooltip();
     }, [uploadMode]);
+
+    const uploader = async (file_name, image) => {
+        const cleanB64 = await getCleanBase64File(image);
+        const response = await imageUploader(name, file_name, cleanB64);
+        setImageUrlUiValue(response);
+    };
+
+    function getPlaceholderElements(){
+        return <span className={"image-placeholder-elements"}>
+            <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
+            <span className={"placeholder-buttons"}>
+                {cancellable()?<>
+                    {isDisabled()?
+                        <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
+                        <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
+                    }
+                </>: null}
+                {isGhPage?<>
+                    <i data-tip={`Switch to ${uploadMode ? "URL mode" : "upload mode"}.`} data-for={`swap-${name}`} className={"panel-action bi-arrow-repeat text-success me-2"} onClick={switchUploadMode} onMouseLeave={blinkTooltip}/>
+                </>:null}
+                {(description !== "")?<>
+                    <i data-tip="" data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={blinkTooltip}/>
+                </>: null}
+            </span>
+            <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
+                {(imageUrlUiValue.length > 0) || (imageUrlUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
+                    {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
+                </small> : null}
+                {(imageUrlUiValue.length > 0) && ((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
+                    [
+                    {imageUrlUiValue.length}
+                    /
+                    {min_length_validation !== null ? min_length_validation : null}
+                    {((min_length_validation !== null) && (max_length_validation !== null)) ? "-" : null}
+                    {max_length_validation !== null ? max_length_validation : null}
+                    ]
+                </small> : null}
+            </span>
+        </span>
+    }
 
     return (<>{isRemoved() ? null :
         <>
             <div className={`image-url-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
                 {!uploadMode ? <div className={"input-container"}>
                     <input className={`image-url-ui-input`} disabled={isDisabled()} type={"url"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={imageUrlUiValue} data-value={imageUrlUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(imageUrlUiValue.trim())} />
-                    <span className={"placeholder-elements"}>
-                        <label className={"placeholder-text"} id={`placeholder${name}`} htmlFor={name}>{getLabelFromName(name)}</label>
-                        <span className={"placeholder-buttons"}>
-                            {cancellable()?<>
-                                {isDisabled()?
-                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
-                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
-                                }
-                            </>: null}
-                            {!isGhPage?<>
-                                <i data-tip={`Switch to ${uploadMode ? "URL mode" : "upload mode"}.`} data-for={`swap-${name}`} className={"panel-action bi-arrow-repeat text-success me-2"} onClick={() => setUploadMode(true)} onMouseLeave={blinkTooltip}/>
-                            </>:null}
-                            {(description !== "")?<>
-                                <i data-tip="" data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={blinkTooltip}/>
-                            </>: null}
-                        </span>
-                        <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
-                            {(imageUrlUiValue.length > 0) || (imageUrlUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
-                                {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
-                            </small> : null}
-                            {(imageUrlUiValue.length > 0) && ((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
-                                [
-                                    {imageUrlUiValue.length}
-                                    /
-                                    {min_length_validation !== null ? min_length_validation : null}
-                                    {((min_length_validation !== null) && (max_length_validation !== null)) ? "-" : null}
-                                    {max_length_validation !== null ? max_length_validation : null}
-                                ]
-                            </small> : null}
-                        </span>
-                    </span>
+                    {getPlaceholderElements()}
                 </div> : <div className={"upload-container"}>
-
-                    {!isGhPage ? "" : null}
+                    <SmartImgUpload isDisabled={isDisabled} uploader={uploader} default_src={imageUrlUiValue} imageHelpText={
+                        getPlaceholderElements()
+                    }/>
                 </div>}
             </div>
             {showTooltip? <>
@@ -127,6 +145,5 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         </>
     }</>);
 };
-// IMAGE URL: Simple TextBoxUI with URL regex validation and image verification. Uses Smart image upload for GhPage else give URL field.
-// Take: IsGhPage, Hint, Name
+
 export default ImageUrlUI;

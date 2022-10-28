@@ -5,23 +5,23 @@ import ImageUrlUI from "./ImageUrlUI";
 import ObjectUI from "./ObjectUI";
 import ArrayUI from "./ArrayUI";
 
-const ConfigUI = ({onChange, isGhPage, info, name, parent_disabledStatus=false, removable=false}) => {
+const ConfigUI = ({onChange, isGhPage, info, name, parent_disabledStatus=false, removable=false, imageUploader}) => {
     const type = info.type;
     switch (type) {
         case 'STRING':
-            return <StringUI onChange={onChange} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
+            return <StringUI onChange={onChange} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable}/>;
         case 'NUMBER':
             return <NumberUI onChange={onChange} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
         case 'URL':
             return <UrlUI onChange={onChange} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
         case 'IMAGE URL':
-            return <ImageUrlUI onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
+            return <ImageUrlUI onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} imageUploader={imageUploader} />;
         case 'OBJECT':
-            return <ObjectUI onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
+            return <ObjectUI onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} imageUploader={imageUploader} />;
         default:
             if(type.startsWith('ARRAY OF ')) {
                 const sub_type = type.substring(9);
-                return <ArrayUI elementType={sub_type} onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} />;
+                return <ArrayUI elementType={sub_type} onChange={onChange} isGhPage={isGhPage} info={info} name={name} parent_disabledStatus={parent_disabledStatus} removable={removable} imageUploader={imageUploader} />;
             } else {
                 return <div>Unsupported Type</div>;
             }
