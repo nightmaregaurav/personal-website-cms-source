@@ -112,6 +112,3 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
 };
 
 export default UrlUI;
-
-// URL: Simple TextBoxUI with URL regex valdation
-// Take: Hint, Name
