@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss'
 import {isValidImgUrl} from "../../../../helpers/url_helper";
-import {getValueFromName, useConfigValue} from "../../../../helpers/config_helper";
+import {getValueFromName, parseCardinality, useConfigValue} from "../../../../helpers/config_helper";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import ReactTooltip from "react-tooltip";
 import SmartImgUpload from "../../../SmartImgUpload";
 import {getCleanBase64File} from "../../../../helpers/upload_helper";
 
-const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false, imageUploader}) => {
+const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imageUploader}) => {
     const default_value = getValueFromName(name, "");
     const [imageUrlUiValue, setImageUrlUiValue] = useConfigValue("", onChange, name);
     const [oldValue, setOldValue] = useState(default_value);
@@ -21,23 +21,15 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
     const [uploadMode, setUploadMode] = useState(isGhPage);
 
     // noinspection JSUnresolvedVariable
-    const cardinality = info?.minCardinality ?? "Compulsory";
+    const cardinality = parseCardinality(info);
     const description = info?.description ?? "";
     const pattern_validation = info?.validation?.pattern ?? null;
     const min_length_validation = info?.validation?.minLength ?? null;
     const max_length_validation = info?.validation?.maxLength ?? null;
 
-    const canRemove = () => {
-        let ret;
-        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
-        else ret = disabledStatus && removable && cardinality !== "Compulsory";
-
-        return ret;
-    }
-
     const validate = useCallback(() => {
         let valid = true;
-        if(cardinality === "Compulsory" && imageUrlUiValue === ""){
+        if(cardinality.isCompulsory && imageUrlUiValue === ""){
             valid = false;
         }
         if(pattern_validation){
@@ -64,9 +56,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(imageUrlUiValue !== default_value){
-                if (!canRemove()) {
-                    setOldValue(imageUrlUiValue);
-                }
+                setOldValue(imageUrlUiValue);
                 setImageUrlUiValue(default_value);
             }
         } else {
@@ -74,9 +64,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         }
     }, [parent_disabledStatus, disabledStatus]);
 
-    const cancellable = () => cardinality === "Optional";
     const isDisabled = () => parent_disabledStatus || disabledStatus;
-    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         setImageUrlUiValue(v);
@@ -106,7 +94,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         return <span className={"image-placeholder-elements"}>
             <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
             <span className={"placeholder-buttons"}>
-                {cancellable()?<>
+                {cardinality.isOptional?<>
                     {isDisabled()?
                         <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
                         <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
@@ -137,26 +125,24 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
     }
 
     // noinspection JSValidateTypes
-    return (<>{isRemoved() ? null :
-        <>
-            <div className={`image-url-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
-                {!uploadMode ? <div className={"input-container"}>
-                    <input className={`image-url-ui-input`} disabled={isDisabled()} type={"url"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={imageUrlUiValue} data-value={imageUrlUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(imageUrlUiValue.trim())} />
-                    {getPlaceholderElements()}
-                </div> : <div className={"upload-container"}>
-                    <SmartImgUpload isDisabled={isDisabled} uploader={uploader} default_src={imageUrlUiValue} imageHelpText={
-                        getPlaceholderElements()
-                    }/>
-                </div>}
-            </div>
-            {showTooltip? <>
-                <ReactTooltip id={name}>
-                    <b>{getLabelFromName(name)}:</b><br/>{description}
-                </ReactTooltip>
-                <ReactTooltip id={`swap-${name}`} />
-            </> : null}
-        </>
-    }</>);
+    return (<>
+        <div className={`image-url-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
+            {!uploadMode ? <div className={"input-container"}>
+                <input className={`image-url-ui-input`} disabled={isDisabled()} type={"url"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={imageUrlUiValue} data-value={imageUrlUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(imageUrlUiValue.trim())} />
+                {getPlaceholderElements()}
+            </div> : <div className={"upload-container"}>
+                <SmartImgUpload isDisabled={isDisabled} uploader={uploader} default_src={imageUrlUiValue} imageHelpText={
+                    getPlaceholderElements()
+                }/>
+            </div>}
+        </div>
+        {showTooltip? <>
+            <ReactTooltip id={name}>
+                <b>{getLabelFromName(name)}:</b><br/>{description}
+            </ReactTooltip>
+            <ReactTooltip id={`swap-${name}`} />
+        </> : null}
+    </>);
 };
 
 export default ImageUrlUI;

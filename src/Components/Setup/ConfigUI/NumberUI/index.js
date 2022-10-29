@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss'
-import {getValueFromName, useConfigValue} from "../../../../helpers/config_helper";
+import {getValueFromName, parseCardinality, useConfigValue} from "../../../../helpers/config_helper";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import ReactTooltip from "react-tooltip";
 
-const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}) => {
+const NumberUI = ({onChange, info, name, parent_disabledStatus}) => {
     const default_value = getValueFromName(name, "");
     const [numberUiValue, setNumberUiValue] = useConfigValue("", onChange, name, true);
     const [oldValue, setOldValue] = useState(default_value);
@@ -17,23 +17,15 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const [showTooltip, setShowTooltip] = useState(true);
 
     // noinspection JSUnresolvedVariable
-    const cardinality = info?.minCardinality ?? "Compulsory";
+    const cardinality = parseCardinality(info);
     const description = info?.description ?? "";
     const step_validation = info?.validation?.step ?? 1;
     const min_validation = info?.validation?.min ?? null;
     const max_validation = info?.validation?.max ?? null;
 
-    const canRemove = () => {
-        let ret;
-        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
-        else ret = disabledStatus && removable && cardinality !== "Compulsory";
-
-        return ret;
-    }
-
     const validate = useCallback(() => {
         let valid = true;
-        if(cardinality === "Compulsory" && numberUiValue === "") valid = false;
+        if(cardinality.isCompulsory && numberUiValue === "") valid = false;
 
         const numerical_value = Number(numberUiValue);
         valid = valid && !isNaN(numerical_value);
@@ -52,9 +44,7 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(numberUiValue !== default_value){
-                if (!canRemove()) {
-                    setOldValue(numberUiValue);
-                }
+                setOldValue(numberUiValue);
                 setNumberUiValue(default_value);
             }
         } else {
@@ -62,9 +52,7 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
         }
     }, [parent_disabledStatus, disabledStatus]);
 
-    const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
-    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         v = v.replace(/[^0-9.]/g, "");
@@ -73,48 +61,46 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     }
 
     // noinspection JSValidateTypes
-    return (<>{isRemoved() ? null :
-        <>
-            <div className={`number-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
-                <div className={"input-container"}>
-                    <input className={`string-ui-input`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={numberUiValue} data-value={numberUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(numberUiValue.trim())} />
-                    <span className={"placeholder-elements"}>
-                        <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
-                        <span className={"placeholder-buttons"}>
-                            {cancellable()?<>
-                                {isDisabled()?
-                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
-                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
-                                }
-                            </>: null}
-                            {(description !== "")?<>
-                                <i data-tip="" data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
-                                    setShowTooltip(false);
-                                    setTimeout(() => setShowTooltip(true), 50);
-                                }}/>
-                            </>: null}
-                        </span>
-                        <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
-                            {(numberUiValue.length > 0) || (numberUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
-                                {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
-                            </small> : null}
-                            {(numberUiValue.length > 0) && ((min_validation !== null) || (max_validation !== null)) ? <small className={"placeholder-length"}>
-                                [
-                                    {min_validation !== null ? min_validation : null}
-                                    {((min_validation !== null) && (max_validation !== null)) ? "-" : null}
-                                    {max_validation !== null ? max_validation : null}
-                                ]
-                                {` Divisible by ${step_validation}`}
-                            </small> : null}
-                        </span>
+    return (<>
+        <div className={`number-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
+            <div className={"input-container"}>
+                <input className={`string-ui-input`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={numberUiValue} data-value={numberUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(numberUiValue.trim())} />
+                <span className={"placeholder-elements"}>
+                    <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
+                    <span className={"placeholder-buttons"}>
+                        {cardinality.isOptional?<>
+                            {isDisabled()?
+                                <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                                <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
+                            }
+                        </>: null}
+                        {(description !== "")?<>
+                            <i data-tip="" data-for={name} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                setShowTooltip(false);
+                                setTimeout(() => setShowTooltip(true), 50);
+                            }}/>
+                        </>: null}
                     </span>
-                </div>
+                    <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
+                        {(numberUiValue.length > 0) || (numberUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
+                            {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
+                        </small> : null}
+                        {(numberUiValue.length > 0) && ((min_validation !== null) || (max_validation !== null)) ? <small className={"placeholder-length"}>
+                            [
+                                {min_validation !== null ? min_validation : null}
+                                {((min_validation !== null) && (max_validation !== null)) ? "-" : null}
+                                {max_validation !== null ? max_validation : null}
+                            ]
+                            {` Divisible by ${step_validation}`}
+                        </small> : null}
+                    </span>
+                </span>
             </div>
-            {showTooltip? <ReactTooltip id={name}>
-                <b>{getLabelFromName(name)}:</b><br/>{description}
-            </ReactTooltip> : null}
-        </>
-    }</>);
+        </div>
+        {showTooltip? <ReactTooltip id={name}>
+            <b>{getLabelFromName(name)}:</b><br/>{description}
+        </ReactTooltip> : null}
+    </>);
 };
 
 export default NumberUI;

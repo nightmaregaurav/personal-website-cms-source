@@ -84,3 +84,13 @@ export function getValueFromName (name, initial=undefined) {
 export function getConfig() {
     return JSON.parse(localStorage.getItem("config")) ?? {};
 }
+
+export function parseCardinality(info){
+    // noinspection JSUnresolvedVariable
+    const _cardinality = info?.minCardinality ?? "Compulsory";
+    return {
+        isCompulsory: _cardinality === "Compulsory",
+        isOptional: _cardinality === "Optional",
+        needAtLeastOne: _cardinality === "1",
+    }
+}

@@ -3,25 +3,17 @@ import './index.scss'
 import ReactTooltip from "react-tooltip";
 import ConfigUI from "../index";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
+import {parseCardinality} from "../../../../helpers/config_helper";
 
-const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, removable=false, imageUploader}) => {
+const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imageUploader}) => {
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
 
     // noinspection JSUnresolvedVariable
-    const cardinality = info?.minCardinality ?? "Compulsory";
+    const cardinality = parseCardinality(info)
     const description = info?.description ?? "";
     const example_object = info?.example ?? {};
-
-    const cancellable = () => cardinality === "Optional";
-    const disable = () => {
-        setDisabledStatus(true);
-    }
-    const enable = () => {
-        setDisabledStatus(false);
-    }
     const isDisabled = () => disabledStatus || parent_disabledStatus;
-    const isRemoved = () => isDisabled() && removable;
 
     function getContent() {
         const keys = Object.keys(example_object);
@@ -35,37 +27,35 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
             })}
         </>
     }
-    return (<>{isRemoved()? null:
-        <>
-            <div className={`object-ui-container ui-${name} container`}>
-                <div className="panel panel-primary">
-                    <div className="panel-body">
-                        <span className="text-on-panel">
-                            {cancellable()?<>
-                                {isDisabled()?
-                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
-                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
-                                }
-                            </>: null}
-                            {(description !== "")?<>
-                                <i data-tip="" data-for={`obj${name}`} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
-                                    setShowTooltip(false);
-                                    setTimeout(() => setShowTooltip(true), 50);
-                                }}/>
-                            </>: null}
-                            <b className={"panel-title"}>{getLabelFromName(name)}</b>
-                        </span>
-                        <div className={"panel-content"}>
-                            {getContent()}
-                        </div>
+    return (<>
+        <div className={`object-ui-container ui-${name} container`}>
+            <div className="panel panel-primary">
+                <div className="panel-body">
+                    <span className="text-on-panel">
+                        {cardinality.isOptional?<>
+                            {isDisabled()?
+                                <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                                <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
+                            }
+                        </>: null}
+                        {(description !== "")?<>
+                            <i data-tip="" data-for={`obj${name}`} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                                setShowTooltip(false);
+                                setTimeout(() => setShowTooltip(true), 50);
+                            }}/>
+                        </>: null}
+                        <b className={"panel-title"}>{getLabelFromName(name)}</b>
+                    </span>
+                    <div className={"panel-content"}>
+                        {getContent()}
                     </div>
                 </div>
             </div>
-            {showTooltip? <ReactTooltip id={`obj${name}`} place={"right"}>
-                <b>{getLabelFromName(name)}:</b><br/>{description}
-            </ReactTooltip> : null}
-        </>
-    }</>);
+        </div>
+        {showTooltip? <ReactTooltip id={`obj${name}`} place={"right"}>
+            <b>{getLabelFromName(name)}:</b><br/>{description}
+        </ReactTooltip> : null}
+    </>);
 };
 
 export default ObjectUI;
