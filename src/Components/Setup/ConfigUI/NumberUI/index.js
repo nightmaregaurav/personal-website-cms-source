@@ -23,6 +23,14 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const min_validation = info?.validation?.min ?? null;
     const max_validation = info?.validation?.max ?? null;
 
+    const canRemove = () => {
+        let ret;
+        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
+        else ret = disabledStatus && removable && cardinality !== "Compulsory";
+
+        return ret;
+    }
+
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality === "Compulsory" && numberUiValue === "") valid = false;
@@ -44,7 +52,7 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(numberUiValue !== default_value){
-                if (!removable) {
+                if (!canRemove()) {
                     setOldValue(numberUiValue);
                 }
                 setNumberUiValue(default_value);
@@ -56,7 +64,7 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
 
     const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
-    const isRemoved = () => isDisabled() && removable;
+    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         v = v.replace(/[^0-9.]/g, "");

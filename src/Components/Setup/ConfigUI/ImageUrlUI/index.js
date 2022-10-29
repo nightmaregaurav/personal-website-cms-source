@@ -27,6 +27,14 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
     const min_length_validation = info?.validation?.minLength ?? null;
     const max_length_validation = info?.validation?.maxLength ?? null;
 
+    const canRemove = () => {
+        let ret;
+        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
+        else ret = disabledStatus && removable && cardinality !== "Compulsory";
+
+        return ret;
+    }
+
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality === "Compulsory" && imageUrlUiValue === ""){
@@ -56,7 +64,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(imageUrlUiValue !== default_value){
-                if (!removable) {
+                if (!canRemove()) {
                     setOldValue(imageUrlUiValue);
                 }
                 setImageUrlUiValue(default_value);
@@ -68,7 +76,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
 
     const cancellable = () => cardinality === "Optional";
     const isDisabled = () => parent_disabledStatus || disabledStatus;
-    const isRemoved = () => isDisabled() && removable;
+    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         setImageUrlUiValue(v);

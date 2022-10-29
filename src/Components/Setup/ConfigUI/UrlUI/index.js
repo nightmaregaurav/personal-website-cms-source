@@ -24,6 +24,14 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
     const min_length_validation = info?.validation?.minLength ?? null;
     const max_length_validation = info?.validation?.maxLength ?? null;
 
+    const canRemove = () => {
+        let ret = false;
+        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
+        if (disabledStatus && removable && cardinality !== "Compulsory") ret = true;
+
+        return ret;
+    }
+
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality === "Compulsory" && urlUiValue === ""){
@@ -51,7 +59,7 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(urlUiValue !== default_value){
-                if (!removable) {
+                if (!canRemove()) {
                     setOldValue(urlUiValue);
                 }
                 setUrlUiValue(default_value);
@@ -63,7 +71,7 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
 
     const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
-    const isRemoved = () => isDisabled() && removable;
+    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         setUrlUiValue(v);

@@ -25,6 +25,14 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     // noinspection JSUnresolvedVariable
     const isMultiline = info?.validation?.linebreaks ?? false;
 
+    const canRemove = () => {
+        let ret;
+        if (parent_disabledStatus && removable && cardinality !== "Compulsory" && default_value === "") ret = true;
+        else ret = disabledStatus && removable && cardinality !== "Compulsory";
+
+        return ret;
+    }
+
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality === "Compulsory" && stringUiValue === ""){
@@ -50,7 +58,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     useEffect(() => {
         if(parent_disabledStatus || disabledStatus){
             if(stringUiValue !== default_value){
-                if (!removable) {
+                if (!canRemove()) {
                     setOldValue(stringUiValue);
                 }
                 setStringUiValue(default_value);
@@ -62,7 +70,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
 
     const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
-    const isRemoved = () => isDisabled() && removable;
+    const isRemoved = () => isDisabled() && canRemove();
 
     const callSetter = (v) => {
         setStringUiValue(v);

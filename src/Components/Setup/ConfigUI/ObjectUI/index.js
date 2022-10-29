@@ -9,7 +9,7 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remova
     const [showTooltip, setShowTooltip] = useState(true);
 
     // noinspection JSUnresolvedVariable
-    const cardinality = info?.cardinality ?? "Compulsory";
+    const cardinality = info?.minCardinality ?? "Compulsory";
     const description = info?.description ?? "";
     const example_object = info?.example ?? {};
 
