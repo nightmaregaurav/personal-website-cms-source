@@ -34,10 +34,18 @@ export function useConfigGetter() {
     }, []);
 }
 
-export function useConfigValue(initial=undefined, onChange, name) {
+export function useConfigValue(initial=undefined, onChange, name, isNumeric=false) {
     const [value, setValue] = useState(initial);
     useEffect(() => {
-        onChange(name, value);
+        if(isNumeric){
+            const num_value = Number(value);
+            if(!isNaN(num_value)){
+                onChange(name, num_value);
+            } else {
+            }
+        } else {
+            onChange(name, value);
+        }
     }, [value]);
     function setter(v){
         if(typeof v === "string"){
