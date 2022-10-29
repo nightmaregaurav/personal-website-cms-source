@@ -29,24 +29,24 @@ const ObjectUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imageU
     }
     return (<>
         <div className={`object-ui-container ui-${name} container`}>
-            <div className="panel panel-primary">
-                <div className="panel-body">
-                    <span className="text-on-panel">
+            <div className="object-panel object-panel-primary">
+                <div className="object-panel-body">
+                    <span className="text-on-object-panel">
                         {cardinality.isOptional?<>
                             {isDisabled()?
-                                <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
-                                <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
+                                <i className={"object-panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                                <i className={"object-panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
                             }
                         </>: null}
                         {(description !== "")?<>
-                            <i data-tip="" data-for={`obj${name}`} className={"panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
+                            <i data-tip="" data-for={`obj${name}`} className={"object-panel-action bi-question-circle-fill text-warning me-2"} onMouseLeave={() => {
                                 setShowTooltip(false);
                                 setTimeout(() => setShowTooltip(true), 50);
                             }}/>
                         </>: null}
-                        <b className={"panel-title"}>{getLabelFromName(name)}</b>
+                        <b className={"object-panel-title"}>{getLabelFromName(name)}</b>
                     </span>
-                    <div className={"panel-content"}>
+                    <div className={"object-panel-content"}>
                         {getContent()}
                     </div>
                 </div>
