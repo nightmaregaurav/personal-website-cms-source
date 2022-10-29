@@ -62,9 +62,7 @@ const Setup = () => {
         const elements = document.querySelectorAll('[data-is-valid="false"]');
         return elements.length === 0;
     }
-    const resetConfig = () => {
-        setConfig({...old_config});
-    };
+
     const modConfig = (key, value, reset=false) => {
         let prev_config = {...config};
         key = lstrip(key, 'Config~');
@@ -189,7 +187,6 @@ const Setup = () => {
             /> : null}
 
             <div className="my-3 container d-flex flex-column flex-nowrap justify-content-center align-items-center">
-                <span className={"btn btn-sm btn-danger ms-auto"} onClick={resetConfig}>Reset</span>
                 <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center config-form"}>
                     <ConfigUI onChange={modConfig} isGhPage={isGhPage()} info={config_info} name={"Config"} imageUploader={imageUploader} />
                 </div>
