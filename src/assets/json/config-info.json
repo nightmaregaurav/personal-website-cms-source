@@ -142,7 +142,7 @@
         },
         "words": {
           "type": "ARRAY OF STRING",
-          "minCardinality": "1",
+          "minCardinality":"Compulsory",
           "description": "Words to tell what you are in intro page.",
           "example": {
             "0": "Web Developer",
@@ -316,7 +316,7 @@
         },
         "timeline": {
           "type": "ARRAY OF OBJECT",
-          "minCardinality": "1",
+          "minCardinality": "Compulsory",
           "description": "Array of achievements sorted in an order to show in education page.",
           "example": {
             "0": {
@@ -424,7 +424,7 @@
         },
         "timeline": {
           "type": "ARRAY OF OBJECT",
-          "minCardinality": "1",
+          "minCardinality": "Compulsory",
           "description": "Array of all work experience sorted in an order to show in experience page.",
           "example": {
             "0": {
@@ -516,7 +516,7 @@
         },
         "contents": {
           "type": "ARRAY OF OBJECT",
-          "minCardinality": "1",
+          "minCardinality": "Compulsory",
           "description": "Array of all projects sorted in an order to show in projects page.",
           "example": {
             "0": {
@@ -558,7 +558,7 @@
               },
               "imagesUrl": {
                 "type": "ARRAY OF IMAGE URL",
-                "minCardinality": "1",
+                "minCardinality": "Compulsory",
                 "description": "Array of image URLs to show for this project.",
                 "example": {
                   "0": "https://example.com/1.jpg"
@@ -576,7 +576,7 @@
               },
               "majorPoints": {
                 "type": "ARRAY OF OBJECT",
-                "minCardinality": "1",
+                "minCardinality": "Compulsory",
                 "description": "Array of major points to show for this project.",
                 "example": {
                   "0": {
@@ -663,7 +663,7 @@
         },
         "contents": {
           "type": "ARRAY OF OBJECT",
-          "minCardinality": "1",
+          "minCardinality": "Compulsory",
           "description": "Array of all services sorted in an order to show in services page.",
           "example": {
             "0": {
@@ -746,7 +746,7 @@
         },
         "contents": {
           "type": "ARRAY OF OBJECT",
-          "minCardinality": "1",
+          "minCardinality": "Compulsory",
           "description": "Array of all skills sorted in an order to show in skills page.",
           "example": {
             "0": {
