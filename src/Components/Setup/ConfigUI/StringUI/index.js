@@ -71,7 +71,7 @@ const StringUI = ({onChange, info, name, parent_disabledStatus, removable=false}
         <>
             <div className={`string-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
                 <div className={"input-container"}>
-                    <Element className={`string-ui-${Element}`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={stringUiValue} data-value={stringUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setStringUiValue(stringUiValue.trim())} />
+                    <Element className={`string-ui-${Element}`} disabled={isDisabled()} type={"text"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={stringUiValue} data-value={stringUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(stringUiValue.trim())} />
                     <span className={"placeholder-elements"}>
                         <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
                         <span className={"placeholder-buttons"}>

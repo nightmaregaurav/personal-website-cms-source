@@ -66,11 +66,12 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
         setUrlUiValue(v);
     }
 
+    // noinspection JSValidateTypes
     return (<>{isRemoved() ? null :
         <>
             <div className={`url-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>
                 <div className={"input-container"}>
-                    <input className={`url-ui-input`} disabled={isDisabled()} type={"url"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={urlUiValue} data-value={urlUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => setUrlUiValue(urlUiValue.trim())} />
+                    <input className={`url-ui-input`} disabled={isDisabled()} type={"url"} id={name} name={name} autoComplete={"off"} aria-labelledby={`placeholder${name}`} value={urlUiValue} data-value={urlUiValue} data-is-valid={isValid.toString()} onChange={(e) => callSetter(e.target.value)} onBlur={(_) => callSetter(urlUiValue.trim())} />
                     <span className={"placeholder-elements"}>
                         <span className={"placeholder-text"} id={`placeholder${name}`}>{getLabelFromName(name)}</span>
                         <span className={"placeholder-buttons"}>
