@@ -53,12 +53,12 @@ const Components = () => {
 
                 <title>{get(config, "main-title", "")}</title>
 
-                {get(config, "meta", []).map((meta, i) => <meta
+                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
                     name={meta.name}
                     content={meta.content}
                     key={i}
                 />)}
-                {get(config, "meta", []).map((meta, i) => <meta
+                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
                     property={meta.name}
                     content={meta.content}
                     key={i}
@@ -78,7 +78,7 @@ const Components = () => {
                         {get(config, "projects", false) ? <Route path="projects" element={<Projects/>}>
                             <Route path=":id" element={<ProjectsView/>} />
                         </Route> : null}
-                        {get(config, "gallery", []).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
+                        {Object.values(get(config, "gallery", {})).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
                         {get(config, "services", false) ? <Route path="services" element= {<Services />} /> : null}
                         {get(config, "skills", false) ? <Route path="skills" element= {<Skills />} /> : null}
                         <Route path="contact" element= {<Contact />} />

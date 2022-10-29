@@ -30,8 +30,8 @@
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
       "description": "Array of meta tags.",
-      "example": [
-        {
+      "example": {
+        "0": {
           "name": {
             "type": "STRING",
             "minCardinality": "Compulsory",
@@ -53,7 +53,7 @@
             "example": "This is a description."
           }
         }
-      ]
+      }
     },
     "main-title": {
       "type": "STRING",
@@ -95,8 +95,8 @@
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
       "description": "Array of social media URLs.",
-      "example": [
-        {
+      "example": {
+        "0": {
           "name": {
             "type": "STRING",
             "minCardinality": "Compulsory",
@@ -115,7 +115,7 @@
             "example": "https://www.facebook.com/nightmaregaurav"
           }
         }
-      ]
+      }
     },
     "resume": {
       "type": "URL",
@@ -144,10 +144,10 @@
           "type": "ARRAY OF STRING",
           "minCardinality": "1",
           "description": "Words to tell what you are in intro page.",
-          "example": [
-            "Web Developer",
-            "Freelancer"
-          ]
+          "example": {
+            "0": "Web Developer",
+            "1": "Freelancer"
+          }
         }
       }
     },
@@ -186,8 +186,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
           "description": "Array of info to show in about page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -209,7 +209,7 @@
                 "example": "abc@mail.com"
               }
             }
-          ]
+          }
         },
         "testimonials-intro": {
           "type": "STRING",
@@ -225,8 +225,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
           "description": "Array of testimonials to show in about page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "name": {
                 "type": "STRING",
                 "minCardinality": "Optional",
@@ -295,7 +295,7 @@
                 "example": "I had never met such a nice friend and a great mentor in a same person before i met him."
               }
             }
-          ]
+          }
         }
       }
     },
@@ -318,8 +318,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "1",
           "description": "Array of achievements sorted in an order to show in education page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -398,12 +398,12 @@
                 "type": "ARRAY OF STRING",
                 "minCardinality": "Optional",
                 "description": "Array of achievements.",
-                "example": [
-                  "Been semester topper in 5 semesters."
-                ]
+                "example": {
+                  "0": "Been semester topper in 5 semesters."
+                }
               }
             }
-          ]
+          }
         }
       }
     },
@@ -426,8 +426,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "1",
           "description": "Array of all work experience sorted in an order to show in experience page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -490,12 +490,12 @@
                 "type": "ARRAY OF STRING",
                 "minCardinality": "Optional",
                 "description": "Array of achievements.",
-                "example": [
-                  "Unit Test, Integration Test"
-                ]
+                "example": {
+                  "0": "Unit Test, Integration Test"
+                }
               }
             }
-          ]
+          }
         }
       }
     },
@@ -518,8 +518,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "1",
           "description": "Array of all projects sorted in an order to show in projects page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -534,8 +534,8 @@
                 "type": "ARRAY OF OBJECT",
                 "minCardinality": "Optional",
                 "description": "Array of external links to show for this project.",
-                "example": [
-                  {
+                "example": {
+                  "0": {
                     "title": {
                       "type": "STRING",
                       "minCardinality": "Compulsory",
@@ -554,15 +554,15 @@
                       "example": "https://github.com/nightmaregaurav/personal-website-client"
                     }
                   }
-                ]
+                }
               },
               "imagesUrl": {
                 "type": "ARRAY OF IMAGE URL",
                 "minCardinality": "1",
                 "description": "Array of image URLs to show for this project.",
-                "example": [
-                  "https://example.com/1.jpg"
-                ]
+                "example": {
+                  "0": "https://example.com/1.jpg"
+                }
               },
               "description": {
                 "type": "STRING",
@@ -578,8 +578,8 @@
                 "type": "ARRAY OF OBJECT",
                 "minCardinality": "1",
                 "description": "Array of major points to show for this project.",
-                "example": [
-                  {
+                "example": {
+                  "0": {
                     "title": {
                       "type": "STRING",
                       "minCardinality": "Compulsory",
@@ -601,7 +601,7 @@
                       "example": "Minified React"
                     }
                   }
-                ]
+                }
               },
               "categories": {
                 "type": "ARRAY OF STRING",
@@ -611,13 +611,13 @@
                   "linebreaks": false,
                   "maxLength": 50
                 },
-                "example": [
-                  "React",
-                  "JavaScript"
-                ]
+                "example": {
+                  "0": "React",
+                  "1": "JavaScript"
+                }
               }
             }
-          ]
+          }
         }
       }
     },
@@ -625,8 +625,8 @@
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
       "description": "Array of gallery items to show in gallery page.",
-      "example": [
-        {
+      "example": {
+        "0": {
           "name": {
             "type": "STRING",
             "minCardinality": "Compulsory",
@@ -644,7 +644,7 @@
             "example": "https://example.com/1.jpg"
           }
         }
-      ]
+      }
     },
     "services": {
       "type": "OBJECT",
@@ -665,8 +665,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "1",
           "description": "Array of all services sorted in an order to show in services page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -700,14 +700,14 @@
                 "example": "I have worked on and spearheaded various web development projects."
               }
             }
-          ]
+          }
         },
         "perks": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
           "description": "Array of perks sorted in an order to show in services page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -725,7 +725,7 @@
                 "example": "https://example.com/web-dev-icon.png"
               }
             }
-          ]
+          }
         }
       }
     },
@@ -748,8 +748,8 @@
           "type": "ARRAY OF OBJECT",
           "minCardinality": "1",
           "description": "Array of all skills sorted in an order to show in skills page.",
-          "example": [
-            {
+          "example": {
+            "0": {
               "title": {
                 "type": "STRING",
                 "minCardinality": "Compulsory",
@@ -767,7 +767,7 @@
                 "example": 90
               }
             }
-          ]
+          }
         }
       }
     }

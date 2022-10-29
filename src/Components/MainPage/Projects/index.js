@@ -14,14 +14,14 @@ const Projects = () => {
 
     useEffect(() => {
         // noinspection DuplicatedCode
-        let original_data = get(get(config, "projects", {}), "contents", []);
+        let original_data = Object.values(get(get(config, "projects", {}), "contents", {}));
         // noinspection JSUnresolvedVariable
         let new_data = original_data.map((item, index) =>({
             id: "id_" + index,
             title: item.title,
-            image: item.imagesUrl ? item.imagesUrl[0]: null,
-            categories: item.categories,
-            filter: item.categories ? item.categories.map(i => "filter-" + slugify(i)) : [],
+            image: Object.values(item.imagesUrl).length > 0 ? Object.values(item.imagesUrl[0]): null,
+            categories: Object.values(item.categories),
+            filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify(i)) : [],
         }));
 
         let labels = [];
@@ -60,7 +60,7 @@ const Projects = () => {
     return (
         <>
             {get(config, 'projects', null) ? <>
-                {(get(get(config, 'projects', null), "intro", "") !== "" || get(get(config, 'projects', null), "contents", []).length > 0) ? <>
+                {(get(get(config, 'projects', null), "intro", "") !== "" || Object.values(get(get(config, 'projects', null), "contents", {})).length > 0) ? <>
                     <Outlet/>
                     <section id="projects" className="projects section-bg">
                         <div className="container">
@@ -68,7 +68,7 @@ const Projects = () => {
                                 <h2>Projects</h2>
                                 <p>{get(get(config, "projects", {}), "intro", "")}</p>
                             </div>
-                            {get(get(config, 'projects', null), "contents", []).length > 0 ? <>
+                            {Object.values(get(get(config, 'projects', null), "contents", {})).length > 0 ? <>
                                 <div className="row" data-aos="fade-up">
                                     <div className="col-lg-12 d-flex justify-content-center">
                                         <ul id="projects-filters">

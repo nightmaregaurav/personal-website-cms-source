@@ -17,19 +17,20 @@ const View = () => {
 
     useEffect(() => {
         // noinspection DuplicatedCode
-        let original_data = get(get(config, "projects", {}), "contents", []);
+        let original_data = Object.values(get(get(config, "projects", {}), "contents", {}));
         // noinspection JSUnresolvedVariable
         let data = original_data.map(item => ({
             title: item.title,
-            images: item.imagesUrl,
+            images: Object.values(item.imagesUrl),
             description: item.description,
-            majorPoints: item.majorPoints,
-            links: item.extLinks,
+            majorPoints: Object.values(item.majorPoints),
+            links: Object.values(item.extLinks),
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
     } , [config, id]);
 
+    // noinspection JSValidateTypes
     return (
         <FullPageOverlay content={<>
             {target ?<>

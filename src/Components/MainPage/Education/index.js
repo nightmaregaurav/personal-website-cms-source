@@ -10,16 +10,16 @@ const Education = () => {
     return (
         <>
             {get(config, 'education', null) ? <>
-                {(get(get(config, 'education', null), "intro", "") !== "" || get(get(config, 'education', null), "timeline", []).length > 0) ? <section id="education" className="education">
+                {(get(get(config, 'education', null), "intro", "") !== "" || Object.values(get(get(config, 'education', null), "timeline", {})).length > 0) ? <section id="education" className="education">
                     <div className="container">
                         <div className="section-title">
                             <h2>Education</h2>
                             <p>{get(get(config, "education", {}), "intro", "")}</p>
                         </div>
-                        {get(get(config, "education", {}), "timeline", []).length > 0 ? <div>
+                        {Object.values(get(get(config, "education", {}), "timeline", {})).length > 0 ? <div>
                             <div data-aos="fade-up">
                                 <h3 className="education-title">Timeline</h3>
-                                {get(get(config, "education", {}), "timeline", []).map((data, i) =>
+                                {Object.values(get(get(config, "education", {}), "timeline", {})).map((data, i) =>
                                     <div key={i} className="education-item">
                                         <span>
                                             {data.title? <h4 style={{display: "inline"}}>{data.title}</h4> : null}
@@ -27,9 +27,9 @@ const Education = () => {
                                         </span>
                                         {data.institute || data.university ? <p><em>{data.institute ? <a style={{textDecoration: "none", color:"inherit"}} href={data.instituteUrl??"#"}>{data.institute}</a> : null} {data.institute && data.university ? " | " : null} {data.university ? <a style={{textDecoration: "none", color:"inherit"}} href={data.universityUrl??"#"}>{data.university}</a> : null}</em></p> : null}
                                         <p>{data.description}</p>
-                                        {data.achievements ?
+                                        {Object.values(data.achievements).length > 0 ?
                                             <ul>
-                                                {data.achievements.map((achievement, i) =>
+                                                {Object.values(data.achievements).map((achievement, i) =>
                                                     <li key={i}>{achievement}</li>
                                                 )}
                                             </ul>

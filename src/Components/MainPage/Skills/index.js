@@ -9,15 +9,16 @@ const Skills = () => {
     return (
         <>
             {get(config, 'skills', null) ? <>
-                {(get(get(config, 'skills', null), "intro", "") !== "" || get(get(config, 'skills', null), "contents", []).length > 0) ? <section id="skills" className="skills section-bg">
+                {(get(get(config, 'skills', null), "intro", "") !== "" || Object.values(get(get(config, 'skills', null), "contents", {})).length > 0) ? <section id="skills" className="skills section-bg">
                     <div className="container">
                         <div className="section-title">
                             <h2>Skills</h2>
                             <p>{get(get(config, "skills", {}), "intro", "")}</p>
                         </div>
-                        {get(get(config, 'skills', null), "contents", []).length > 0 ? <div className="row skills-content">
+                        {Object.values(get(get(config, 'skills', null), "contents", {})).length > 0 ? <div className="row skills-content">
                             <div className="col-lg-6" data-aos="fade-up">
-                                {get(get(config, "skills", {}), "contents", []).map((skill, index) => {
+                                {Object.values(get(get(config, "skills", {}), "contents", {})).map((skill, index) => {
+                                    // noinspection JSUnresolvedVariable
                                     return ((index+1) % 2 !== 0) ?
                                         <div key={index} className="progress">
                                             <span className="skill">{skill.title} <i className="val">{skill.percentage ?? "0"}%</i></span>
@@ -29,7 +30,8 @@ const Skills = () => {
                                 })}
                             </div>
                             <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-                                {get(get(config, "skills", {}), "contents", []).map((skill, index) => {
+                                {Object.values(get(get(config, "skills", {}), "contents", {})).map((skill, index) => {
+                                    // noinspection JSUnresolvedVariable
                                     return ((index+1) % 2 === 0) ?
                                         <div key={index} className="progress">
                                             <span className="skill">{skill.title} <i className="val">{skill.percentage ?? "0"}%</i></span>

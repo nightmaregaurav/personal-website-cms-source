@@ -18,7 +18,7 @@ const About = () => {
     return (
         <>
             {get(config, 'about', null) ? <>
-                {(get(get(config, 'about', null), "pic", "") !== "" || get(get(config, 'about', null), "intro", "") !== "" || get(get(config, 'about', null), "info", []).length > 0) ? <section id="about" className="about">
+                {(get(get(config, 'about', null), "pic", "") !== "" || get(get(config, 'about', null), "intro", "") !== "" || Object.values(get(get(config, 'about', null), "info", {})).length > 0) ? <section id="about" className="about">
                     <div className="container">
                         <div className="section-title">
                             <h2>About</h2>
@@ -32,14 +32,14 @@ const About = () => {
                                 <div className="row">
                                     <div className="col-lg-6">
                                         <ul style={{marginTop:0, marginBottom:0}}>
-                                            {get(get(config, "about", {}), "info", []).map((item, index) => {
+                                            {Object.values(get(get(config, "about", {}), "info", {})).map((item, index) => {
                                                 return ((index + 1) % 2 !== 0) ? <li key={index} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item.title}:</strong> <span>{item.text}</span></li> : null;
                                             })}
                                         </ul>
                                     </div>
                                     <div className="col-lg-6">
                                         <ul style={{marginTop:0, marginBottom:0}}>
-                                            {get(get(config, "about", {}), "info", []).map((item, index) => {
+                                            {Object.values(get(get(config, "about", {}), "info", {})).map((item, index) => {
                                                 return ((index + 1) % 2 === 0) ? <li key={index} className={"my-3"} style={{marginTop:0, marginBottom:0}}><i className="bi bi-chevron-right"></i> <strong>{item.title}:</strong> <span>{item.text}</span></li> : null;
                                             })}
                                         </ul>
@@ -49,7 +49,7 @@ const About = () => {
                         </div>
                     </div>
                 </section> : null }
-                {get(get(config, "about", {}), "testimonials", []).length > 0 ? <section id="testimonials" className="testimonials section-bg">
+                {Object.values(get(get(config, "about", {}), "testimonials", {})).length > 0 ? <section id="testimonials" className="testimonials section-bg">
                     <div className="container">
                         <div className="section-title">
                             <h2>Testimonials</h2>
@@ -58,7 +58,7 @@ const About = () => {
                         <div className="slider-container container" data-aos="fade-up" data-aos-delay="100">
                             <div className="main-wrap container">
                                 <Swiper slidesPerView={1} spaceBetween={8} initialSlide={0} centeredSlides={true} pagination={{clickable: true}}>
-                                    {get(get(config, "about", {}), "testimonials", []).map((data, i) =>
+                                    {Object.values(get(get(config, "about", {}), "testimonials", {})).map((data, i) =>
                                         <SwiperSlide key={i}>
                                             <div className={"container"}>
                                                 <div className="testimony-card row" style={{background: "#040b14 url('" + blockquote + "') no-repeat 100% 100%", backgroundBlendMode: "color-dodge"}}>
