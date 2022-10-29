@@ -90,7 +90,6 @@ export function parseCardinality(info){
     const _cardinality = info?.minCardinality ?? "Compulsory";
     return {
         isCompulsory: _cardinality === "Compulsory",
-        isOptional: _cardinality === "Optional",
-        needAtLeastOne: _cardinality === "1",
+        isOptional: _cardinality === "Optional"
     }
 }

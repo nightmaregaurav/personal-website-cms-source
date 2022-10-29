@@ -1,0 +1,41 @@
+.object-ui-container{
+  max-width: 90vw;
+}
+.ui-Config{
+  min-width: 70vw;
+}
+.text-on-array-panel {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: 20px;
+  padding: 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+  border: 1px solid #04562e;
+  border-radius: 8px;
+}
+.array-panel {
+  margin-top: 27px !important;
+  border: 1px solid #04562e;
+  border-radius: 8px;
+}
+.array-panel-body {
+  padding-top: 30px !important;
+}
+.array-panel-action{
+  opacity: 80% !important;
+  cursor: pointer;
+}
+.array-panel-action:hover{
+  opacity: 100% !important;
+}
+//noinspection CssReplaceWithShorthandSafely
+.array-panel-content{
+  margin-top: -13px !important;
+  margin-right: 9px !important;
+  margin-left: 9px !important;
+  margin-bottom: 14px !important;
+}
+.array-panel-content > *{
+  margin-top: 14px !important;
+}
