@@ -23,7 +23,6 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
     const min_validation = info?.validation?.min ?? null;
     const max_validation = info?.validation?.max ?? null;
 
-
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality === "Compulsory" && numberUiValue === "") valid = false;
@@ -42,18 +41,20 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
         validate();
     }, [numberUiValue, validate]);
 
-    const cancellable = () => cardinality === "Optional";
-    const disable = () => {
-        if(!removable){
-            setOldValue(numberUiValue);
+    useEffect(() => {
+        if(parent_disabledStatus || disabledStatus){
+            if(numberUiValue !== default_value){
+                if (!removable) {
+                    setOldValue(numberUiValue);
+                }
+                setNumberUiValue(default_value);
+            }
+        } else {
+            setNumberUiValue(oldValue);
         }
-        setNumberUiValue(default_value);
-        setDisabledStatus(true);
-    }
-    const enable = () => {
-        setNumberUiValue(oldValue)
-        setDisabledStatus(false);
-    }
+    }, [parent_disabledStatus, disabledStatus]);
+
+    const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
     const isRemoved = () => isDisabled() && removable;
 
@@ -74,8 +75,8 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus, removable=false}
                         <span className={"placeholder-buttons"}>
                             {cancellable()?<>
                                 {isDisabled()?
-                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
-                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
+                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
                                 }
                             </>: null}
                             {(description !== "")?<>

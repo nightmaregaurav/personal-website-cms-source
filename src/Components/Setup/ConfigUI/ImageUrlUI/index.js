@@ -33,6 +33,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
             valid = false;
         }
         if(pattern_validation){
+            // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(imageUrlUiValue);
         }
         if(min_length_validation){
@@ -52,24 +53,27 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         validate();
     }, [imageUrlUiValue, validate]);
 
-    const cancellable = () => cardinality === "Optional";
-    const disable = () => {
-        if(!removable){
-            setOldValue(imageUrlUiValue);
+    useEffect(() => {
+        if(parent_disabledStatus || disabledStatus){
+            if(imageUrlUiValue !== default_value){
+                if (!removable) {
+                    setOldValue(imageUrlUiValue);
+                }
+                setImageUrlUiValue(default_value);
+            }
+        } else {
+            setImageUrlUiValue(oldValue);
         }
-        setImageUrlUiValue(default_value);
-        setDisabledStatus(true);
-    }
-    const enable = () => {
-        setImageUrlUiValue(oldValue)
-        setDisabledStatus(false);
-    }
+    }, [parent_disabledStatus, disabledStatus]);
+
+    const cancellable = () => cardinality === "Optional";
     const isDisabled = () => parent_disabledStatus || disabledStatus;
     const isRemoved = () => isDisabled() && removable;
 
     const callSetter = (v) => {
         setImageUrlUiValue(v);
     }
+
     const blinkTooltip = useCallback(() => {
         setShowTooltip(false);
         setTimeout(() => setShowTooltip(true), 50);
@@ -96,8 +100,8 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
             <span className={"placeholder-buttons"}>
                 {cancellable()?<>
                     {isDisabled()?
-                        <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
-                        <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
+                        <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                        <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
                     }
                 </>: null}
                 {isGhPage?<>
@@ -124,6 +128,7 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, remo
         </span>
     }
 
+    // noinspection JSValidateTypes
     return (<>{isRemoved() ? null :
         <>
             <div className={`image-url-ui-container ui-${name} container`} style={isDisabled()?{opacity:0.50}:null}>

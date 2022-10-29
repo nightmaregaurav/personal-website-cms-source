@@ -30,6 +30,7 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
             valid = false;
         }
         if(pattern_validation){
+            // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(urlUiValue);
         }
         if(min_length_validation){
@@ -47,18 +48,20 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
         validate();
     }, [urlUiValue, validate]);
 
-    const cancellable = () => cardinality === "Optional";
-    const disable = () => {
-        if(!removable){
-            setOldValue(urlUiValue);
+    useEffect(() => {
+        if(parent_disabledStatus || disabledStatus){
+            if(urlUiValue !== default_value){
+                if (!removable) {
+                    setOldValue(urlUiValue);
+                }
+                setUrlUiValue(default_value);
+            }
+        } else {
+            setUrlUiValue(oldValue);
         }
-        setUrlUiValue(default_value);
-        setDisabledStatus(true);
-    }
-    const enable = () => {
-        setUrlUiValue(oldValue)
-        setDisabledStatus(false);
-    }
+    }, [parent_disabledStatus, disabledStatus]);
+
+    const cancellable = () => cardinality === "Optional";
     const isDisabled = () => disabledStatus || parent_disabledStatus;
     const isRemoved = () => isDisabled() && removable;
 
@@ -77,8 +80,8 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus, removable=false}) =
                         <span className={"placeholder-buttons"}>
                             {cancellable()?<>
                                 {isDisabled()?
-                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={enable}/>:
-                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={disable}/>
+                                    <i className={"panel-action bi-plus-circle-fill text-success me-2"} onClick={() => setDisabledStatus(false)}/>:
+                                    <i className={"panel-action bi-x-circle-fill text-danger me-2"} onClick={() => setDisabledStatus(true)}/>
                                 }
                             </>: null}
                             {(description !== "")?<>
