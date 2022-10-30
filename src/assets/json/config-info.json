@@ -17,19 +17,19 @@
     "favicon": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
-      "description": "URL to favicon image.",
+      "description": "Image or Image Url to use as favicon of the website.",
       "example": "https://example.com/favicon.ico"
     },
     "apple-touch-icon": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
-      "description": "URL to apple-touch-icon image.",
+      "description": "Image or Image Url to use as apple-touch-icon of the website.",
       "example": "https://example.com/apple-touch-icon.png"
     },
     "meta": {
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
-      "description": "Array of meta tags.",
+      "description": "Meta tags to use in website.",
       "example": {
         "0": {
           "name": {
@@ -78,7 +78,7 @@
     "profile-pic": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
-      "description": "URL to profile picture to show in sidebar.",
+      "description": "Image or Image Url to use as profile picture in sidebar.",
       "example": "https://example.com/profile-pic.jpg"
     },
     "profile-alt": {
@@ -94,7 +94,7 @@
     "social-urls": {
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
-      "description": "Array of social media URLs.",
+      "description": "List of social media URLs.",
       "example": {
         "0": {
           "name": {
@@ -137,7 +137,7 @@
         "pic": {
           "type": "IMAGE URL",
           "minCardinality": "Compulsory",
-          "description": "URL to profile picture to show in intro page.",
+          "description": "Image or Image Url of picture to use as background picture in intro page.",
           "example": "https://example.com/intro-pic.jpg"
         },
         "words": {
@@ -159,13 +159,13 @@
         "pic": {
           "type": "IMAGE URL",
           "minCardinality": "Compulsory",
-          "description": "URL to profile picture to show in about page.",
+          "description": "Image or Image Url of picture to show in about page.",
           "example": "https://example.com/about-pic.jpg"
         },
         "image-alt": {
           "type": "STRING",
           "minCardinality": "Optional",
-          "description": "Alt text for profile picture in about page.",
+          "description": "Alt text for picture in about page.",
           "validation": {
             "linebreaks": false,
             "maxLength": 100
@@ -185,7 +185,7 @@
         "info": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
-          "description": "Array of info to show in about page.",
+          "description": "List of info to show in about page.",
           "example": {
             "0": {
               "title": {
@@ -224,7 +224,7 @@
         "testimonials": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
-          "description": "Array of testimonials to show in about page.",
+          "description": "List of testimonials to show in about page.",
           "example": {
             "0": {
               "name": {
@@ -287,7 +287,7 @@
               "highlight": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "Highlight testimonial of client.",
+                "description": "Text to show as Highlight testimonial of client.",
                 "validation": {
                   "linebreaks": false,
                   "maxLength": 100
@@ -317,7 +317,7 @@
         "timeline": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Compulsory",
-          "description": "Array of achievements sorted in an order to show in education page.",
+          "description": "List of achievements sorted in an order to show in education page.",
           "example": {
             "0": {
               "title": {
@@ -397,7 +397,7 @@
               "achievements": {
                 "type": "ARRAY OF STRING",
                 "minCardinality": "Optional",
-                "description": "Array of achievements.",
+                "description": "List of achievements.",
                 "example": {
                   "0": "Been semester topper in 5 semesters."
                 }
@@ -425,7 +425,7 @@
         "timeline": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Compulsory",
-          "description": "Array of all work experience sorted in an order to show in experience page.",
+          "description": "List of all work experience sorted in an order to show in experience page.",
           "example": {
             "0": {
               "title": {
@@ -489,7 +489,7 @@
               "achievements": {
                 "type": "ARRAY OF STRING",
                 "minCardinality": "Optional",
-                "description": "Array of achievements.",
+                "description": "List of achievements.",
                 "example": {
                   "0": "Unit Test, Integration Test"
                 }
@@ -517,7 +517,7 @@
         "contents": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Compulsory",
-          "description": "Array of all projects sorted in an order to show in projects page.",
+          "description": "List of all projects sorted in an order to show in projects page.",
           "example": {
             "0": {
               "title": {
@@ -533,7 +533,7 @@
               "extLinks": {
                 "type": "ARRAY OF OBJECT",
                 "minCardinality": "Optional",
-                "description": "Array of external links to show for this project.",
+                "description": "List of external links to show for this project.",
                 "example": {
                   "0": {
                     "title": {
@@ -559,7 +559,7 @@
               "imagesUrl": {
                 "type": "ARRAY OF IMAGE URL",
                 "minCardinality": "Compulsory",
-                "description": "Array of image URLs to show for this project.",
+                "description": "List of Image or Image Url to show for this project.",
                 "example": {
                   "0": "https://example.com/1.jpg"
                 }
@@ -577,7 +577,7 @@
               "majorPoints": {
                 "type": "ARRAY OF OBJECT",
                 "minCardinality": "Compulsory",
-                "description": "Array of major points to show for this project.",
+                "description": "List of major points to show for this project.",
                 "example": {
                   "0": {
                     "title": {
@@ -606,7 +606,7 @@
               "categories": {
                 "type": "ARRAY OF STRING",
                 "minCardinality": "Optional",
-                "description": "Array of categories to show for this project.",
+                "description": "List of categories to show for this project.",
                 "validation": {
                   "linebreaks": false,
                   "maxLength": 50
@@ -624,7 +624,7 @@
     "gallery": {
       "type": "ARRAY OF OBJECT",
       "minCardinality": "Optional",
-      "description": "Array of gallery items to show in gallery page.",
+      "description": "List of gallery items to show in gallery page.",
       "example": {
         "0": {
           "name": {
@@ -640,7 +640,7 @@
           "url": {
             "type": "IMAGE URL",
             "minCardinality": "Compulsory",
-            "description": "URL to image of gallery item.",
+            "description": "Image or Image Url of gallery item.",
             "example": "https://example.com/1.jpg"
           }
         }
@@ -664,7 +664,7 @@
         "contents": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Compulsory",
-          "description": "Array of all services sorted in an order to show in services page.",
+          "description": "List of all services sorted in an order to show in services page.",
           "example": {
             "0": {
               "title": {
@@ -680,7 +680,7 @@
               "icon": {
                 "type": "IMAGE URL",
                 "minCardinality": "Compulsory",
-                "description": "URL to icon to show for this service.",
+                "description": "Image or Image Url of icon to show for this service.",
                 "example": "https://example.com/web-dev-icon.png"
               },
               "link": {
@@ -705,7 +705,7 @@
         "perks": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Optional",
-          "description": "Array of perks sorted in an order to show in services page.",
+          "description": "List of perks sorted in an order to show in services page.",
           "example": {
             "0": {
               "title": {
@@ -721,7 +721,7 @@
               "icon": {
                 "type": "IMAGE URL",
                 "minCardinality": "Compulsory",
-                "description": "URL to icon to show for this perk.",
+                "description": "Image or Image Url of icon to show for this perk.",
                 "example": "https://example.com/web-dev-icon.png"
               }
             }
@@ -747,7 +747,7 @@
         "contents": {
           "type": "ARRAY OF OBJECT",
           "minCardinality": "Compulsory",
-          "description": "Array of all skills sorted in an order to show in skills page.",
+          "description": "List of all skills sorted in an order to show in skills page.",
           "example": {
             "0": {
               "title": {
