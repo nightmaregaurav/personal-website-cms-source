@@ -37,7 +37,7 @@ export function useConfigGetter() {
 export function useConfigValue(initial=undefined, onChange, name, isNumeric=false) {
     const [value, setValue] = useState(initial);
     useEffect(() => {
-        if(isNumeric){
+        if(isNumeric && value !== ""){
             const num_value = Number(value);
             if(!isNaN(num_value)){
                 onChange(name, num_value);

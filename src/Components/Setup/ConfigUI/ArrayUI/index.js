@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './index.scss'
-import {getValueCountFromName, parseCardinality} from "../../../../helpers/config_helper";
+import {getValueCountFromName, getValueFromName, parseCardinality} from "../../../../helpers/config_helper";
 import ReactTooltip from "react-tooltip";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import ConfigUI from "../index";
@@ -18,6 +18,10 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
     const isDisabled = () => disabledStatus || parent_disabledStatus;
     const addElement = () => setElementsCount(elementsCount + 1);
 
+    const resetValue = (count) => {
+        onChange(`${name}~${count.toString()}`, getValueFromName(name, undefined));
+    }
+
     const hasRemovableElements = () => {
         if(elementsCount === 0) return false;
         return !(cardinality.isCompulsory && elementsCount === 1);
@@ -25,17 +29,21 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
     };
     const removeElement = () => {
         if(hasRemovableElements()){
-            onChange(`${name}~${elementsCount.toString()}`, undefined, true);
+            resetValue(elementsCount);
             setElementsCount(elementsCount - 1);
         }
     }
 
-    const reduceElementsTo = useCallback((n) => {
-        for(let i = elementsCount; i > n; i--){
-            removeElement();
+    const reduceElementsTo = (n) => {
+        const diff = elementsCount - n;
+        for(let i = 0; i < diff; i++){
+            resetValue(elementsCount-i);
         }
-    }, [elementsCount]);
-    const resetArray = useCallback(() => {
+        setElementsCount(n);
+    };
+
+    const resetArray = () => {
+        console.log("resetting array");
         if(cardinality.isCompulsory && default_value_count === 0){
             if(elementsCount > 1) reduceElementsTo(1)
             else setElementsCount(1);
@@ -43,14 +51,14 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
             if(elementsCount > default_value_count) reduceElementsTo(default_value_count);
             else setElementsCount(default_value_count);
         }
-    }, [cardinality, default_value_count, elementsCount, reduceElementsTo, setElementsCount]);
+    };
 
     useEffect(() => {
         resetArray();
     }, [default_value_count]);
     useEffect(() => {
-        if(disabledStatus) resetArray();
-    }, [disabledStatus]);
+        if(isDisabled()) resetArray();
+    }, [disabledStatus, parent_disabledStatus]);
 
     function getContent(n) {
         const _info = {
