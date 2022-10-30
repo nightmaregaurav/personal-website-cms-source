@@ -19,7 +19,7 @@ const Projects = () => {
         let new_data = original_data.map((item, index) =>({
             id: "id_" + index,
             title: item.title,
-            image: Object.values(item.imagesUrl).length > 0 ? Object.values(item.imagesUrl[0]): null,
+            image: Object.values(item.imagesUrl).length > 0 ? Object.values(item.imagesUrl)[0]: null,
             categories: Object.values(item.categories),
             filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify(i)) : [],
         }));
@@ -37,7 +37,7 @@ const Projects = () => {
 
         setData(new_data);
         setFilters(filter_data);
-    }, [config]);
+    }, [null]);
 
     const update_filter = label => {
         setFilters(state =>
