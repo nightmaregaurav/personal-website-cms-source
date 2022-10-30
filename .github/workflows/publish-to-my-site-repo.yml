@@ -48,6 +48,7 @@ jobs:
       - run: rm destination_repo/LICENSE 2>/dev/null || true
       - run: cp -r client-data/* destination_repo
       - run: cp -r client-data/.gitignore destination_repo/.gitignore 2>/dev/null || true
+      - run: cp -r client-data/.from_nightmaregaurav_personal-website-cms destination_repo/.from_nightmaregaurav_personal-website-cms 2>/dev/null || true
       - run: cp -r target_repo/.git destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/.github destination_repo/ 2>/dev/null || true
       - run: cp -r target_repo/data destination_repo/ 2>/dev/null || true
