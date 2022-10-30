@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.scss'
 import {getValueCountFromName, getValueFromName, parseCardinality} from "../../../../helpers/config_helper";
 import ReactTooltip from "react-tooltip";
@@ -93,9 +93,9 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
                         {Array.from((Array(elementsCount)).keys()).map(n => getContent(n+1))}
                     </div>
                 </div>
-                <div className="array-panel-footer d-flex flex-row flex-wrap justify-content-center align-items-center mb-3">
-                    <span className={"array-action-buttons btn btn-sm btn-outline-success px-5 me-2"} onClick={addElement}>+</span>
-                    {hasRemovableElements() ? <span className={"array-action-buttons btn btn-sm btn-outline-danger px-5 ms-2"} onClick={removeElement}>-</span> : null}
+                <div className="array-panel-footer d-flex flex-row flex-wrap justify-content-center align-items-center">
+                    <span className={"array-action-buttons btn btn-sm btn-outline-success px-5 mx-2 mb-3"} onClick={addElement}>+</span>
+                    {hasRemovableElements() ? <span className={"array-action-buttons btn btn-sm btn-outline-danger px-5 mx-2 mb-3"} onClick={removeElement}>-</span> : null}
                 </div>
             </div>
         </div>
