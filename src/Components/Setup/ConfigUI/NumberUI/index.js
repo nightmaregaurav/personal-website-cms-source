@@ -25,6 +25,12 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus}) => {
 
     const validate = useCallback(() => {
         let valid = true;
+
+        if(isDisabled()){
+            setIsValid(true)
+            return;
+        }
+
         if(cardinality.isCompulsory && numberUiValue === ""){
             setIsValid(false);
             return;

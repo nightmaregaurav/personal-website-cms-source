@@ -26,6 +26,12 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus}) => {
 
     const validate = useCallback(() => {
         let valid = true;
+
+        if(isDisabled()){
+            setIsValid(true)
+            return;
+        }
+        
         if(cardinality.isCompulsory && urlUiValue === ""){
             setIsValid(false);
             return;

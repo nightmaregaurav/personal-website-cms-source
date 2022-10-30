@@ -43,7 +43,6 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
     };
 
     const resetArray = () => {
-        console.log("resetting array");
         if(cardinality.isCompulsory && default_value_count === 0){
             if(elementsCount > 1) reduceElementsTo(1)
             else setElementsCount(1);

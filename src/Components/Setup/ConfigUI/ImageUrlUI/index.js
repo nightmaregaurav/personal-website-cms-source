@@ -29,6 +29,12 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imag
 
     const validate = useCallback(() => {
         let valid = true;
+
+        if(isDisabled()){
+            setIsValid(true)
+            return;
+        }
+
         if(cardinality.isCompulsory && imageUrlUiValue === ""){
             setIsValid(false);
             return;
