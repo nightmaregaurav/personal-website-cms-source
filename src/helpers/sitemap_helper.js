@@ -17,7 +17,7 @@ const getRoutes = (config) => {
         if(get(config, "experience", false)) routes.push("experience");
         if(get(config, "projects", false)){
             routes.push("projects");
-            const projects_list = get(get(config, "projects", {}), "contents", []);
+            const projects_list = Object.values(get(get(config, "projects", {}), "contents", {}));
             projects_list.map((_, index) => routes.push("projects/id_" + index));
         }
         if(get(config, "gallery", []).length > 0) routes.push("gallery");
