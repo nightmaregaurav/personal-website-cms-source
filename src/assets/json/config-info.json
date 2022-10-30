@@ -551,7 +551,7 @@
                       "type": "URL",
                       "minCardinality": "Compulsory",
                       "description": "URL to external link.",
-                      "example": "https://github.com/nightmaregaurav/personal-website-client"
+                      "example": "https://github.com/nightmaregaurav/personal-website-cms"
                     }
                   }
                 }

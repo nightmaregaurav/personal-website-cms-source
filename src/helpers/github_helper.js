@@ -57,7 +57,7 @@ export const validateGithubRepository = async (apiKey, repo) => {
     const validation_file = await octokit.repos.getContent({
         owner: username,
         repo,
-        path: ".from_nightmaregaurav_personal-website-client",
+        path: ".from_nightmaregaurav_personal-website-cms",
     }).catch(_ => {});
     const file_sha = validation_file?.data?.sha ?? null;
 
