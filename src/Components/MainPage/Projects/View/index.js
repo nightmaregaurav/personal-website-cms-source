@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './index.scss';
 import {useParams} from "react-router-dom";
 import FullPageOverlay from "../../../FullPageOverlay";
-import {useConfig} from "../../../../helpers/config_helper";
+import {getConfig} from "../../../../helpers/config_helper";
 import {get} from "../../../../helpers/object_helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
@@ -11,25 +11,26 @@ import "swiper/scss/pagination";
 
 const View = () => {
     let { id } = useParams();
-    const config = useConfig();
+    const config = getConfig();
     SwiperCore.use([Pagination]);
     const [target, setTarget] = useState({});
 
     useEffect(() => {
         // noinspection DuplicatedCode
-        let original_data = get(get(config, "projects", {}), "contents", []);
+        let original_data = Object.values(get(get(config, "projects", {}), "contents", {}));
         // noinspection JSUnresolvedVariable
         let data = original_data.map(item => ({
             title: item.title,
-            images: item.imagesUrl,
+            images: Object.values(item.imagesUrl),
             description: item.description,
-            majorPoints: item.majorPoints,
-            links: item.extLinks,
+            majorPoints: Object.values(item.majorPoints),
+            links: Object.values(item.extLinks),
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
-    } , [config, id]);
+    } , [id]);
 
+    // noinspection JSValidateTypes
     return (
         <FullPageOverlay content={<>
             {target ?<>

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import './index.scss';
 import {Link} from "react-router-dom";
 import Footer from "../../Footer";
-import {useConfig} from '../../../helpers/config_helper'
+import {getConfig} from '../../../helpers/config_helper'
 import {get} from "../../../helpers/object_helper";
 
 const toggleSideBar = () => {
@@ -34,7 +34,7 @@ const activateSidebar = () => {
 };
 
 const Sidebar = () => {
-    const config = useConfig();
+    const config = getConfig();
 
     useEffect(() => {
         activateSidebarOnly();
@@ -49,7 +49,7 @@ const Sidebar = () => {
                         {get(config, "profile-pic", "") !== "" ? <img src={get(config, "profile-pic", {})} alt={get(config, "profile-alt", "")} className={"img-fluid rounded-circle"} /> : null}
                         <h1 className={"text-light"}><Link to={"/"}>{get(config, "full-name", "")}</Link></h1>
                         <div className={"social-links mt-3 text-center"}>
-                            {get(config, "social-urls", []).map((value, index) => <a key={index} target={"_blank"} rel="noreferrer" href={value.url} className={value.name}><i className={"bx bxl-" + value.name}/></a>)}
+                            {Object.values(get(config, "social-urls", {})).map((value, index) => <a key={index} target={"_blank"} rel="noreferrer" href={value.url} className={value.name}><i className={"bx bxl-" + value.name}/></a>)}
                         </div>
                     </div>
                     <nav id="navbar" className={"nav-menu navbar"}>
@@ -59,7 +59,7 @@ const Sidebar = () => {
                             {get(config, "education", false) ? <span onClick={activateSidebar}><Link to={"/education"} className={"nav-link auto-activate"}><i className={"bx bx-abacus"}></i> <span>Education</span></Link></span> : null}
                             {get(config, "experience", false) ? <span onClick={activateSidebar}><Link to={"/experience"} className={"nav-link auto-activate"}><i className={"bx bx-trophy"}></i> <span>Experience</span></Link></span> : null}
                             {get(config, "projects", false) ? <span onClick={activateSidebar}><Link to={"/projects"} className={"nav-link auto-activate"}><i className={"bx bx-book"}></i> <span>Projects</span></Link></span> : null}
-                            {get(config, "gallery", []).length > 0 ? <span onClick={activateSidebar}><Link to={"/gallery"} className={"nav-link auto-activate"}><i className={"bx bx-photo-album"}></i> <span>Gallery</span></Link></span> : null}
+                            {Object.values(get(config, "gallery", {})).length > 0 ? <span onClick={activateSidebar}><Link to={"/gallery"} className={"nav-link auto-activate"}><i className={"bx bx-photo-album"}></i> <span>Gallery</span></Link></span> : null}
                             {get(config, "services", false) ? <span onClick={activateSidebar}><Link to={"/services"} className={"nav-link auto-activate"}><i className={"bx bx-server"}></i> <span>Services</span></Link></span> : null}
                             {get(config, "skills", false) ? <span onClick={activateSidebar}><Link to={"/skills"} className={"nav-link auto-activate"}><i className={"bx bxs-component"}></i> <span>Skills</span></Link></span> : null}
                             <span onClick={activateSidebar}><Link to={"/contact"} className={"nav-link auto-activate"}><i className={"bx bx-envelope"}></i> <span>Contact</span></Link></span>

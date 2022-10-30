@@ -1,144 +1,775 @@
 {
-  "favicon": ["IMAGE URL", "Compulsory", "URL to image", "https://example.com/favicon.ico"],
-  "apple-touch-icon": ["IMAGE URL", "Compulsory", "URL to image", "https://example.com/apple-touch-icon.png"],
-  "meta": ["ARRAY OF OBJECT", "Optional", "Array of meta tags", [
-    {
-      "name": ["STRING", "Compulsory", "Name of meta tag", "description"],
-      "content": ["STRING", "Compulsory", "Content of meta tag", "This is a description"]
-    }
-  ]],
-  "main-title": ["STRING", "Compulsory", "title of application", "Gaurav Nyaupane"],
-  "full-name": ["STRING", "Compulsory", "Full name of the site owner", "Gaurav Nyaupane"],
-  "profile-pic" : ["IMAGE URL", "Compulsory", "URL to image to show in sidebar", "https://example.com/profile-pic.jpg"],
-  "profile-alt" : ["STRING", "Optional", "Alt text for profile pic", "Profile picture of Gaurav Nyaupane"],
-  "social-urls": ["ARRAY OF OBJECT", "Optional", "Array of social media URLs", [
-    {
-      "name": ["STRING", "Compulsory", "Name of social media in lowercase dash(-) separated if name has space", "facebook"],
-      "url": ["URL", "Compulsory", "URL to social media profile", "https://www.facebook.com/nightmaregaurav"]
-    }
-  ]],
-  "resume": ["URL", "Optional", "URL to resume", "https://example.com/resume.pdf"],
-  "intro-pic": ["IMAGE URL", "Compulsory", "URL to image to show in intro page", "https://example.com/intro-pic.jpg"],
-  "intro-words": ["ARRAY OF STRING", "At Least One", "Words to tell what you are in intro page.", [
-    "Web developer",
-    "Freelancer"
-  ]],
-  "about": ["OBJECT", "Optional", "Data used in about section", {
-    "pic": ["IMAGE URL", "Compulsory", "URL to image to show in about section", "https://example.com/about-pic.jpg"],
-    "image-alt": ["STRING", "Optional", "Alt text for about image", "Gaurav Nyaupane's photo"],
-    "intro": ["STRING", "Compulsory", "Intro text to show in about section", "I am a fullstack developer and freelancer. I have been working in software development for the last 5 years. I have worked on various projects and have spearheaded various projects. I am always looking for new challenges to learn new technologies."],
-    "info": ["ARRAY OF OBJECT", "Optional", "Array of info to show in about section", [
-      {
-        "title": ["STRING", "Compulsory", "Title of info", "Email"],
-        "text": ["STRING", "Compulsory", "Content of info", "abc@mail.com"]
-      }
-    ]],
-    "testimonials-intro": ["STRING", "Optional", "Intro text to show in testimonials section", "Here's what my clients say about me."],
-    "testimonials": ["ARRAY OF OBJECT", "Optional", "Array of testimonials to show in testimonials section", [
-      {
-        "name": ["STRING", "Optional", "Name of client", "John Doe"],
-        "pic": ["IMAGE URL", "Optional", "URL to image of client", "https://example.com/testimonial-pic.jpg"],
-        "company": ["STRING", "Optional", "Company of client", "XYZ Company"],
-        "designation": ["STRING", "Optional", "Designation of client", "Web Developer"],
-        "on": ["STRING", "Optional", "Date of testimonial", "01/01/2019"],
-        "said": ["STRING", "Optional", "Testimonial of client", "I have worked with Gaurav for the last 5 years. He is a great developer and has spearheaded many projects."],
-        "highlight": ["STRING", "Optional", "Highlight testimonial of client", "I had never met such a nice friend and a great mentor in a same person before i met him."]
-      }
-    ]]
-  }],
-  "education": ["OBJECT", "Optional", "Data used in education section", {
-    "intro": ["STRING", "Optional", "Intro text to show in education section", "I started learning programming on my own. I started working on various projects and spearheaded various projects. Later, I joined BCA. Here's info about my education and academic achievements."],
-    "timeline": ["ARRAY OF OBJECT", "At Least One", "Array of all education achievements sorted in an order.", [
-      {
-        "title": ["STRING", "Compulsory", "Title of education achievement", "Bachelor of Computer Application"],
-        "institute": ["STRING", "Optional", "Name of institute", "Mechi Multiple Campus"],
-        "instituteUrl": ["URL", "Optional", "URL to institute", "https://mechicampus.edu.np/"],
-        "university": ["STRING", "Optional", "Name of university", "Tribhuvan University"],
-        "universityUrl": ["URL", "Optional", "URL to university", "https://www.tribhuvan-university.edu.np/"],
-        "from": ["STRING", "Optional", "Date of start of education", "2017"],
-        "to": ["STRING", "Optional", "Date of end of education", "2022"],
-        "description": ["STRING", "Optional", "A paragraph or two about this milestone.", "BCA's core motive is production of highly qualified professionals who have both theoretical and practical knowledge in computer systems and its application."],
-        "achievements": ["ARRAY OF string", "Optional", "Array of achievements", [
-          "Been semester topper in 5 semesters."
-        ]]
-      }
-    ]]
-  }],
-  "experience": ["OBJECT", "Optional", "Data used in experience section.", {
-    "intro": ["STRING", "Optional", "Intro text to show in experience section", "I have worked on various projects and spearheaded various projects. Here's info about my work experience."],
-    "timeline": ["ARRAY OF OBJECT", "At Least One", "Array of all work experience sorted in an order.",[
-      {
-        "title": ["STRING", "Compulsory", "Title of work experience", "Dot Net Developer"],
-        "organization": ["STRING", "Optional", "Name of organization", "Crystal Solution"],
-        "organizationUrl": ["URL", "Optional", "URL to organization", "https://crystalsolution.com.np/"],
-        "from": ["STRING", "Optional", "Date of start of work experience", "Jan 2022"],
-        "to": ["STRING", "Optional", "Date of end of work experience", "Jul 2022"],
-        "description": ["STRING", "Optional", "A paragraph or two about this milestone.", "Crystal solution is a software company that provides web development services to various clients. Their flagship Product is Crystal ERP which is a complete ERP system for small and medium sized businesses."],
-        "achievements": ["ARRAY OF STRING", "Optional", "Array of achievements", [
-          "Unit Test, Integration Test"
-        ]]
-      }
-    ]]
-  }],
-  "projects": ["OBJECT", "Optional", "Data used in projects section.", {
-    "intro": ["STRING", "Optional", "Intro text to show in projects section", "Open source projects I initiated or created are available on my GitHub profile. Some of my projects which are not listed in my GitHub public profile are listed below."],
-    "contents": ["ARRAY OF OBJECT", "At Least One", "Array of all of your projects sorted in an order.", [
-      {
-        "title": ["STRING", "Compulsory", "Title of project", "ERP"],
-        "extLinks": ["ARRAY OF OBJECT", "Optional", "Array of external links to show for this project", [
-          {
-            "title": ["STRING", "Compulsory", "Title of external link, Title cased", "Website"],
-            "url": ["URL", "Compulsory", "URL to external link", "https://example.com/erp"]
+  "type": "OBJECT",
+  "minCardinality": "Compulsory",
+  "description": "Configuration data needed to run the website.",
+  "example": {
+    "setup-shortcut-key": {
+      "type": "STRING",
+      "minCardinality": "Compulsory",
+      "description": "The key to press with ctrl + alt + shift to open the setup page.",
+      "validation": {
+        "pattern": "^[a-zA-Z0-9]{1}$",
+        "linebreaks": false,
+        "maxLength": 1
+      },
+      "example": "s"
+    },
+    "favicon": {
+      "type": "IMAGE URL",
+      "minCardinality": "Compulsory",
+      "description": "URL to favicon image.",
+      "example": "https://example.com/favicon.ico"
+    },
+    "apple-touch-icon": {
+      "type": "IMAGE URL",
+      "minCardinality": "Compulsory",
+      "description": "URL to apple-touch-icon image.",
+      "example": "https://example.com/apple-touch-icon.png"
+    },
+    "meta": {
+      "type": "ARRAY OF OBJECT",
+      "minCardinality": "Optional",
+      "description": "Array of meta tags.",
+      "example": {
+        "0": {
+          "name": {
+            "type": "STRING",
+            "minCardinality": "Compulsory",
+            "description": "Name of meta tag.",
+            "validation": {
+              "linebreaks": false,
+              "maxLength": 50
+            },
+            "example": "description"
+          },
+          "content": {
+            "type": "STRING",
+            "minCardinality": "Compulsory",
+            "description": "Content of meta tag.",
+            "validation": {
+              "linebreaks": true,
+              "maxLength": 100
+            },
+            "example": "This is a description."
           }
-        ]],
-        "imagesUrl": ["ARRAY OF IMAGE URL", "At Least One", "Array of image URLs to show for this project", [
-          "https://example.com/erp-1.jpg",
-          "https://example.com/erp-2.jpg"
-        ]],
-        "description": ["STRING", "Optional", "A paragraph or two about this project.", "ERP is a complete ERP system for small and medium sized businesses. It has various modules like HR, Inventory, Sales, Purchase, etc."],
-        "majorPoints": ["ARRAY OF OBJECT", "At Least One", "Array of major points to show for this project", [
-          {
-            "title": ["STRING", "Compulsory", "Title of major point", "Technology"],
-            "info": ["STRING", "Optional", "A short text about this major point.", "ASP.NET"]
+        }
+      }
+    },
+    "main-title": {
+      "type": "STRING",
+      "minCardinality": "Compulsory",
+      "description": "Main title of the website.",
+      "validation": {
+        "linebreaks": false,
+        "maxLength": 75
+      },
+      "example": "Gaurav Nyaupane"
+    },
+    "full-name": {
+      "type": "STRING",
+      "minCardinality": "Compulsory",
+      "description": "Full name of the website owner.",
+      "validation": {
+        "linebreaks": false,
+        "maxLength": 50
+      },
+      "example": "Gaurav Nyaupane"
+    },
+    "profile-pic": {
+      "type": "IMAGE URL",
+      "minCardinality": "Compulsory",
+      "description": "URL to profile picture to show in sidebar.",
+      "example": "https://example.com/profile-pic.jpg"
+    },
+    "profile-alt": {
+      "type": "STRING",
+      "minCardinality": "Optional",
+      "description": "Alt text for profile picture.",
+      "validation": {
+        "linebreaks": false,
+        "maxLength": 100
+      },
+      "example": "Profile picture of Gaurav Nyaupane"
+    },
+    "social-urls": {
+      "type": "ARRAY OF OBJECT",
+      "minCardinality": "Optional",
+      "description": "Array of social media URLs.",
+      "example": {
+        "0": {
+          "name": {
+            "type": "STRING",
+            "minCardinality": "Compulsory",
+            "description": "Name of social media in lowercase dash(-) separated if name has space.",
+            "validation": {
+              "pattern": "^[a-z0-9-]+$",
+              "linebreaks": false,
+              "maxLength": 25
+            },
+            "example": "facebook"
+          },
+          "url": {
+            "type": "URL",
+            "minCardinality": "Compulsory",
+            "description": "URL to social media profile.",
+            "example": "https://www.facebook.com/nightmaregaurav"
           }
-        ]],
-        "categories": ["ARRAY OF STRING", "Optional", "Array of categories to show for this project", [
-          "Web Development"
-        ]]
+        }
       }
-    ]]
-  }],
-  "gallery": ["ARRAY OF OBJECT", "Optional", "Array of gallery items to show in gallery section", [
-    {
-      "name": ["STRING", "Compulsory", "Name of gallery item", "My Pic"],
-      "url": ["IMAGE URL", "Compulsory", "URL to image of gallery item", "https://example.com/my-pic.jpg"]
+    },
+    "resume": {
+      "type": "URL",
+      "minCardinality": "Optional",
+      "description": "URL to resume.",
+      "example": "https://example.com/resume.pdf"
+    },
+    "messageAPI": {
+      "type": "URL",
+      "minCardinality": "Optional",
+      "description": "URL to message API endpoint that accept POST request with JSON body containing 'name', 'email', 'message', 'ip' as keys.",
+      "example": "https://example.com/message"
+    },
+    "intro": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed for intro page.",
+      "example": {
+        "pic": {
+          "type": "IMAGE URL",
+          "minCardinality": "Compulsory",
+          "description": "URL to profile picture to show in intro page.",
+          "example": "https://example.com/intro-pic.jpg"
+        },
+        "words": {
+          "type": "ARRAY OF STRING",
+          "minCardinality":"Compulsory",
+          "description": "Words to tell what you are in intro page.",
+          "example": {
+            "0": "Web Developer",
+            "1": "Freelancer"
+          }
+        }
+      }
+    },
+    "about": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed for about page.",
+      "example": {
+        "pic": {
+          "type": "IMAGE URL",
+          "minCardinality": "Compulsory",
+          "description": "URL to profile picture to show in about page.",
+          "example": "https://example.com/about-pic.jpg"
+        },
+        "image-alt": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Alt text for profile picture in about page.",
+          "validation": {
+            "linebreaks": false,
+            "maxLength": 100
+          },
+          "example": "Picture of Gaurav Nyaupane"
+        },
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Compulsory",
+          "description": "Intro text to show in about page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "I am a fullstack developer and freelancer. I have been working in software development for the last 5 years. I have worked on various projects and have spearheaded various projects. I am always looking for new challenges to learn new technologies."
+        },
+        "info": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Optional",
+          "description": "Array of info to show in about page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of info.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 50
+                },
+                "example": "Email"
+              },
+              "text": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Content of info.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 100
+                },
+                "example": "abc@mail.com"
+              }
+            }
+          }
+        },
+        "testimonials-intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in testimonials section of about page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "Here are some testimonials from my clients."
+        },
+        "testimonials": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Optional",
+          "description": "Array of testimonials to show in about page.",
+          "example": {
+            "0": {
+              "name": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Name of client.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 50
+                },
+                "example": "John Doe"
+              },
+              "pic": {
+                "type": "IMAGE URL",
+                "minCardinality": "Optional",
+                "description": "URL to picture of client.",
+                "example": "https://example.com/john-doe.jpg"
+              },
+              "company": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Company of client.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "ABC Company"
+              },
+              "designation": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Designation of client.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "CEO"
+              },
+              "on": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Date of testimonial.",
+                "validation": {
+                  "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+                  "linebreaks": false,
+                  "maxLength": 10
+                },
+                "example": "2020-01-01"
+              },
+              "said": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Testimonial of client.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 250
+                },
+                "example": "Gaurav is a great developer. He is very professional and always delivers on time. I have worked with Gaurav for the last 5 years. He is a great developer and has spearheaded many projects."
+              },
+              "highlight": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Highlight testimonial of client.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "I had never met such a nice friend and a great mentor in a same person before i met him."
+              }
+            }
+          }
+        }
+      }
+    },
+    "education": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed for education page.",
+      "example": {
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in education page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "I started learning programming on my own. I started working on various projects and spearheaded various projects. Later, I joined BCA. Here's info about my education and academic achievements."
+        },
+        "timeline": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Compulsory",
+          "description": "Array of achievements sorted in an order to show in education page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of education achievement.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Bachelors in Computer Application"
+              },
+              "institute": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Name of institute.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Mechi Multiple Campus"
+              },
+              "instituteUrl": {
+                "type": "URL",
+                "minCardinality": "Optional",
+                "description": "URL to institute website.",
+                "example": "https://mechicampus.edu.np/"
+              },
+              "university": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Name of university.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Tribhuvan University"
+              },
+              "universityUrl": {
+                "type": "URL",
+                "minCardinality": "Optional",
+                "description": "URL to university website.",
+                "example": "https://www.tribhuvan-university.edu.np/"
+              },
+              "from": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Start date of education.",
+                "validation": {
+                  "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
+                  "linebreaks": false,
+                  "maxLength": 8
+                },
+                "example": "Aug 2017"
+              },
+              "to": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "End date of education.",
+                "validation": {
+                  "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
+                  "linebreaks": false,
+                  "maxLength": 8
+                },
+                "example": "Jan 2022"
+              },
+              "description": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "A paragraph or two about this milestone.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 250
+                },
+                "example": "Core motive of BCA is production of highly qualified professionals who have both theoretical and practical knowledge in computer systems and its application."
+              },
+              "achievements": {
+                "type": "ARRAY OF STRING",
+                "minCardinality": "Optional",
+                "description": "Array of achievements.",
+                "example": {
+                  "0": "Been semester topper in 5 semesters."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "experience": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed for experience page.",
+      "example": {
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in experience page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "I have worked on various projects and spearheaded various projects. Here's info about my work experience."
+        },
+        "timeline": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Compulsory",
+          "description": "Array of all work experience sorted in an order to show in experience page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of work experience.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Dot Net Developer"
+              },
+              "organization": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Name of organization.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Crystal Solution"
+              },
+              "organizationUrl": {
+                "type": "URL",
+                "minCardinality": "Optional",
+                "description": "URL to organization website.",
+                "example": "https://crystalsolution.com.np/"
+              },
+              "from": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "Start date of work.",
+                "validation": {
+                  "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
+                  "linebreaks": false,
+                  "maxLength": 8
+                },
+                "example": "Jan 2022"
+              },
+              "to": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "End date of work.",
+                "validation": {
+                  "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
+                  "linebreaks": false,
+                  "maxLength": 8
+                },
+                "example": "Jul 2022"
+              },
+              "description": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "A paragraph or two about this milestone.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 250
+                },
+                "example": "Crystal solution is a software company that provides web development services to various clients. Their flagship Product is Crystal ERP which is a complete ERP system for small and medium sized businesses."
+              },
+              "achievements": {
+                "type": "ARRAY OF STRING",
+                "minCardinality": "Optional",
+                "description": "Array of achievements.",
+                "example": {
+                  "0": "Unit Test, Integration Test"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "projects": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed for projects page.",
+      "example": {
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in projects page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "Open source projects I initiated or created are available on my GitHub profile. Some of my projects which are not listed in my GitHub public profile are listed below."
+        },
+        "contents": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Compulsory",
+          "description": "Array of all projects sorted in an order to show in projects page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of project.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 100
+                },
+                "example": "Personal Website"
+              },
+              "extLinks": {
+                "type": "ARRAY OF OBJECT",
+                "minCardinality": "Optional",
+                "description": "Array of external links to show for this project.",
+                "example": {
+                  "0": {
+                    "title": {
+                      "type": "STRING",
+                      "minCardinality": "Compulsory",
+                      "description": "Title(Title Cased) of external link.",
+                      "validation": {
+                        "linebreaks": false,
+                        "pattern": "^[A-Z]{1}[\\w ]+$",
+                        "maxLength": 100
+                      },
+                      "example": "Website"
+                    },
+                    "url": {
+                      "type": "URL",
+                      "minCardinality": "Compulsory",
+                      "description": "URL to external link.",
+                      "example": "https://github.com/nightmaregaurav/personal-website-cms"
+                    }
+                  }
+                }
+              },
+              "imagesUrl": {
+                "type": "ARRAY OF IMAGE URL",
+                "minCardinality": "Compulsory",
+                "description": "Array of image URLs to show for this project.",
+                "example": {
+                  "0": "https://example.com/1.jpg"
+                }
+              },
+              "description": {
+                "type": "STRING",
+                "minCardinality": "Optional",
+                "description": "A paragraph or two about this project.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 250
+                },
+                "example": "This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of)."
+              },
+              "majorPoints": {
+                "type": "ARRAY OF OBJECT",
+                "minCardinality": "Compulsory",
+                "description": "Array of major points to show for this project.",
+                "example": {
+                  "0": {
+                    "title": {
+                      "type": "STRING",
+                      "minCardinality": "Compulsory",
+                      "description": "Title of major point.",
+                      "validation": {
+                        "linebreaks": false,
+                        "maxLength": 50
+                      },
+                      "example": "Technology"
+                    },
+                    "info": {
+                      "type": "STRING",
+                      "minCardinality": "Optional",
+                      "description": "A short text about this major point.",
+                      "validation": {
+                        "linebreaks": false,
+                        "maxLength": 100
+                      },
+                      "example": "Minified React"
+                    }
+                  }
+                }
+              },
+              "categories": {
+                "type": "ARRAY OF STRING",
+                "minCardinality": "Optional",
+                "description": "Array of categories to show for this project.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 50
+                },
+                "example": {
+                  "0": "React",
+                  "1": "JavaScript"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gallery": {
+      "type": "ARRAY OF OBJECT",
+      "minCardinality": "Optional",
+      "description": "Array of gallery items to show in gallery page.",
+      "example": {
+        "0": {
+          "name": {
+            "type": "STRING",
+            "minCardinality": "Compulsory",
+            "description": "Name of gallery item.",
+            "validation": {
+              "linebreaks": false,
+              "maxLength": 100
+            },
+            "example": "My Dog"
+          },
+          "url": {
+            "type": "IMAGE URL",
+            "minCardinality": "Compulsory",
+            "description": "URL to image of gallery item.",
+            "example": "https://example.com/1.jpg"
+          }
+        }
+      }
+    },
+    "services": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed in services page.",
+      "example": {
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in services page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "From web design to web and software development I provide wide range of services. Here's info about my services."
+        },
+        "contents": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Compulsory",
+          "description": "Array of all services sorted in an order to show in services page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of service.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 50
+                },
+                "example": "Web Development"
+              },
+              "icon": {
+                "type": "IMAGE URL",
+                "minCardinality": "Compulsory",
+                "description": "URL to icon to show for this service.",
+                "example": "https://example.com/web-dev-icon.png"
+              },
+              "link": {
+                "type": "URL",
+                "minCardinality": "Optional",
+                "description": "URL to external link to service info for this service if any.",
+                "example": "https://example.com/web-dev"
+              },
+              "description": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "A short text explaining about this service.",
+                "validation": {
+                  "linebreaks": true,
+                  "maxLength": 100
+                },
+                "example": "I have worked on and spearheaded various web development projects."
+              }
+            }
+          }
+        },
+        "perks": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Optional",
+          "description": "Array of perks sorted in an order to show in services page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of perk.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 50
+                },
+                "example": "Free IT Advice"
+              },
+              "icon": {
+                "type": "IMAGE URL",
+                "minCardinality": "Compulsory",
+                "description": "URL to icon to show for this perk.",
+                "example": "https://example.com/web-dev-icon.png"
+              }
+            }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "OBJECT",
+      "minCardinality": "Optional",
+      "description": "Data needed in skills page.",
+      "example": {
+        "intro": {
+          "type": "STRING",
+          "minCardinality": "Optional",
+          "description": "Intro text to show in skills page.",
+          "validation": {
+            "linebreaks": true,
+            "maxLength": 250
+          },
+          "example": "Below are listed my acquired skills. Note that the numbers are approximate."
+        },
+        "contents": {
+          "type": "ARRAY OF OBJECT",
+          "minCardinality": "Compulsory",
+          "description": "Array of all skills sorted in an order to show in skills page.",
+          "example": {
+            "0": {
+              "title": {
+                "type": "STRING",
+                "minCardinality": "Compulsory",
+                "description": "Title of skill.",
+                "validation": {
+                  "linebreaks": false,
+                  "maxLength": 25
+                },
+                "example": "HTML"
+              },
+              "percentage": {
+                "type": "NUMBER",
+                "minCardinality": "Compulsory",
+                "description": "Percentage of skill.",
+                "example": 90
+              }
+            }
+          }
+        }
+      }
     }
-  ]],
-  "services": ["OBJECT", "Optional", "Data used in services section.", {
-    "intro": ["STRING", "Optional", "Intro text to show in services section", "From web design to web and software development I provide wide range of services. Here's info about my services."],
-    "contents": ["ARRAY OF OBJECT", "At Least One", "Array of all services sorted in an order.", [
-      {
-        "title": ["STRING", "Compulsory", "Title of service", "Web Development"],
-        "icon": ["IMAGE URL", "Compulsory", "URL to icon of service", "https://example.com/web-dev-icon.png"],
-        "link": ["URL", "Optional", "URL to service info if any", "https://example.com/web-dev"],
-        "description": ["STRING", "Compulsory", "A short text explaining about this service.", "I have worked on and spearheaded various web development projects."]
-      }
-    ]],
-    "perks": ["ARRAY OF OBJECT", "Optional", "Array of perks to show in services section.", [
-      {
-        "title": ["STRING", "Compulsory", "Title of perk", "Free Consultation"],
-        "icon": ["IMAGE URL", "Compulsory", "URL to icon of perk", "https://example.com/free-consultation-icon.png"]
-      }
-    ]]
-  }],
-  "skills": ["OBJECT", "Optional", "Data used in skills section.", {
-    "intro": ["STRING", "Optional", "Intro text to show in skills section", "Below are listed my acquired skills. Note that the numbers are approximate."],
-    "contents": ["ARRAY OF OBJECT", "At Least One", "Array of all skills sorted in an order.", [
-      {
-        "title": ["STRING", "Compulsory", "Title of skill", "HTML"],
-        "percentage": ["NUMBER", "Compulsory", "Percentage of skill", 90]
-      }
-    ]]
-  }],
-  "messageAPI": ["URL", "Optional", "URL to message API endpoint that accept POST request with JSON body containing 'name', 'email', 'message', 'ip' keys", "https://example.com/message-api"]
+  }
 }

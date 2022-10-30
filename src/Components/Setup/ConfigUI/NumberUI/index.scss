@@ -1,0 +1,60 @@
+.input-container{
+  position: relative;
+}
+.number-ui-input{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  height: 38px;
+}
+.placeholder-elements{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: black;
+  pointer-events: none;
+  font-size: 16px;
+  transform: translate(0);
+  transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+}
+.placeholder-text{
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: transparent;
+}
+.placeholder-buttons{
+  white-space: nowrap;
+  pointer-events: all;
+  background-color: transparent;
+}
+.placeholder-info{
+  white-space: nowrap;
+  pointer-events: all;
+  background-color: transparent;
+}
+.number-ui-input:focus + .placeholder-elements,
+.number-ui-input:not(.number-ui-input[data-value=""]) + .placeholder-elements{
+  color: #337ab7;
+  transform: translate(0, -20px);
+}
+.number-ui-input:focus + .placeholder-elements > .placeholder-text,
+.number-ui-input:focus + .placeholder-elements > .placeholder-buttons,
+.number-ui-input:focus + .placeholder-elements > .placeholder-info,
+.number-ui-input:not(.number-ui-input[data-value=""]) + .placeholder-elements > .placeholder-text,
+.number-ui-input:not(.number-ui-input[data-value=""]) + .placeholder-elements > .placeholder-buttons,
+.number-ui-input:not(.number-ui-input[data-value=""]) + .placeholder-elements > .placeholder-info{
+  background-color: white;
+}

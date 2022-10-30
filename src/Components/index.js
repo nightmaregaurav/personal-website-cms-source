@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
-
-import {useConfig, useConfigGetter} from '../helpers/config_helper'
+import {getConfig, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ErrorPage from "./ErrorPage";
 import MainPage from "./MainPage";
 import Intro from "./MainPage/Intro";
@@ -20,11 +21,14 @@ import Skills from "./MainPage/Skills";
 import Contact from "./MainPage/Contact";
 import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
-import SitemapGen from "./SitemapGen";
+import Setup from "./Setup";
+import {addDomKeyEvent} from "../helpers/keyboard_helper";
 
 const Components = () => {
     useConfigGetter();
-    const config = useConfig();
+    const config = getConfig();
+    const navigate = useNavigate();
+    const setupKey = get(config, "setup-shortcut-key", "s");
 
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
     setTimeout(() => setPreLoaderLoading(false), 1000);
@@ -34,6 +38,11 @@ const Components = () => {
         AOS.init();
         // noinspection JSUnresolvedFunction
         AOS.refresh();
+        addDomKeyEvent(setupKey, () => {
+            if(!window.location.pathname.endsWith('/setup')) {
+                navigate('/setup');
+            }
+        });
     }, []);
 
     return (
@@ -44,12 +53,12 @@ const Components = () => {
 
                 <title>{get(config, "main-title", "")}</title>
 
-                {get(config, "meta", []).map((meta, i) => <meta
+                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
                     name={meta.name}
                     content={meta.content}
                     key={i}
                 />)}
-                {get(config, "meta", []).map((meta, i) => <meta
+                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
                     property={meta.name}
                     content={meta.content}
                     key={i}
@@ -69,20 +78,21 @@ const Components = () => {
                         {get(config, "projects", false) ? <Route path="projects" element={<Projects/>}>
                             <Route path=":id" element={<ProjectsView/>} />
                         </Route> : null}
-                        {get(config, "gallery", []).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
+                        {Object.values(get(config, "gallery", {})).length > 0 ? <Route path="gallery" element={<Gallery/>} /> : null}
                         {get(config, "services", false) ? <Route path="services" element= {<Services />} /> : null}
                         {get(config, "skills", false) ? <Route path="skills" element= {<Skills />} /> : null}
                         <Route path="contact" element= {<Contact />} />
                     </Route>
-                    {/* Sitemap Generator */}
-                    <Route path="get-sitemap" element={<SitemapGen isGhPage={false} />} />
-                    <Route path="gh-sitemap" element={<SitemapGen isGhPage={true} />} />
+
+                    {/* Setup */}
+                    <Route path="setup" element={<Setup />} />
 
                     {/* 404 Error */}
                     <Route path="*" element={<>
                         <ErrorPage title={"Error"} err_code={"404"} err_msg={"Not Found"}/>
                     </>}/>
                 </Routes>
+                <ToastContainer />
             </div>
         </HelmetProvider>
     );

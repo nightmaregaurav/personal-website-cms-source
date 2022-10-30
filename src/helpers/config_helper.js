@@ -1,4 +1,5 @@
-import {useMemo} from "react";
+import {useEffect, useMemo, useState} from "react";
+import {lstrip, strip} from "./text_heper";
 
 export function useConfigGetter() {
     useMemo(() => {
@@ -33,6 +34,70 @@ export function useConfigGetter() {
     }, []);
 }
 
-export function useConfig() {
+export function useConfigValue(initial=undefined, onChange, name, isNumeric=false) {
+    const [value, setValue] = useState(initial);
+    useEffect(() => {
+        if(isNumeric && value !== ""){
+            const num_value = Number(value);
+            if(!isNaN(num_value)){
+                onChange(name, num_value);
+            } else {
+            }
+        } else {
+            onChange(name, value);
+        }
+    }, [value]);
+    function setter(v){
+        if(typeof v === "string"){
+            v = lstrip(v, " ")
+        }
+        setValue(v);
+    }
+    return [value, setter]
+}
+
+export function getValueFromName (name, initial=undefined) {
+    name = lstrip(name, 'Config~');
+    name = strip(name, "~");
+
+    const keys = name.split("~");
+    const last_key = keys.pop();
+
+    let v = getConfig();
+    for(const k of keys) {
+        v = v[k];
+        if (v === undefined){
+            break;
+        }
+    }
+
+    if(v !== undefined){
+        v = v[last_key];
+    }
+    if(v !== undefined){
+        initial = v;
+    }
+
+    return initial;
+}
+
+export function getValueCountFromName(name){
+    const value = getValueFromName(name, {});
+    if(value === undefined){
+        return 0;
+    }
+    return Object.keys(value).length;
+}
+
+export function getConfig() {
     return JSON.parse(localStorage.getItem("config")) ?? {};
+}
+
+export function parseCardinality(info){
+    // noinspection JSUnresolvedVariable
+    const _cardinality = info?.minCardinality ?? "Compulsory";
+    return {
+        isCompulsory: _cardinality === "Compulsory",
+        isOptional: _cardinality === "Optional"
+    }
 }

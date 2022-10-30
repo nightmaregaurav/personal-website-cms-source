@@ -1,0 +1,41 @@
+.object-ui-container{
+  max-width: 90vw;
+}
+.ui-Config{
+  min-width: 70vw;
+}
+.text-on-object-panel {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: 20px;
+  padding: 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+  border: 1px solid #337ab7;
+  border-radius: 8px;
+}
+.object-panel {
+  margin-top: 27px !important;
+  border: 1px solid #337ab7;
+  border-radius: 8px;
+}
+.object-panel-body {
+  padding-top: 30px !important;
+}
+.object-panel-action{
+  opacity: 80% !important;
+  cursor: pointer;
+}
+.object-panel-action:hover{
+  opacity: 100% !important;
+}
+//noinspection CssReplaceWithShorthandSafely
+.object-panel-content{
+  margin-top: -13px !important;
+  margin-right: 9px !important;
+  margin-left: 9px !important;
+  margin-bottom: 14px !important;
+}
+.object-panel-content > *{
+  margin-top: 14px !important;
+}

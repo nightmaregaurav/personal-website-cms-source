@@ -1,0 +1,71 @@
+.input-container{
+  position: relative;
+}
+.image-url-ui-input{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  height: 38px;
+}
+.image-url-ui-input + .image-placeholder-elements{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  color: black;
+  pointer-events: none;
+  font-size: 16px;
+  transform: translate(0);
+  transition: transform 0.15s ease-out, font-size 0.15s ease-out, background-color 0.2s ease-out, color 0.15s ease-out;
+}
+.imageHelp > .image-placeholder-elements{
+  display: block;
+  width: 100%;
+}
+.imageHelp > .image-placeholder-elements > .placeholder-info{
+  float: right;
+}
+.placeholder-text{
+  padding-left: 5px;
+  padding-right: 5px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: transparent;
+}
+.placeholder-buttons{
+  white-space: nowrap;
+  pointer-events: all;
+  background-color: transparent;
+}
+.placeholder-info{
+  white-space: nowrap;
+  pointer-events: all;
+  background-color: transparent;
+}
+.image-url-ui-input:focus{
+  outline: none;
+  border-color: #337ab7;
+}
+.image-url-ui-input:focus + .image-placeholder-elements,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements{
+  color: #337ab7;
+  transform: translate(0, -20px);
+}
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-text,
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-buttons,
+.image-url-ui-input:focus + .image-placeholder-elements > .placeholder-info,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-text,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-buttons,
+.image-url-ui-input:not(.image-url-ui-input[data-value=""]) + .image-placeholder-elements > .placeholder-info{
+  background-color: white;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.scss';
 import {get} from "../../../helpers/object_helper";
-import {useConfig} from "../../../helpers/config_helper";
+import {getConfig} from "../../../helpers/config_helper";
 import {LightgalleryProvider, LightgalleryItem, useLightgallery} from "react-lightgallery";
 import "lightgallery.js/dist/css/lightgallery.css";
 
@@ -11,10 +11,10 @@ const LightboxViewButton = ({pic_id, group}) => {
 };
 
 const Gallery = () => {
-    const config = useConfig();
+    const config = getConfig();
     return (
         <>
-            {get(config, "gallery", []).length > 0 ? <section id="gallery" className="gallery section-bg">
+            {Object.values(get(config, "gallery", {})).length > 0 ? <section id="gallery" className="gallery section-bg">
                 <div className="container">
                     <div className="section-title">
                         <h2>Gallery</h2>
@@ -22,7 +22,7 @@ const Gallery = () => {
                 </div>
                 <div className={"container d-flex flex-row flex-wrap justify-content-center align-content-center align-items-center"}>
                     <LightgalleryProvider>
-                        {get(config, "gallery", []).map((item, i) => (
+                        {Object.values(get(config, "gallery", {})).map((item, i) => (
                             <div key={i} className={"gallery-card"}>
                                 <div className="card bg-dark text-white">
                                     <LightgalleryItem group="all" src={item.url} />
