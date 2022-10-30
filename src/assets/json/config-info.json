@@ -764,6 +764,11 @@
                 "type": "NUMBER",
                 "minCardinality": "Compulsory",
                 "description": "Percentage of skill.",
+                "validation": {
+                  "min": 0,
+                  "max": 100,
+                  "step": 1
+                },
                 "example": 90
               }
             }
