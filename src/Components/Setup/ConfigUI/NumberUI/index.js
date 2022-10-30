@@ -25,7 +25,14 @@ const NumberUI = ({onChange, info, name, parent_disabledStatus}) => {
 
     const validate = useCallback(() => {
         let valid = true;
-        if(cardinality.isCompulsory && numberUiValue === "") valid = false;
+        if(cardinality.isCompulsory && numberUiValue === ""){
+            setIsValid(false);
+            return;
+        }
+        if (cardinality.isOptional && numberUiValue === "") {
+            setIsValid(true);
+            return;
+        }
 
         const numerical_value = Number(numberUiValue);
         valid = valid && !isNaN(numerical_value);

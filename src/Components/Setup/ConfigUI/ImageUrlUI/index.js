@@ -30,8 +30,14 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imag
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality.isCompulsory && imageUrlUiValue === ""){
-            valid = false;
+            setIsValid(false);
+            return;
         }
+        if (cardinality.isOptional && imageUrlUiValue === "") {
+            setIsValid(true);
+            return;
+        }
+
         if(pattern_validation){
             // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(imageUrlUiValue);

@@ -27,8 +27,14 @@ const UrlUI = ({onChange, info, name, parent_disabledStatus}) => {
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality.isCompulsory && urlUiValue === ""){
-            valid = false;
+            setIsValid(false);
+            return;
         }
+        if (cardinality.isOptional && urlUiValue === "") {
+            setIsValid(true);
+            return;
+        }
+
         if(pattern_validation){
             // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(urlUiValue);

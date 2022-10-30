@@ -28,8 +28,14 @@ const StringUI = ({onChange, info, name, parent_disabledStatus}) => {
     const validate = useCallback(() => {
         let valid = true;
         if(cardinality.isCompulsory && stringUiValue === ""){
-            valid = false;
+            setIsValid(false);
+            return;
         }
+        if (cardinality.isOptional && stringUiValue === "") {
+            setIsValid(true);
+            return;
+        }
+
         if(pattern_validation){
             // noinspection JSCheckFunctionSignatures
             valid = valid && RegExp(pattern_validation).test(stringUiValue);
