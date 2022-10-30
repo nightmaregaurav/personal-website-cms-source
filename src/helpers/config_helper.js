@@ -81,6 +81,14 @@ export function getValueFromName (name, initial=undefined) {
     return initial;
 }
 
+export function getValueCountFromName(name){
+    const value = getValueFromName(name, {});
+    if(value === undefined){
+        return 0;
+    }
+    return Object.keys(value).length;
+}
+
 export function getConfig() {
     return JSON.parse(localStorage.getItem("config")) ?? {};
 }

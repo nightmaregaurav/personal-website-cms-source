@@ -1,21 +1,56 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './index.scss'
-import {parseCardinality} from "../../../../helpers/config_helper";
+import {getValueCountFromName, parseCardinality} from "../../../../helpers/config_helper";
 import ReactTooltip from "react-tooltip";
 import {getLabelFromName} from "../../../../helpers/setup_helper";
 import ConfigUI from "../index";
 
 const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledStatus, imageUploader}) => {
+    const default_value_count = getValueCountFromName(name);
     const [disabledStatus, setDisabledStatus] = useState(false);
     const [showTooltip, setShowTooltip] = useState(true);
     const [elementsCount, setElementsCount] = useState(1);
-
     // noinspection JSUnresolvedVariable
     const cardinality = parseCardinality(info)
     const description = info?.description ?? "";
     const validation = info?.validation ?? {};
     const example_array = info?.example ?? {};
     const isDisabled = () => disabledStatus || parent_disabledStatus;
+    const addElement = () => setElementsCount(elementsCount + 1);
+
+    const hasRemovableElements = () => {
+        if(elementsCount === 0) return false;
+        return !(cardinality.isCompulsory && elementsCount === 1);
+
+    };
+    const removeElement = () => {
+        if(hasRemovableElements()){
+            onChange(`${name}~${elementsCount.toString()}`, undefined, true);
+            setElementsCount(elementsCount - 1);
+        }
+    }
+
+    const reduceElementsTo = useCallback((n) => {
+        for(let i = elementsCount; i > n; i--){
+            removeElement();
+        }
+    }, [elementsCount]);
+    const resetArray = useCallback(() => {
+        if(cardinality.isCompulsory && default_value_count === 0){
+            if(elementsCount > 1) reduceElementsTo(1)
+            else setElementsCount(1);
+        } else {
+            if(elementsCount > default_value_count) reduceElementsTo(default_value_count);
+            else setElementsCount(default_value_count);
+        }
+    }, [cardinality, default_value_count, elementsCount, reduceElementsTo, setElementsCount]);
+
+    useEffect(() => {
+        resetArray();
+    }, [default_value_count]);
+    useEffect(() => {
+        if(disabledStatus) resetArray();
+    }, [disabledStatus]);
 
     function getContent(n) {
         const _info = {
@@ -26,18 +61,6 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
         }
 
         return <ConfigUI key={n} onChange={onChange} isGhPage={isGhPage} info={_info} name={`${name}~${n.toString()}`} parent_disabledStatus={isDisabled()} imageUploader={imageUploader} />
-    }
-
-    const addElement = () => {
-        setElementsCount(elementsCount + 1);
-    }
-    const hasRemovableElements = () => {
-        if(elementsCount === 0) return false;
-        return !(cardinality.isCompulsory && elementsCount === 1);
-
-    };
-    const removeElement = () => {
-        if(hasRemovableElements()) setElementsCount(elementsCount - 1);
     }
 
     return (<>
@@ -60,7 +83,7 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
                         <b className={"array-panel-title"}>{getLabelFromName(name)}</b>
                     </span>
                     <div className={"array-panel-content"}>
-                        {Array.from((Array(elementsCount)).keys()).map(n => getContent(n))}
+                        {Array.from((Array(elementsCount)).keys()).map(n => getContent(n+1))}
                     </div>
                 </div>
                 <div className="array-panel-footer d-flex flex-row flex-wrap justify-content-center align-items-center mb-3">
@@ -74,6 +97,5 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
         </ReactTooltip> : null}
     </>);
 };
-//get default value to get default length and fall back to that length on disable
 
 export default ArrayUI;
