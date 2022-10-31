@@ -1,9 +1,11 @@
 import React from 'react';
 import './index.scss';
 import {get} from "../../../helpers/object_helper";
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {LightgalleryProvider, LightgalleryItem, useLightgallery} from "react-lightgallery";
 import "lightgallery.js/dist/css/lightgallery.css";
+import {getMeta} from "../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 const LightboxViewButton = ({pic_id, group}) => {
     const { openGallery } = useLightgallery();
@@ -12,8 +14,19 @@ const LightboxViewButton = ({pic_id, group}) => {
 
 const Gallery = () => {
     const config = getConfig();
+
+    const page_title = `Gallery - ${getMainTitle()}`;
+    const full_name = get(config, "full_name", "");
+    const page_description = "Image Gallery" + (full_name !== "" ? ` of ${full_name}` : "");
+    const page_image = "";
+
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
+
             {Object.values(get(config, "gallery", {})).length > 0 ? <section id="gallery" className="gallery section-bg">
                 <div className="container">
                     <div className="section-title">

@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
@@ -9,14 +9,25 @@ import "swiper/scss/pagination";
 import "@fontsource/barlow-semi-condensed";
 import blockquote from "../../../assets/images/blockquote.png"
 import profile from "../../../assets/images/profile.png"
+import {getMeta} from "../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 const About = () => {
     const config = getConfig();
     SwiperCore.use([Pagination]);
 
+    const page_title = `About - ${getMainTitle()}`;
+    const page_description = get(get(config, "about", {}), "intro", "");
+    const page_image = get(get(config, "about", {}), "pic", "");
+
     // noinspection JSUnresolvedVariable
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
+
             {get(config, 'about', null) ? <>
                 {(get(get(config, 'about', null), "pic", "") !== "" || get(get(config, 'about', null), "intro", "") !== "" || Object.values(get(get(config, 'about', null), "info", {})).length > 0) ? <section id="about" className="about">
                     <div className="container">

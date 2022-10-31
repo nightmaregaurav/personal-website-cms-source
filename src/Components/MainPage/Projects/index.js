@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import './index.scss';
 import IsoTopeGrid from "react-isotope";
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {Link, Outlet} from "react-router-dom";
 import {get} from "../../../helpers/object_helper";
 import {slugify} from "../../../helpers/text_heper";
+import {getMeta} from "../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 
 const Projects = () => {
@@ -57,8 +59,17 @@ const Projects = () => {
         );
     };
 
+    const page_title = `Projects - ${getMainTitle()}`;
+    const page_description = get(get(config, "projects", {}), "intro", "");
+    const page_image = "";
+
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
+
             {get(config, 'projects', null) ? <>
                 {(get(get(config, 'projects', null), "intro", "") !== "" || Object.values(get(get(config, 'projects', null), "contents", {})).length > 0) ? <>
                     <Outlet/>

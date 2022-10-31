@@ -15,6 +15,7 @@ import config_info from "../../assets/json/config-info.json";
 import {lstrip, rstrip, strip} from "../../helpers/text_heper";
 import {getRoot} from "../../helpers/setup_helper";
 import "./index.scss"
+import {getMeta} from "../../helpers/seo_helper";
 
 const Setup = () => {
     const old_config = getConfig();
@@ -141,7 +142,7 @@ const Setup = () => {
     return (
         <>
             <Helmet>
-                <title>Personal Website Setup</title>
+                {getMeta("Setup")}
             </Helmet>
 
             {!siteType ? <SweetAlert

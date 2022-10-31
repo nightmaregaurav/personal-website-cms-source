@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import './index.scss';
 import AOS from "aos";
-import {getConfig, useConfigGetter} from '../helpers/config_helper'
+import {getConfig, getMainTitle, useConfigGetter} from '../helpers/config_helper'
 // noinspection ES6CheckImport
 import {Sugar} from 'react-preloaders2';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -23,6 +23,7 @@ import {get} from "../helpers/object_helper";
 import Gallery from "./MainPage/Gallery";
 import Setup from "./Setup";
 import {addDomKeyEvent} from "../helpers/keyboard_helper";
+import {getMeta} from "../helpers/seo_helper";
 
 const Components = () => {
     useConfigGetter();
@@ -45,28 +46,19 @@ const Components = () => {
         });
     }, []);
 
+    const page_title = `${getMainTitle()}`;
+    const page_description = get(get(config, "about", {}), "intro", "");
+    const page_image = "";
+
     return (
         <HelmetProvider>
             <Helmet>
                 <link rel="icon" href={get(config, "favicon", "")} />
                 <link rel="apple-touch-icon" href={get(config, "apple-touch-icon", "")} />
-
-                <title>{get(config, "main-title", "")}</title>
-
-                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
-                    name={meta.name}
-                    content={meta.content}
-                    key={i}
-                />)}
-                {Object.values(get(config, "meta", {})).map((meta, i) => <meta
-                    property={meta.name}
-                    content={meta.content}
-                    key={i}
-                />)}
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
             </Helmet>
-
             <Sugar customLoading={preLoaderLoading}/>
-
             <div className="App">
                 <Routes>
                     {/* MainPage components*/}

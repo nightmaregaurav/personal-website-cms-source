@@ -2,18 +2,23 @@ import React, {useEffect, useState} from 'react';
 import './index.scss';
 import {useParams} from "react-router-dom";
 import FullPageOverlay from "../../../FullPageOverlay";
-import {getConfig} from "../../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../../helpers/config_helper";
 import {get} from "../../../../helpers/object_helper";
 import {Swiper, SwiperSlide} from "swiper/react";
 import SwiperCore, { Pagination } from "swiper/core";
 import "swiper/scss";
 import "swiper/scss/pagination";
+import {getMeta} from "../../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 const View = () => {
     let { id } = useParams();
     const config = getConfig();
     SwiperCore.use([Pagination]);
     const [target, setTarget] = useState({});
+    const [pageTitle, setPageTitle] = useState("");
+    const [pageDescription, setPageDescription] = useState("");
+    const [pageImage, setPageImage] = useState("");
 
     useEffect(() => {
         // noinspection DuplicatedCode
@@ -28,10 +33,19 @@ const View = () => {
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
+
+        setPageTitle(`${data[index]?.title ?? ""} | Projects - ${getMainTitle()}`);
+        setPageDescription(data[index]?.description ?? "");
+        setPageImage(data[index]?.images ? data[index].images[0] : "");
     } , [id]);
 
     // noinspection JSValidateTypes
-    return (
+    return (<>
+        <Helmet>
+            <title>{pageTitle}</title>
+            {getMeta(pageTitle, pageDescription, pageImage)}
+        </Helmet>
+
         <FullPageOverlay content={<>
             {target ?<>
                 <section id="projects-details" className="projects-details" style={{overflow: "auto", maxHeight: "90vh"}}>
@@ -72,7 +86,7 @@ const View = () => {
                 </section>
             </> : "Opps! Something went wrong"}
         </>} sourcePageUrl={"/projects"} />
-    );
+    </>);
 };
 
 export default View;
