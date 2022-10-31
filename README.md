@@ -1,56 +1,38 @@
-# Statically hosted dynamic personal website
+# Micro CMS for statically hosted personal website [Personal Website CMS]
+This minimal CMS runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic. It provides Setup GUI to allow editing the website contents and configuration.
+<br>
+`It's not jekyll.` `Personal-Website-CMS` is built using React and depend on one or more configuration files. This app uses the [React Router](https://reactrouter.com/) library to make routing easier.
 
-This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of). 
+### Most of the time, those who view this repository are looking for the [Release Repository](https://github.com/nightmaregaurav/personal-website-cms)
 
-## Installation
-1. Clone this project on a server. 
-2. Change path of main static files (css and js) in `index.html` to match your hosting path IE: `{your website root}`
-3. Change line `let home = "";` in `404.html` to `let home = "{YOUR HOME URL}"` if you are using path other than / as root 
-4. Copy `config.dist.json` as `config.json`
-5. Change the data in `config.json` to match your data (Read `config-info.json` to understand the data type and format, Read "How to understand `config-info.json`?" section to understand `config-info.json`)
-6. Visit `https://{your-website-root}/get-sitemap` to generate sitemap 
-7. Copy all content of sitemap and save as `sitemap.xml`
-### How to understand `config-info.json`?
-1. `config-info.json` explain the data format for `config.json` that is used to generate the website.
-2. `config-info.json` has same keys as `config.json` but the values are in the format `[{DATATYPE}, {CARDINALITY}, {INFO}, {EXAMPLE}]`.
-3. `DATATYPE` can be `STRING`, `OBJECT`, `NUMBER`, `URL`, `IMAGE URL`, `ARRAY OF {DATATYPE}`
-    1. `STRING` is a plain string
-    2. `OBJECT` is an object that may have more Key/Value pairs
-    3. `NUMBER` is a plain number
-    4. `URL` is a valid URL
-    5. `IMAGE URL` is a valid URL that points to a raw image
-    6. `ARRAY OF {DATATYPE}` is an array of {DATATYPE}
-4. `CARDINALITY` can be `Compulsory`, `Optional`, `At Least One`
-    1. `Compulsory` means that the data is compulsory to be present in the `config.json` if parent is present.
-    2. `Optional` means that the data is optional to be present in the `config.json` even if parent is present.
-    3. `At Least One` means that at least one of the data is compulsory to be present in the `config.json` if parent is present.
-    4. For `Optional` `ARRAY OF {DATATYPE}` if you wish not to add any data, then add `[]` IE: Empty array
-5. `INFO` is a description of the data
-6. `EXAMPLE` is a real example of the data to put in `config.json`
-<b> It is recommended that you DO NOT add/modify any other files than specified above in the repository. As they may get overridden or prevent updates. If you need to serve static files (For example to serve images and provide url in 'config.json' you can do so is 'data' folder in the root of the repo) </b>
+## This repository is only for
+* Opening Issues(Bugs and Feature Requests) related to the CMS [for both source and release repository]
+* Contributing to the CMS
+* Viewing the Source Code
+* Discussion related to the codes and technologies used in the CMS
 
-## Maintenance
-1. Update `config.json`
-2. Update `sitemap.xml` using previous steps if you added or removed projects or enabled/disabled gallery
+## Technical Details
+* Language: Javascript
+* Framework: ReactJS
+ 
+## How to Contribute
+* Fork the repository
+* Clone the forked repository
+* Make changes
+* Commit and push the changes
+* Create a pull request
+* Wait for the pull request to be merged
+* Celebrate
+* Repeat
 
-## Upgrade
-1. Pull from upstream
-2. Update `config.json` if there are any changes in config.dist.json or config-info
-3. Update `sitemap.xml` if needed
-4. Perform step 2 & 3 of `installation`  
-
-## Features
-* Completely dynamic setup.
-* Dynamic content is generated on the fly.
-* Dynamic content is generated using JSON api.
-* Fast and easy to use.
-* Cheap to host static project on a server. Many trusted free hosts are also available.
-* Complete customization.
+*If you are new to contribute on this repository, you can check out the [wiki](../../wiki)<br>*
+*If you are new to open source, you can read [this](https://opensource.guide/how-to-contribute/) to learn how to contribute to open source projects.*<br>
+*If you are new to GitHub, you can read [this](https://guides.github.com/activities/hello-world/) to learn how to use GitHub.*<br>
+*If you are new to Git, you can read [this](https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud) to learn how to use Git.*<br>
+*If you are new to ReactJS, you can read [this](https://reactjs.org/tutorial/tutorial.html) to learn how to use ReactJS.*<br>
 
 ---
-
-## Note
-- Project is Licensed under GNU GPLv3.
+## Note: This Project is Licensed under GNU GPLv3.
 
 ### Which means Anyone are permitted for:
 - Commercial use: **The licensed material and derivatives may be used for commercial purposes.**
