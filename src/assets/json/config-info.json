@@ -26,35 +26,6 @@
       "description": "Image or Image Url to use as apple-touch-icon of the website.",
       "example": "https://example.com/apple-touch-icon.png"
     },
-    "meta": {
-      "type": "ARRAY OF OBJECT",
-      "minCardinality": "Optional",
-      "description": "Meta tags to use in website.",
-      "example": {
-        "0": {
-          "name": {
-            "type": "STRING",
-            "minCardinality": "Compulsory",
-            "description": "Name of meta tag.",
-            "validation": {
-              "linebreaks": false,
-              "maxLength": 50
-            },
-            "example": "description"
-          },
-          "content": {
-            "type": "STRING",
-            "minCardinality": "Compulsory",
-            "description": "Content of meta tag.",
-            "validation": {
-              "linebreaks": true,
-              "maxLength": 100
-            },
-            "example": "This is a description."
-          }
-        }
-      }
-    },
     "main-title": {
       "type": "STRING",
       "minCardinality": "Compulsory",
