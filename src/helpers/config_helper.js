@@ -19,14 +19,13 @@ export function useConfigGetter() {
             const req = new XMLHttpRequest();
             req.addEventListener("load", (e) => {
                 try {
-                    localStorage.setItem("config", JSON.stringify(JSON.parse(e.target.responseText)));
-                    localStorage.setItem("config_added_on", JSON.stringify(new Date()));
+                    addConfig(JSON.parse(e.target.responseText));
                 } catch (_) {
-                    localStorage.setItem("config", "{}");
+                    clearConfig();
                 }
             });
             req.addEventListener("error", _ => {
-                localStorage.setItem("config", "{}");
+                clearConfig();
             });
             req.open("GET", "/config.json");
             req.send();
@@ -104,4 +103,17 @@ export function parseCardinality(info){
         isCompulsory: _cardinality === "Compulsory",
         isOptional: _cardinality === "Optional"
     }
+}
+
+function clearConfig(){
+    localStorage.removeItem("config");
+    localStorage.removeItem("config_added_on");
+}
+function addConfig(config){
+    localStorage.setItem("config", JSON.stringify(config));
+    localStorage.setItem("config_added_on", JSON.stringify(new Date()));
+}
+export function resetConfigStorage(config){
+    clearConfig();
+    addConfig(config);
 }
