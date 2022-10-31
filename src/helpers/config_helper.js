@@ -93,6 +93,10 @@ export function getConfig() {
     return JSON.parse(localStorage.getItem("config")) ?? {};
 }
 
+export function getMainTitle() {
+    return getConfig()["main-title"] ?? "Website Created With Personal Website CMS";
+}
+
 export function parseCardinality(info){
     // noinspection JSUnresolvedVariable
     const _cardinality = info?.minCardinality ?? "Compulsory";
