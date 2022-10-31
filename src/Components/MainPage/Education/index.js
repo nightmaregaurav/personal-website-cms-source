@@ -1,14 +1,25 @@
 import React from 'react';
 import './index.scss';
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
+import {getMeta} from "../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 const Education = () => {
     const config = getConfig();
 
+    const page_title = `Education - ${getMainTitle()}`;
+    const page_description = get(get(config, "education", null), "intro", "");
+    const page_image = "";
+
     // noinspection JSUnresolvedVariable
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
+
             {get(config, 'education', null) ? <>
                 {(get(get(config, 'education', null), "intro", "") !== "" || Object.values(get(get(config, 'education', null), "timeline", {})).length > 0) ? <section id="education" className="education">
                     <div className="container">

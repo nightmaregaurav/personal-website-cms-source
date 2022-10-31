@@ -1,7 +1,9 @@
 import React from 'react';
 import './index.scss';
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
+import {Helmet} from "react-helmet-async";
+import {getMeta} from "../../../helpers/seo_helper";
 
 const Contact = () => {
     const config = getConfig();
@@ -62,8 +64,16 @@ const Contact = () => {
         });
     };
 
+    const page_title = `Contact - ${getMainTitle()}`;
+    const page_description = `Contact ${get(config, "full-name", "Website Owner")} directly.`;
+    const page_image = "";
+
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
             <section id="contact" className="contact">
                 <div className="container">
 

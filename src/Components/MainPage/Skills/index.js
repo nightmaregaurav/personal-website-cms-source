@@ -1,13 +1,24 @@
 import React from 'react';
 import './index.scss';
-import {getConfig} from "../../../helpers/config_helper";
+import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {get} from "../../../helpers/object_helper";
+import {getMeta} from "../../../helpers/seo_helper";
+import {Helmet} from "react-helmet-async";
 
 const Skills = () => {
     const config = getConfig();
 
+    const page_title = `Skills - ${getMainTitle()}`;
+    const page_description = get(get(config, "skills", {}), "intro", "");
+    const page_image = "";
+
     return (
         <>
+            <Helmet>
+                <title>{page_title}</title>
+                {getMeta(page_title, page_description, page_image)}
+            </Helmet>
+
             {get(config, 'skills', null) ? <>
                 {(get(get(config, 'skills', null), "intro", "") !== "" || Object.values(get(get(config, 'skills', null), "contents", {})).length > 0) ? <section id="skills" className="skills section-bg">
                     <div className="container">
