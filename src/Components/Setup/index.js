@@ -7,7 +7,7 @@ import {useGetSiteMap} from "../../helpers/sitemap_helper";
 import ConfigUI from "./ConfigUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import {getConfig} from "../../helpers/config_helper";
+import {getConfig, resetConfigStorage} from "../../helpers/config_helper";
 import {giveWarning, showError} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
@@ -103,6 +103,7 @@ const Setup = () => {
         if(isValid()) {
             if (isGhPage()) {
                 uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {
+                    resetConfigStorage(config);
                 });
             } else {
                 download("config.json", JSON.stringify(config));
