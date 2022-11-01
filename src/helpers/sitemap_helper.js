@@ -5,7 +5,7 @@ import {rstrip, strip} from "./text_heper";
 import {useMemo, useState} from "react";
 
 const getRoutes = (config) => {
-    const root = getRoot();
+    const root = strip(getRoot(), "/");
     if(isValidUrl(root)){
         let routes = [
             "",
@@ -29,11 +29,14 @@ const getRoutes = (config) => {
     return [];
 }
 
-const getUrl = (root, isGhPage, route) => isGhPage ? rstrip(strip(root + "/?/" + route, "/"), "/?/") : strip(root + "/" + route, "/");
+const getUrl = (root, isGhPage, route) => {
+    const delimiter = isGhPage ? "/?/" : "/";
+    return rstrip(rstrip(root + delimiter + route, "/?/"), "/");
+}
 
 export const getNewSiteMap = (config, isGhPage) => {
     const routes = getRoutes(config);
-    const root = getRoot(isGhPage);
+    const root = strip(getRoot(), "/");
     const date = new Date().toISOString();
 
     let siteMap = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -81,7 +84,7 @@ export const useGetSiteMap = (config, isGhPage) => {
         });
         req.open("GET", root_url + "/sitemap.xml");
         req.send();
-    }, []);
+    }, [isGhPage]);
 
     return data;
 }
