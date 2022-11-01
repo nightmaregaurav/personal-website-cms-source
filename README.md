@@ -1,7 +1,7 @@
 # Micro CMS for statically hosted personal website [Personal Website CMS]
 This minimal CMS runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic. It provides Setup GUI to allow editing the website contents and configuration.
 <br>
-`It's not jekyll.` `Personal-Website-CMS` is built using React and depend on one or more configuration files. This app uses the [React Router](https://reactrouter.com/) library to make routing easier.
+`It's not jekyll.` `Personal-Website-CMS` is built using React and depends on one or more configuration files. This app uses the [React Router](https://reactrouter.com/) library to make routing easier.
 
 ### Most of the time, those who view this repository are looking for the [Release Repository](https://github.com/nightmaregaurav/personal-website-cms)
 
