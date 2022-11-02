@@ -19,7 +19,7 @@ const ArrayUI = ({onChange, elementType, isGhPage, info, name, parent_disabledSt
     const addElement = () => setElementsCount(elementsCount + 1);
 
     const resetValue = (count) => {
-        onChange(`${name}~${count.toString()}`, getValueFromName(name, undefined));
+        onChange(`${name}~${count.toString()}`, undefined);
     }
 
     const hasRemovableElements = () => {
