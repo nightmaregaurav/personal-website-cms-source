@@ -24,12 +24,16 @@ import Gallery from "./MainPage/Gallery";
 import Setup from "./Setup";
 import {addDomKeyEvent} from "../helpers/keyboard_helper";
 import {getMeta} from "../helpers/seo_helper";
+import BlogManagement from "./BlogManagement";
+import AddBlog from "./BlogManagement/AddBlog";
+import EditBlog from "./BlogManagement/EditBlog";
+import Administration from "./Administration";
 
 const Components = () => {
     useConfigGetter();
     const config = getConfig();
     const navigate = useNavigate();
-    const setupKey = get(config, "setup-shortcut-key", "s");
+    const setupKey = get(config, "setup-shortcut-key", "a");
 
     const [preLoaderLoading, setPreLoaderLoading] = useState(true);
     setTimeout(() => setPreLoaderLoading(false), 1000);
@@ -40,8 +44,8 @@ const Components = () => {
         // noinspection JSUnresolvedFunction
         AOS.refresh();
         addDomKeyEvent(setupKey, () => {
-            if(!window.location.pathname.endsWith('/setup')) {
-                navigate('/setup');
+            if(!window.location.pathname.endsWith('/administration')) {
+                navigate('/administration');
             }
         });
     }, []);
@@ -76,8 +80,15 @@ const Components = () => {
                         <Route path="contact" element= {<Contact />} />
                     </Route>
 
+                    {/* Administration */}
+                    <Route path="/administration" element={<Administration/>} />
+
                     {/* Setup */}
-                    <Route path="setup" element={<Setup />} />
+                    <Route path="setup" element={<Setup />}/>
+                    <Route path="/setup/manage-blogs" element={<BlogManagement />} >
+                        <Route path="add" element={<AddBlog />} />
+                        <Route path="edit/:id" element={<EditBlog />} />
+                    </Route>
 
                     {/* 404 Error */}
                     <Route path="*" element={<>

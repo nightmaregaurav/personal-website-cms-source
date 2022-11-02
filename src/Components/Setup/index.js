@@ -143,7 +143,7 @@ const Setup = () => {
     return (
         <>
             <Helmet>
-                {getMeta("Setup")}
+                {getMeta("Setup", "Setup your website")}
             </Helmet>
 
             {!siteType ? <SweetAlert

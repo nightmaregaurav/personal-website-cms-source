@@ -3,16 +3,16 @@
   "minCardinality": "Compulsory",
   "description": "Configuration data needed to run the website.",
   "example": {
-    "setup-shortcut-key": {
+    "admin-shortcut-key": {
       "type": "STRING",
       "minCardinality": "Compulsory",
-      "description": "The key to press with ctrl + alt + shift to open the setup page.",
+      "description": "The key to press with ctrl + alt + shift to open the administration page.",
       "validation": {
         "pattern": "^[a-zA-Z0-9]{1}$",
         "linebreaks": false,
         "maxLength": 1
       },
-      "example": "s"
+      "example": "a"
     },
     "favicon": {
       "type": "IMAGE URL",
