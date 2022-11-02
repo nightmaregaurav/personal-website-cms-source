@@ -32,7 +32,7 @@
       "description": "Main title of the website.",
       "validation": {
         "linebreaks": false,
-        "maxLength": 75
+        "maxLength": 150
       },
       "example": "Gaurav Nyaupane"
     },
@@ -42,7 +42,7 @@
       "description": "Full name of the website owner.",
       "validation": {
         "linebreaks": false,
-        "maxLength": 50
+        "maxLength": 150
       },
       "example": "Gaurav Nyaupane"
     },
@@ -75,7 +75,7 @@
             "validation": {
               "pattern": "^[a-z0-9-]+$",
               "linebreaks": false,
-              "maxLength": 25
+              "maxLength": 30
             },
             "example": "facebook"
           },
@@ -149,7 +149,7 @@
           "description": "Intro text to show in about page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "I am a fullstack developer and freelancer. I have been working in software development for the last 5 years. I have worked on various projects and have spearheaded various projects. I am always looking for new challenges to learn new technologies."
         },
@@ -165,7 +165,7 @@
                 "description": "Title of info.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 50
+                  "maxLength": 75
                 },
                 "example": "Email"
               },
@@ -175,7 +175,7 @@
                 "description": "Content of info.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "abc@mail.com"
               }
@@ -188,7 +188,7 @@
           "description": "Intro text to show in testimonials section of about page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "Here are some testimonials from my clients."
         },
@@ -204,7 +204,7 @@
                 "description": "Name of client.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 50
+                  "maxLength": 150
                 },
                 "example": "John Doe"
               },
@@ -220,7 +220,7 @@
                 "description": "Company of client.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "ABC Company"
               },
@@ -230,14 +230,14 @@
                 "description": "Designation of client.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "CEO"
               },
               "on": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "Date of testimonial.",
+                "description": "Date of testimonial. [yyyy-mm-dd]",
                 "validation": {
                   "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
                   "linebreaks": false,
@@ -251,7 +251,7 @@
                 "description": "Testimonial of client.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 250
+                  "maxLength": 500
                 },
                 "example": "Gaurav is a great developer. He is very professional and always delivers on time. I have worked with Gaurav for the last 5 years. He is a great developer and has spearheaded many projects."
               },
@@ -261,7 +261,7 @@
                 "description": "Text to show as Highlight testimonial of client.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "I had never met such a nice friend and a great mentor in a same person before i met him."
               }
@@ -281,7 +281,7 @@
           "description": "Intro text to show in education page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "I started learning programming on my own. I started working on various projects and spearheaded various projects. Later, I joined BCA. Here's info about my education and academic achievements."
         },
@@ -297,7 +297,7 @@
                 "description": "Title of education achievement.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Bachelors in Computer Application"
               },
@@ -307,7 +307,7 @@
                 "description": "Name of institute.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Mechi Multiple Campus"
               },
@@ -323,7 +323,7 @@
                 "description": "Name of university.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Tribhuvan University"
               },
@@ -336,7 +336,7 @@
               "from": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "Start date of education.",
+                "description": "Start date of education. [Mmm yyyy]",
                 "validation": {
                   "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
                   "linebreaks": false,
@@ -347,7 +347,7 @@
               "to": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "End date of education.",
+                "description": "End date of education. [Mmm yyyy]",
                 "validation": {
                   "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
                   "linebreaks": false,
@@ -361,7 +361,7 @@
                 "description": "A paragraph or two about this milestone.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 250
+                  "maxLength": 500
                 },
                 "example": "Core motive of BCA is production of highly qualified professionals who have both theoretical and practical knowledge in computer systems and its application."
               },
@@ -389,7 +389,7 @@
           "description": "Intro text to show in experience page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "I have worked on various projects and spearheaded various projects. Here's info about my work experience."
         },
@@ -405,7 +405,7 @@
                 "description": "Title of work experience.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Dot Net Developer"
               },
@@ -415,7 +415,7 @@
                 "description": "Name of organization.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Crystal Solution"
               },
@@ -428,7 +428,7 @@
               "from": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "Start date of work.",
+                "description": "Start date of work. [Mmm yyyy]",
                 "validation": {
                   "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
                   "linebreaks": false,
@@ -439,7 +439,7 @@
               "to": {
                 "type": "STRING",
                 "minCardinality": "Optional",
-                "description": "End date of work.",
+                "description": "End date of work. [Mmm yyyy]",
                 "validation": {
                   "pattern": "^[A-Z]{1}[a-z]{2} [0-9]{4}$",
                   "linebreaks": false,
@@ -453,7 +453,7 @@
                 "description": "A paragraph or two about this milestone.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 250
+                  "maxLength": 500
                 },
                 "example": "Crystal solution is a software company that provides web development services to various clients. Their flagship Product is Crystal ERP which is a complete ERP system for small and medium sized businesses."
               },
@@ -481,7 +481,7 @@
           "description": "Intro text to show in projects page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "Open source projects I initiated or created are available on my GitHub profile. Some of my projects which are not listed in my GitHub public profile are listed below."
         },
@@ -497,7 +497,7 @@
                 "description": "Title of project.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 100
+                  "maxLength": 150
                 },
                 "example": "Personal Website"
               },
@@ -541,7 +541,7 @@
                 "description": "A paragraph or two about this project.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 250
+                  "maxLength": 1000
                 },
                 "example": "This project runs using client side technology so that it can also be hosted on a server that can only host static websites. It uses JSON api to make things Dynamic(Kind of)."
               },
@@ -557,7 +557,7 @@
                       "description": "Title of major point.",
                       "validation": {
                         "linebreaks": false,
-                        "maxLength": 50
+                        "maxLength": 100
                       },
                       "example": "Technology"
                     },
@@ -567,7 +567,7 @@
                       "description": "A short text about this major point.",
                       "validation": {
                         "linebreaks": false,
-                        "maxLength": 100
+                        "maxLength": 150
                       },
                       "example": "Minified React"
                     }
@@ -580,7 +580,7 @@
                 "description": "List of categories to show for this project.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 50
+                  "maxLength": 75
                 },
                 "example": {
                   "0": "React",
@@ -604,7 +604,7 @@
             "description": "Name of gallery item.",
             "validation": {
               "linebreaks": false,
-              "maxLength": 100
+              "maxLength": 250
             },
             "example": "My Dog"
           },
@@ -628,7 +628,7 @@
           "description": "Intro text to show in services page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "From web design to web and software development I provide wide range of services. Here's info about my services."
         },
@@ -644,7 +644,7 @@
                 "description": "Title of service.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 50
+                  "maxLength": 150
                 },
                 "example": "Web Development"
               },
@@ -666,7 +666,7 @@
                 "description": "A short text explaining about this service.",
                 "validation": {
                   "linebreaks": true,
-                  "maxLength": 100
+                  "maxLength": 500
                 },
                 "example": "I have worked on and spearheaded various web development projects."
               }
@@ -685,7 +685,7 @@
                 "description": "Title of perk.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 50
+                  "maxLength": 100
                 },
                 "example": "Free IT Advice"
               },
@@ -711,7 +711,7 @@
           "description": "Intro text to show in skills page.",
           "validation": {
             "linebreaks": true,
-            "maxLength": 250
+            "maxLength": 1000
           },
           "example": "Below are listed my acquired skills. Note that the numbers are approximate."
         },
@@ -727,7 +727,7 @@
                 "description": "Title of skill.",
                 "validation": {
                   "linebreaks": false,
-                  "maxLength": 25
+                  "maxLength": 50
                 },
                 "example": "HTML"
               },
