@@ -121,8 +121,14 @@ const ImageUrlUI = ({onChange, isGhPage, info, name, parent_disabledStatus, imag
             </span>
             <span className={"ms-auto pe-1 ps-1 placeholder-info"}>
                 {(imageUrlUiValue.length > 0) || (imageUrlUiValue.length === 0 && !isValid) ? <small className={"placeholder-status"}>
-                    {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> : <i className={"bi-x-circle-fill text-danger me-1"}/>}
+                    {isValid ? <i className={"bi-check-circle-fill text-success me-1"}/> :
+                        <>
+                        {(imageUrlUiValue.length > 0) ? <small className={"text-danger me-1"} style={{cursor: "pointer"}} onClick={validate}>Click to revalidate</small> : null}
+                            <i className={"bi-x-circle-fill text-danger me-1"}/>
+                        </>
+                    }
                 </small> : null}
+                <span data-is-valid={isValid.toString()} style={{display: "none"}}/>
                 {(imageUrlUiValue.length > 0) && ((min_length_validation !== null) || (max_length_validation !== null)) ? <small className={"placeholder-length"}>
                     [
                     {imageUrlUiValue.length}
