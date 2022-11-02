@@ -8487,6 +8487,16 @@ stylehacks@^5.1.0:
     browserslist "^4.16.6"
     postcss-selector-parser "^6.0.4"
 
+suneditor-react@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/suneditor-react/-/suneditor-react-3.4.1.tgz#77be66a6058c1e1b600d618acd5dd3a7d871ab9b"
+  integrity sha512-xsfMjy2748x8Bcw/SeT2CeecrBABcJPyCO+LPourVLcQg8QW/A9FbIfP0DghNlBkH/gxy9iviR5wVydg9UW2wQ==
+
+suneditor@^2.44.3:
+  version "2.44.3"
+  resolved "https://registry.yarnpkg.com/suneditor/-/suneditor-2.44.3.tgz#dd928c37fd82d58414b8d34aa70b8b3cdbc9d39a"
+  integrity sha512-B25DrbAxcwkvAANNm2EClugBCxATCa3SvV03SpyaMJybKj4bzQnS1iq6Wo3h+v970tNSnjfeoT3ID3Nj0NuiBA==
+
 supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"

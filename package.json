@@ -29,6 +29,8 @@
     "react-typed": "^1.2.0",
     "sass": "^1.52.2",
     "scss": "^0.2.4",
+    "suneditor": "^2.44.3",
+    "suneditor-react": "^3.4.1",
     "swiper": "^8.3.2",
     "waypoints": "^4.0.1",
     "web-vitals": "^2.1.4"
