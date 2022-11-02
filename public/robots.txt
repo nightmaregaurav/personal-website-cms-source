@@ -1,5 +1,7 @@
 # personal-website-cms robots.txt
 User-agent: *
 Disallow: /setup
+Disallow: /setup/
+Disallow: /administration/
 Disallow: /404.html
 Disallow: /cdn-cgi/
