@@ -28,6 +28,7 @@ import BlogManagement from "./BlogManagement";
 import AddBlog from "./BlogManagement/AddBlog";
 import EditBlog from "./BlogManagement/EditBlog";
 import Administration from "./Administration";
+import DeleteBlog from "./BlogManagement/DeleteBlog";
 
 const Components = () => {
     useConfigGetter();
@@ -88,6 +89,7 @@ const Components = () => {
                     <Route path="/setup/manage-blogs" element={<BlogManagement />} >
                         <Route path="add" element={<AddBlog />} />
                         <Route path="edit/:id" element={<EditBlog />} />
+                        <Route path="delete/:id" element={<DeleteBlog />} />
                     </Route>
 
                     {/* 404 Error */}

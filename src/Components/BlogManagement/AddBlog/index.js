@@ -1,5 +1,5 @@
 import React from 'react';
-import "../index.scss";
+import "./index.scss";
 import SunEditor, {buttonList} from "suneditor-react";
 import 'suneditor/dist/css/suneditor.min.css';
 
