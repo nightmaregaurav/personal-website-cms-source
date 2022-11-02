@@ -8,7 +8,7 @@ import ConfigUI from "./ConfigUI";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import {getConfig, resetConfigStorage} from "../../helpers/config_helper";
-import {giveWarning, showError} from "../../helpers/message_helper";
+import {giveWarning, showError, showSuccess} from "../../helpers/message_helper";
 import {download} from "../../helpers/download_helper";
 import {uploadFileToGithub, validateGithubApiKey, validateGithubRepository} from "../../helpers/github_helper";
 import config_info from "../../assets/json/config-info.json";
@@ -104,6 +104,7 @@ const Setup = () => {
             if (isGhPage()) {
                 uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {
                     resetConfigStorage(config);
+                    showSuccess("Successfully saved config.json to GitHub Repository").then(_ => {});
                 });
             } else {
                 download("config.json", JSON.stringify(config));
@@ -114,21 +115,27 @@ const Setup = () => {
     }
     const save_sitemap = () => {
         if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "sitemap.xml", btoa(sitemap.content), "Updated sitemap.xml from setup").then(_ => {});
+            uploadFileToGithub(apiKey, repositoryName, "sitemap.xml", btoa(sitemap.content), "Updated sitemap.xml from setup").then(_ => {
+                showSuccess("Successfully saved sitemap.xml to GitHub Repository").then(_ => {});
+            });
         } else {
             download("sitemap.xml", sitemap.content);
         }
     }
     const save_index = () => {
         if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "index.html", btoa(fixed_index_page.content), "Updated index.html from setup").then(_ => {});
+            uploadFileToGithub(apiKey, repositoryName, "index.html", btoa(fixed_index_page.content), "Updated index.html from setup").then(_ => {
+                showSuccess("Successfully saved index.html to GitHub Repository").then(_ => {});
+            });
         } else {
             download("index.html", fixed_index_page.content);
         }
     }
     const save_404 = () => {
         if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "404.html", btoa(fixed_404_page.content), "Updated 404.html from setup").then(_ => {});
+            uploadFileToGithub(apiKey, repositoryName, "404.html", btoa(fixed_404_page.content), "Updated 404.html from setup").then(_ => {
+                showSuccess("Successfully saved 404.html to GitHub Repository").then(_ => {});
+            });
         } else {
             download("404.html", fixed_404_page.content);
         }
