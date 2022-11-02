@@ -17,13 +17,13 @@
     "favicon": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
-      "description": "Image or Image Url to use as favicon of the website.",
+      "description": "Image or Image Url to use as favicon of the website. Prefer using ICO or PNG",
       "example": "https://example.com/favicon.ico"
     },
     "apple-touch-icon": {
       "type": "IMAGE URL",
       "minCardinality": "Compulsory",
-      "description": "Image or Image Url to use as apple-touch-icon of the website.",
+      "description": "Image or Image Url to use as apple-touch-icon of the website. Prefer using PNG or ICO",
       "example": "https://example.com/apple-touch-icon.png"
     },
     "main-title": {
