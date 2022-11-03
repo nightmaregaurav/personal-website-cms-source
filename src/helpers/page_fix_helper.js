@@ -122,4 +122,4 @@ const page_404_html = `
 <body>
 </body>
 </html>
-`
+`;
