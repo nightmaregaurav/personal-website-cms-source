@@ -71,7 +71,7 @@ export const useGetFixedIndexPage = () => {
     return data;
 }
 
-const page_index_html = ```
+const page_index_html = `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -96,9 +96,9 @@ const page_index_html = ```
     <div id="root"></div>
   </body>
 </html>
-```;
+`;
 
-const page_404_html = ```
+const page_404_html = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,4 +122,4 @@ const page_404_html = ```
 <body>
 </body>
 </html>
-```
+`;
