@@ -50,10 +50,10 @@ export const useGetFixedIndexPage = () => {
             page_data = e.target.responseText ?? "";
             let to_add = page_data.match(/<script defer.+<\/head>/g);
             to_add = to_add? to_add[0] : "</head>";
-            to_add = to_add.replace(/["'].+-text\/javascript["']/g, '"text/javascript"');
+            to_add = to_add.replace(/type=["']{1}.+-text\/javascript["']{1}/g, 'type="text/javascript"');
 
-            let new_page_data = page_index_html.replace('"/static/', `"${root_url}/static/`);
-            new_page_data = new_page_data.replace("</head>", to_add);
+            let new_page_data = page_index_html.replace("</head>", to_add);
+            new_page_data = new_page_data.replace('"/static/', `"${root_url}/static/`);
 
             let status = "SUCCESS";
             if (new_page_data === page_data){
