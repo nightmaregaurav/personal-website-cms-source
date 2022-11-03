@@ -55,7 +55,9 @@ const View = () => {
                                 <Swiper slidesPerView={1} spaceBetween={8} initialSlide={0} centeredSlides={true} pagination={{clickable: true}}>
                                     {target.images ? target.images.map((image, i) =>
                                         <SwiperSlide key={i}>
-                                            <img className={"swipe-image"} src={image} alt={"Project's image " + i} />
+                                            <div className={"container d-flex flex-column justify-content-center align-items-center"} style={{height:"100%"}}>
+                                                <img className={"swipe-image"} src={image} alt={"Project's image " + i} />
+                                            </div>
                                         </SwiperSlide>
                                         ) : null}
                                 </Swiper>
