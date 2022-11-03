@@ -23,6 +23,10 @@ const Setup = () => {
     const [apiKey, setApi] = useState(null);
     const [repositoryName, setRepository] = useState(null);
     const [config, setConfig] = useState(old_config);
+    const [disableSaveConfig, setDisableSaveConfig] = useState(false);
+    const [disableSaveSitemap, setDisableSaveSitemap] = useState(false);
+    const [disableSave404, setDisableSave404] = useState(false);
+    const [disableSaveIndex, setDisableSaveIndex] = useState(false);
 
     const setApiKey = async (key) => {
         if(key !== null || key !== "" || key !== undefined) {
@@ -100,44 +104,65 @@ const Setup = () => {
     const sitemap = useGetSiteMap(config, isGhPage());
 
     const save_config = () => {
-        if(isValid()) {
-            if (isGhPage()) {
-                uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {
-                    resetConfigStorage(config);
-                    showSuccess("Successfully saved config.json to GitHub Repository").then(_ => {});
-                });
+        if (!disableSaveConfig){
+            if (isValid()) {
+                if (isGhPage()) {
+                    setDisableSaveConfig(true);
+                    uploadFileToGithub(apiKey, repositoryName, 'config.json', btoa(JSON.stringify(config)), "Updated config.json from setup").then(_ => {
+                        resetConfigStorage(config);
+                        setDisableSaveConfig(false);
+                        showSuccess("Successfully saved config.json to GitHub Repository").then(_ => {
+                        });
+                    });
+                } else {
+                    download("config.json", JSON.stringify(config));
+                }
             } else {
-                download("config.json", JSON.stringify(config));
+                showError("Please resolve all the errors before saving the config.").then(_ => {
+                });
             }
-        } else {
-            showError("Please resolve all the errors before saving the config.").then(_ => {});
         }
     }
     const save_sitemap = () => {
-        if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "sitemap.xml", btoa(sitemap.content), "Updated sitemap.xml from setup").then(_ => {
-                showSuccess("Successfully saved sitemap.xml to GitHub Repository").then(_ => {});
-            });
-        } else {
-            download("sitemap.xml", sitemap.content);
+        if (!disableSaveSitemap) {
+            if (isGhPage()) {
+                setDisableSaveSitemap(true);
+                uploadFileToGithub(apiKey, repositoryName, "sitemap.xml", btoa(sitemap.content), "Updated sitemap.xml from setup").then(_ => {
+                    setDisableSaveSitemap(false);
+                    showSuccess("Successfully saved sitemap.xml to GitHub Repository").then(_ => {
+                    });
+                });
+            } else {
+                download("sitemap.xml", sitemap.content);
+            }
         }
     }
     const save_index = () => {
-        if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "index.html", btoa(fixed_index_page.content), "Updated index.html from setup").then(_ => {
-                showSuccess("Successfully saved index.html to GitHub Repository").then(_ => {});
-            });
-        } else {
-            download("index.html", fixed_index_page.content);
+        if (!disableSaveIndex) {
+            if (isGhPage()) {
+                setDisableSaveIndex(true);
+                uploadFileToGithub(apiKey, repositoryName, "index.html", btoa(fixed_index_page.content), "Updated index.html from setup").then(_ => {
+                    setDisableSaveIndex(false);
+                    showSuccess("Successfully saved index.html to GitHub Repository").then(_ => {
+                    });
+                });
+            } else {
+                download("index.html", fixed_index_page.content);
+            }
         }
     }
     const save_404 = () => {
-        if(isGhPage()){
-            uploadFileToGithub(apiKey, repositoryName, "404.html", btoa(fixed_404_page.content), "Updated 404.html from setup").then(_ => {
-                showSuccess("Successfully saved 404.html to GitHub Repository").then(_ => {});
-            });
-        } else {
-            download("404.html", fixed_404_page.content);
+        if (!disableSave404) {
+            if (isGhPage()) {
+                setDisableSave404(true);
+                uploadFileToGithub(apiKey, repositoryName, "404.html", btoa(fixed_404_page.content), "Updated 404.html from setup").then(_ => {
+                    setDisableSave404(false);
+                    showSuccess("Successfully saved 404.html to GitHub Repository").then(_ => {
+                    });
+                });
+            } else {
+                download("404.html", fixed_404_page.content);
+            }
         }
     }
 
@@ -204,10 +229,10 @@ const Setup = () => {
                 </div>
 
                 <div className={"d-flex flex-row flex-wrap justify-content-center align-items-center"}>
-                    {isConfigured() ? <span className={"btn btn-sm btn-success m-2"} onClick={save_config}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
-                    {sitemap.status === "SUCCESS" ? <span className={"btn btn-sm btn-primary m-2"} onClick={save_sitemap}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
-                    {fixed_404_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-danger m-2"} onClick={save_404}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix 404.html</span>: null}
-                    {fixed_index_page.status === "SUCCESS" ? <span className={"btn btn-sm btn-info m-2"} onClick={save_index}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix index.html</span>: null}
+                    {isConfigured() ? <span className={`btn btn-sm btn-success ${disableSaveConfig? "disabled":null} m-2`} onClick={save_config}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Config</span>: null}
+                    {sitemap.status === "SUCCESS" ? <span className={`btn btn-sm btn-primary ${disableSaveSitemap? "disabled":null} m-2`} onClick={save_sitemap}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Save Sitemap</span>: null}
+                    {fixed_404_page.status === "SUCCESS" ? <span className={`btn btn-sm btn-danger ${disableSave404? "disabled":null} m-2`} onClick={save_404}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix 404.html</span>: null}
+                    {fixed_index_page.status === "SUCCESS" ? <span className={`btn btn-sm btn-info ${disableSaveIndex? "disabled":null} m-2`} onClick={save_index}>{isGhPage()? <i className={"bi bi-github"}/>: <i className={"bi bi-download"}/>} Fix index.html</span>: null}
                 </div>
             </div>
         </>

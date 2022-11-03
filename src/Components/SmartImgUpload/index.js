@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './index.scss';
 import ReactTooltip from "react-tooltip";
 import SmartImg from "../SmartImg";
@@ -8,6 +8,7 @@ import {giveWarning} from "../../helpers/message_helper";
 const SmartImgUpload = ({isDisabled, uploader, imageHelpText="", default_src=""}) => {
     const randomChars = getRandomCharacters(10);
     const [showTooltip, setShowTooltip] = useState(true);
+    const [uploading, setUploading] = useState(false);
 
     const getTooltipContent = (_) => {
         let imageId = "imageInput-" + randomChars;
@@ -22,8 +23,8 @@ const SmartImgUpload = ({isDisabled, uploader, imageHelpText="", default_src=""}
         return React.createElement(SmartImg, {height: "150px", width: "150px", className: 'image-upload-tooltip-preview', src: src, alt: "Uploaded Image", previewText: "Invalid Image"});
     };
 
-
     const callUploader = async (_) => {
+        setUploading(true);
         const imageId = "imageInput-" + randomChars;
         let files = document.getElementById(imageId)?.files;
         let file = files?.[0];
@@ -35,6 +36,9 @@ const SmartImgUpload = ({isDisabled, uploader, imageHelpText="", default_src=""}
     };
 
     const [uploaded, setUploaded] = useState(default_src.length !== 0);
+    useEffect(() => {
+        setUploading(false);
+    }, [uploaded]);
 
     // noinspection JSValidateTypes
     return (
@@ -42,8 +46,10 @@ const SmartImgUpload = ({isDisabled, uploader, imageHelpText="", default_src=""}
             <div className={"form-group mb-2 smart-image-upload"}>
                 <div className={"input-group"}>
                     <input disabled={isDisabled()} onChange={() => setUploaded(false)} type={"file"} className={"form-control"} id={"imageInput-" + randomChars} aria-describedby={"imageHelp-" + randomChars} />
-                    <span className={`btn btn-outline-success ${isDisabled()?"disabled":null}`} onClick={!uploaded && !isDisabled() ? callUploader: null}>
-                        {uploaded ?
+                    <span className={`btn btn-outline-success ${(uploading || isDisabled() || uploaded) ?"disabled":null}`} onClick={!uploading && !uploaded && !isDisabled() ? callUploader: null}>
+                        {uploading ?
+                            <i className={"bi bi-hourglass-split"} />:
+                        uploaded ?
                             <i className={"bi-check-circle-fill"} /> :
                             <i className={"bi-upload"} />
                         }
