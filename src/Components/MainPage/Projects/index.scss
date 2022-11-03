@@ -55,12 +55,18 @@
 .projects-card .card-img-overlay{
   width: 200px;
   height: 200px;
-  visibility: hidden;
-  opacity: 0;
   background-color: rgba(4, 11, 20, 0.55);
 }
-.projects-card:hover .card-img-overlay{
-  visibility: visible;
+.projects-card .card-img-overlay *{
+  transition: all 0.5s linear;
+}
+.projects-card .card-img-overlay .view-btn{
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+}
+.projects-card:hover .card-img-overlay .view-btn{
+  position: unset;
   opacity: 1;
-  transition: visibility 0s, opacity 0.5s linear;
+  visibility: visible;
 }
