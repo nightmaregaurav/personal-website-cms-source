@@ -48,7 +48,12 @@ export const useGetFixedIndexPage = () => {
         req.addEventListener("load", (e) => {
             let page_data;
             page_data = e.target.responseText ?? "";
-            const new_page_data = page_index_html.replace('"/static/', `"${root_url}/static/`);
+            let to_add = page_data.match(/<script defer.+<\/head>/g);
+            to_add = to_add? to_add[0] : "</head>";
+
+            let new_page_data = page_index_html.replace('"/static/', `"${root_url}/static/`);
+            new_page_data = new_page_data.replace("</head>", to_add);
+
             let status = "SUCCESS";
             if (new_page_data === page_data){
                 status = "UNCHANGED";
@@ -71,8 +76,7 @@ export const useGetFixedIndexPage = () => {
     return data;
 }
 
-const page_index_html = `
-<!DOCTYPE html>
+const page_index_html = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <title></title>
@@ -98,8 +102,7 @@ const page_index_html = `
 </html>
 `;
 
-const page_404_html = `
-<!DOCTYPE html>
+const page_404_html = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
