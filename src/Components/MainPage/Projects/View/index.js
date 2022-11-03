@@ -26,10 +26,10 @@ const View = () => {
         // noinspection JSUnresolvedVariable
         let data = original_data.map(item => ({
             title: item.title,
-            images: Object.values(item.imagesUrl),
+            images: Object.values(item.imagesUrl?? {}),
             description: item.description,
-            majorPoints: Object.values(item.majorPoints),
-            links: Object.values(item.extLinks),
+            majorPoints: Object.values(item.majorPoints?? {}),
+            links: Object.values(item.extLinks?? {}),
         }));
         let index = id.split("_")[1] ?? NaN;
         setTarget(data[index] ?? null);
@@ -61,7 +61,7 @@ const View = () => {
                                 </Swiper>
                             </div>
                             <div className="col-lg-5 d-flex flex-column flex-nowrap justify-content-center align-items-start align-content-center">
-                                <div className="projects-info">
+                                <div className="container projects-info">
                                     {target.majorPoints ? <>
                                         <h3 style={{margin: 0, padding: 0, marginBottom: "10px", paddingBottom: "5px"}}>Project information</h3>
                                         <ul>
@@ -75,7 +75,7 @@ const View = () => {
                                         </>: null}
                                     </>: null}
                                 </div>
-                                <div className="projects-description">
+                                <div className="container projects-description">
                                     <h2>{target.title}</h2>
                                     <p>{target.description}</p>
                                 </div>
