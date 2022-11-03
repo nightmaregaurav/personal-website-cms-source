@@ -8,8 +8,11 @@
   margin-bottom: 0 !important;
 }
 .projects-details .projects-info {
-  padding: 20px;
-  box-shadow: 0 0 30px rgba(5, 13, 24, 0.08);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 0 30px rgba(5, 13, 24, 0.2);
+  border-radius: 20px;
 }
 .projects-details .projects-info h3 {
   font-size: 22px;
@@ -27,7 +30,7 @@
   margin-top: 10px;
 }
 .projects-details .projects-description {
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .projects-details .projects-description h2 {
   font-size: 26px;
