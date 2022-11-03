@@ -100,8 +100,8 @@ const Projects = () => {
                                                 <div className="card bg-dark text-white">
                                                     <img className="card-img projects-card-image" src={item.image} alt={item.title.trim() + "'s photo"} />
                                                     <div className="card-img-overlay d-flex flex-column flex-nowrap justify-content-center align-items-center">
-                                                        <h5 className="card-title">{item.title}</h5>
-                                                        <Link className="card-text btn btn-success" to={item.id}><i className={"bi-eye-fill"}></i> View</Link>
+                                                        <h5 className="card-title text-center">{item.title}</h5>
+                                                        <Link className="view-btn card-text btn btn-success" to={item.id}><i className={"bi-eye-fill"}></i> View</Link>
                                                     </div>
                                                 </div>
                                             </div>
