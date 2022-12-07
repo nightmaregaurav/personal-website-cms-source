@@ -54,29 +54,47 @@
   background: #149ddd;
   color: #fff;
   text-decoration: none;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+	transition: all ease 0.5s;
+	-moz-transition: all ease-in 0.5s;
+	-webkit-transition: all ease-in 0.5s;
+	-o-transition: all ease-in 0.5s;
 }
 #header .profile .social-links a.facebook:hover {
-  background: #3b5998;
+  background: #4267B2;
   color: #fff;
 }
 #header .profile .social-links a.twitter:hover {
-  background: #00aced;
-  color: #fff;
-}
-#header .profile .social-links a.instagram:hover {
-  background: #bc2a8d;
-  color: #fff;
-}
-#header .profile .social-links a.google-plus:hover {
-  background: #dd4b39;
-  color: #fff;
-}
-#header .profile .social-links a.linkedin:hover {
-  background: #007bb6;
+  background: #1DA1F2;
   color: #fff;
 }
 #header .profile .social-links a.youtube:hover {
-  background: #bb0000;
+  background: #c4302b;
+  color: #fff;
+}
+#header .profile .social-links a.pinterest:hover {
+  background: #c8232c;
+  color: #fff;
+}
+#header .profile .social-links a.tumblr:hover {
+  background: #34526f;
+  color: #fff;
+}
+#header .profile .social-links a.whatsapp:hover {
+  background: #25D366;
+  color: #fff;
+}
+#header .profile .social-links a.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: #fff;
+}
+#header .profile .social-links a.google-plus:hover {
+  background: #CF3D2E;
+  color: #fff;
+}
+#header .profile .social-links a.linkedin:hover {
+  background: #0085AE;
   color: #fff;
 }
 #header .profile .social-links a.snapchat:hover {
@@ -84,18 +102,113 @@
   color: #fff;
 }
 #header .profile .social-links a.github:hover {
-  background: #000000;
+  background: #070709;
   color: #fff;
 }
 #header .profile .social-links a.dribbble:hover {
-  background: #ea4c89;
+  background: #F46899;
   color: #fff;
 }
 #header .profile .social-links a.blogger:hover {
   background: #fb8f3d;
   color: #fff;
 }
-
+#header .profile .social-links a.adn:hover {
+	background-color:#504e54;
+	color: #fff;
+} 
+#header .profile .social-links a.apple:hover {
+	background-color:#aeb5c5;
+	color: #fff;
+} 
+#header .profile .social-links a.android:hover {
+	background-color:#A5C63B;
+	color: #fff;
+}  
+#header .profile .social-links a.bitbucket:hover {
+	background-color:#003366;
+	color: #fff;
+} 
+#header .profile .social-links a.bitcoin:hover {
+	background-color:#F7931A;
+	color: #fff;
+}
+#header .profile .social-links a.btc:hover {
+	background-color:#F7931A;
+	color: #fff;
+}
+#header .profile .social-links a.css3:hover {
+	background-color:#1572B7;
+	color: #fff;
+}
+#header .profile .social-links a.dropbox:hover {
+	background-color:#018BD3;
+	color: #fff;
+}
+#header .profile .social-links a.flickr:hover {
+	background-color:#FF0084;
+	color: #fff;
+}
+#header .profile .social-links a.foursquare:hover {
+	background-color:#0086BE;
+	color: #fff;
+}
+#header .profile .social-links a.html5:hover {
+	background-color:#E54D26;
+	color: #fff;
+}
+#header .profile .social-links a.linux:hover {
+	background-color:#FBC002;
+	color: #fff;
+}
+#header .profile .social-links a.maxcdn:hover {
+	background-color:#F6AE1C;
+	color: #fff;
+}
+#header .profile .social-links a.pagelines:hover {
+	background-color:#241E20;
+	color: #fff;
+}
+#header .profile .social-links a.renren:hover {
+	background-color:#025DAC;
+	color: #fff;
+}
+#header .profile .social-links a.skype:hover {
+	background-color:#01AEF2;
+	color: #fff;
+}
+#header .profile .social-links a.stack-exchange:hover {
+	background-color:#245590;
+	color: #fff;
+}
+#header .profile .social-links a.stack-overflow:hover {
+	background-color:#FF7300;
+	color: #fff;
+}
+#header .profile .social-links a.trello:hover {
+	background-color:#265A7F;
+	color: #fff;
+}
+#header .profile .social-links a.vimeo:hover {
+	background-color:#229ACC;
+	color: #fff;
+}
+#header .profile .social-links a.vk:hover {
+	background-color:#375474;
+	color: #fff;
+}
+#header .profile .social-links a.weibo:hover {
+	background-color:#D72B2B;
+	color: #fff;
+}
+#header .profile .social-links a.windows:hover {
+	background-color:#12B6F3;
+	color: #fff;
+}
+#header .profile .social-links a.xing:hover {
+	background-color:#00555C;
+	color: #fff;
+}
 #main {
   margin-left: 300px;
 }
