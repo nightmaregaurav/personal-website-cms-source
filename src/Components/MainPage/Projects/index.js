@@ -4,7 +4,7 @@ import IsoTopeGrid from "react-isotope";
 import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {Link, Outlet} from "react-router-dom";
 import {get} from "../../../helpers/object_helper";
-import {slugify} from "../../../helpers/text_heper";
+import {slugify_case_preserve} from "../../../helpers/text_heper";
 import {getMeta} from "../../../helpers/seo_helper";
 import {Helmet} from "react-helmet-async";
 
@@ -23,18 +23,22 @@ const Projects = () => {
             title: item.title,
             image: Object.values(item.imagesUrl).length > 0 ? Object.values(item.imagesUrl)[0]: null,
             categories: Object.values(item.categories),
-            filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify(i)) : [],
+            filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify_case_preserve(i)) : [],
         }));
 
-        let labels = [];
-        let categories = [];
+        let category_identifiers_for_filter = [];
+        let category_names = [];
         new_data.map(item => {
-            labels = [...labels, ...item.filter];
-            categories = [...categories, ...item.categories];
+            category_identifiers_for_filter = [...category_identifiers_for_filter, ...item.filter];
+            category_names = [...category_names, ...item.categories];
             return null;
         });
-        labels = [...new Set(labels)];
-        let filter_data = labels.map((_, index) => {return {label: labels[index], name:categories[index], isChecked: false}});
+        category_identifiers_for_filter = [...(new Set(category_identifiers_for_filter))];
+        category_names = [...new Set(category_names)];
+        category_identifiers_for_filter = category_identifiers_for_filter.sort((a, b) => a.localeCompare(b));
+        category_names = category_names.sort((a, b) => a.localeCompare(b));
+
+        let filter_data = category_identifiers_for_filter.map((_, index) => {return {label: category_identifiers_for_filter[index], name:category_names[index], isChecked: false}});
         filter_data.unshift({ label: "all", name:"all", isChecked: true });
 
         setData(new_data);
