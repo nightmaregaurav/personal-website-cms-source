@@ -1,5 +1,9 @@
 export function slugify(text) {
-    return text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '');
+    return slugify_case_preserve(text.toLowerCase())
+}
+
+export function slugify_case_preserve(text) {
+    return text.replace(/ /g, '-').replace(/[^\w-]+/g, '-').replace("[-]+", "-");
 }
 
 export function strip(src, char) {

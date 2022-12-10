@@ -4,7 +4,7 @@ import IsoTopeGrid from "react-isotope";
 import {getConfig, getMainTitle} from "../../../helpers/config_helper";
 import {Link, Outlet} from "react-router-dom";
 import {get} from "../../../helpers/object_helper";
-import {slugify} from "../../../helpers/text_heper";
+import {slugify_case_preserve} from "../../../helpers/text_heper";
 import {getMeta} from "../../../helpers/seo_helper";
 import {Helmet} from "react-helmet-async";
 
@@ -23,7 +23,7 @@ const Projects = () => {
             title: item.title,
             image: Object.values(item.imagesUrl).length > 0 ? Object.values(item.imagesUrl)[0]: null,
             categories: Object.values(item.categories),
-            filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify(i)) : [],
+            filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify_case_preserve(i)) : [],
         }));
 
         let labels = [];
@@ -33,7 +33,11 @@ const Projects = () => {
             categories = [...categories, ...item.categories];
             return null;
         });
-        labels = [...new Set(labels)];
+        labels = [...(new Set(labels))];
+        categories = [...new Set(categories)];
+        labels = labels.sort((a, b) => a.localeCompare(b));
+        categories = categories.sort((a, b) => a.localeCompare(b));
+
         let filter_data = labels.map((_, index) => {return {label: labels[index], name:categories[index], isChecked: false}});
         filter_data.unshift({ label: "all", name:"all", isChecked: true });
 
