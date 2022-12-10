@@ -26,19 +26,19 @@ const Projects = () => {
             filter: Object.values(item.categories).length > 0 ? Object.values(item.categories).map(i => "filter-" + slugify_case_preserve(i)) : [],
         }));
 
-        let labels = [];
-        let categories = [];
+        let category_identifiers_for_filter = [];
+        let category_names = [];
         new_data.map(item => {
-            labels = [...labels, ...item.filter];
-            categories = [...categories, ...item.categories];
+            category_identifiers_for_filter = [...category_identifiers_for_filter, ...item.filter];
+            category_names = [...category_names, ...item.categories];
             return null;
         });
-        labels = [...(new Set(labels))];
-        categories = [...new Set(categories)];
-        labels = labels.sort((a, b) => a.localeCompare(b));
-        categories = categories.sort((a, b) => a.localeCompare(b));
+        category_identifiers_for_filter = [...(new Set(category_identifiers_for_filter))];
+        category_names = [...new Set(category_names)];
+        category_identifiers_for_filter = category_identifiers_for_filter.sort((a, b) => a.localeCompare(b));
+        category_names = category_names.sort((a, b) => a.localeCompare(b));
 
-        let filter_data = labels.map((_, index) => {return {label: labels[index], name:categories[index], isChecked: false}});
+        let filter_data = category_identifiers_for_filter.map((_, index) => {return {label: category_identifiers_for_filter[index], name:category_names[index], isChecked: false}});
         filter_data.unshift({ label: "all", name:"all", isChecked: true });
 
         setData(new_data);
